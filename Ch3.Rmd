@@ -1,0 +1,471 @@
+---
+title: "ModernDive Ch 3: Data Wrangling"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(nycflights13)
+```
+
+```{r}
+portland_flights <-
+  flights %>% 
+  filter(dest == "PDX")
+
+portland_flights
+```
+
+```{r}
+
+btv_sea_flights_fall <-
+  flights %>%
+  filter(origin == "JFK",
+         (dest == "BTV" | dest == "SEA"),
+         month >= 10)
+btv_sea_flights_fall
+```
+
+```{r}
+not_BTV_SEA <- 
+  flights %>% 
+  filter(!(dest == "BTV" | dest == "SEA"))
+not_BTV_SEA
+```
+
+```{r}
+many_airports <- 
+  flights %>% 
+  filter(dest %in% c("SEA", "SFO", "PDX", "BTV", "BDL"))
+many_airports
+```
+
+
+```{r}
+# (LC3.1) What’s another way of using the “not” operator ! to filter only the 
+# rows that are not going to Burlington, VT nor Seattle, 
+# WA in the flights data frame? Test this out using the previous code.
+
+flights %>% 
+  filter(!(dest %in% c("SEA" ,"BTV")))
+```
+
+```{r}
+summary_temp <- 
+  weather %>% 
+  summarise(
+    mean = mean(temp), 
+    std_dev = sd(temp))
+summary_temp
+```
+
+
+```{r}
+# Remove NAs
+summary_temp <- 
+  weather %>% 
+  summarise(
+    mean = mean(temp, na.rm = TRUE), 
+    std_dev = sd(temp, na.rm = TRUE))
+summary_temp
+```
+
+```{r}
+# (LC3.2) Say a doctor is studying the effect of smoking on lung cancer for a 
+# large number of patients who have records measured at five-year intervals. 
+# She notices that a large number of patients have missing data points because 
+# the patient has died, so she chooses to ignore these patients in her analysis.
+# What is wrong with this doctor’s approach?
+
+# A: These patients could have died of lung cancer
+
+# (LC3.3) Modify the earlier summarize() function code that creates the 
+# summary_temp data frame to also use the n() summary function: 
+# summarize(... , count = n()). What does the returned value correspond to?
+
+# A: the number of observations (rows) in the dataset
+
+summary_temp <- 
+  weather %>% 
+  summarise(
+    mean = mean(temp, na.rm = TRUE), 
+    std_dev = sd(temp, na.rm = TRUE),
+    count = n())
+summary_temp
+```
+
+
+```{r}
+# (LC3.4) Why doesn’t the following code work? Run the code line-by-line 
+# instead of all at once, and then look at the data. 
+
+#summary_temp <- weather %>%   
+#  summarize(mean = mean(temp, na.rm = TRUE)) %>% 
+#  summarize(std_dev = sd(temp, na.rm = TRUE))
+
+# A: After the first summarise step the variable 'temp' is no more; the only
+  # variable available is 'mean'
+```
+
+```{r}
+# group_by
+
+summary_monthly_temp <- 
+  weather %>% 
+  group_by(month) %>% 
+  summarise(mean = mean(temp, na.rm = TRUE),
+            std_dev = sd(temp, na.rm = TRUE))
+summary_monthly_temp
+```
+
+```{r}
+diamonds %>% 
+  group_by(cut) %>% 
+  summarise(avg_price = mean(price))
+```
+
+```{r}
+by_origin <- 
+  flights %>% 
+  group_by(origin) %>% 
+  summarise(count = n())
+by_origin
+```
+
+
+```{r}
+by_origin_monthly <-
+  flights %>% 
+  group_by(origin, month) %>% 
+  summarise(count = n())
+by_origin_monthly
+```
+
+```{r}
+# This does not work properly
+flights %>% 
+  group_by(origin) %>% 
+  group_by(month) %>% 
+  summarize(count = n())
+```
+
+```{r}
+# (LC3.5) Recall from Chapter 2 when we looked at temperatures by months in NYC.
+# What does the standard deviation column in the summary_monthly_temp data 
+# frame tell us about temperatures in NYC throughout the year?
+weather %>% 
+  group_by(month) %>% 
+  summarise(sd = sd(temp, na.rm = TRUE))
+
+# A: Nov-Jan has the most variability in temperature
+```
+
+```{r}
+# (LC3.6) What code would be required to get the mean and standard deviation 
+# temperature for each day in 2013 for NYC?
+weather %>% 
+  group_by(month, day) %>% 
+  summarise(mean = mean(temp, na.rm = TRUE),
+            sd = sd(temp, na.rm = TRUE))
+```
+
+```{r}
+# (LC3.7) Recreate by_monthly_origin, but instead of grouping via 
+# group_by(origin, month), group variables in a different order 
+# group_by(month, origin). What differs in the resulting dataset?
+
+by_origin_month <-
+flights %>% 
+  group_by(origin, month) %>% 
+  summarise(count = n())
+
+by_month_origin <-
+flights %>% 
+  group_by(month, origin) %>% 
+  summarise(count = n())
+
+# A: Depending on the order, the data shows either:
+  # for one airport at a time, data for  all months [group_by(origin, month)]
+  # for one month at a time, data for all airports [group_by(month, origin)]
+```
+
+```{r}
+# (LC3.8) How could we identify how many flights left each of the three airports 
+# for each carrier?
+flights %>% 
+  group_by(origin, carrier) %>% 
+  summarise(count = n())
+
+# or
+
+flights %>% count(origin, carrier)
+```
+
+```{r}
+# (LC3.9) How does the filter() operation differ from a group_by() followed 
+# by a summarize()?
+
+# A: filter doesn't create a summary of data, just selects rows
+```
+
+```{r}
+# mutate
+weather <-
+  weather %>% 
+  mutate(temp_in_C = (temp - 32) / 1.8)
+```
+
+```{r}
+summary_monthly_temp <-
+  weather %>% 
+  group_by(month) %>% 
+  summarise(mean_temp_F = mean(temp, na.rm = TRUE),
+            mean_temp_C = mean(temp_in_C, na.rm = TRUE))
+summary_monthly_temp
+```
+
+```{r}
+flights <-
+  flights %>% 
+  mutate(gain = dep_delay - arr_delay)
+flights
+```
+
+
+```{r}
+gain_summary <- 
+  flights %>% 
+  summarize(
+    min = min(gain, na.rm = TRUE),
+    q1 = quantile(gain, 0.25, na.rm = TRUE),
+    median = quantile(gain, 0.5, na.rm = TRUE),
+    q3 = quantile(gain, 0.75, na.rm = TRUE),
+    max = max(gain, na.rm = TRUE),
+    mean = mean(gain, na.rm = TRUE),
+    sd = sd(gain, na.rm = TRUE),
+    missing = sum(is.na(gain))
+  )
+gain_summary
+```
+
+```{r}
+flights %>% 
+  ggplot(aes(gain)) +
+  geom_histogram(color = "white", bins = 20)
+```
+
+```{r}
+flights <- 
+  flights %>%
+  mutate(
+    gain = dep_delay - arr_delay,
+    hours = air_time / 60,
+    gain_per_hour = gain / hours
+  )
+```
+
+
+```{r}
+# (LC3.10) What do positive values of the gain variable in flights correspond to?
+# What about negative values? And what about a zero value?
+
+# A: positive values correspond to the flight reduced delay from the departure
+  # negative values correspond to the flight increasing delay from the departure
+
+# (LC3.11) Could we create the dep_delay and arr_delay columns by simply 
+# subtracting dep_time from sched_dep_time and similarly for arrivals? Try the 
+# code out and explain any differences between the result and what actually 
+ #appears in flights.
+flights %>% 
+  mutate(dep_delay_alternative = sched_dep_time - dep_time,
+         arr_delay_alternative = sched_arr_time - arr_time) %>% 
+  select(dep_delay, dep_delay_alternative, arr_delay, arr_delay_alternative)
+
+# A: This doesn't fully work because sched_*_time variables are time of day not
+  # hours/minutes
+
+```
+
+```{r}
+# (LC3.12) What can we say about the distribution of gain? 
+# Describe it in a few sentences using the plot and the gain_summary data frame values.
+
+# A: Gain is quite normally distributed around zero witha slight skew to the left.
+  # Most of the values are within -5  to +25 minutes
+```
+
+
+```{r}
+# arrange
+
+freq_dest <- 
+  flights %>% 
+  group_by(dest) %>% 
+  summarize(num_flights = n())
+freq_dest
+```
+
+
+```{r}
+freq_dest %>% 
+  arrange(num_flights)
+```
+
+
+```{r}
+freq_dest %>% 
+  arrange(desc(num_flights))
+```
+
+```{r}
+# Joins
+
+flights_joined <-
+  flights %>% 
+  inner_join(airlines, by = "carrier")
+flights
+```
+
+
+```{r}
+# Same column has different name
+flights_with_airport_names <-
+  flights %>% 
+  inner_join(airports, by = c("dest" = "faa"))
+flights_with_airport_names
+```
+
+```{r}
+# Some grouping and summarising before joining
+named_dests <-
+  flights %>% 
+  group_by(dest) %>% 
+  summarise(num_flights = n()) %>% 
+  arrange(desc(num_flights)) %>% 
+  inner_join(airports, by = c("dest" = "faa")) %>% 
+  rename(airport_name = name)
+named_dests
+  
+```
+
+```{r}
+# Joining that requires multiple columns to match
+flights_weather_joined <-
+  flights %>% 
+  inner_join(weather, by = c("year", "month", "day", "hour", "origin"))
+flights_weather_joined
+```
+
+```{r}
+# (LC3.13) Looking at Figure 3.7, when joining flights and weather 
+# (or, in other words, matching the hourly weather values with each flight), 
+# why do we need to join by all of year, month, day, hour, and origin, and not just hour?
+
+# A. The matching observations are described by the exact combination of those variables
+
+# (LC3.14) What surprises you about the top 10 destinations from NYC in 2013?
+
+# A: Nothing really
+
+flights %>% 
+  count(dest, sort = TRUE) %>% 
+  inner_join(airports, by = c("dest" = "faa")) %>% 
+  select(dest, name, n)
+```
+
+```{r}
+# (LC3.15) What are some advantages of data in normal forms? What are some disadvantages?
+
+# A: It removes redundant variables from the data
+```
+
+```{r}
+# (LC3.16) What are some ways to select all three of the dest, air_time, 
+# and distance variables from flights? 
+# Give the code showing how to do this in at least three different ways.
+
+# A: Below are two obvious ways
+```
+
+```{r}
+flights %>% 
+  select(dest, air_time, distance)
+```
+
+```{r}
+flights %>% 
+  select(dest:distance)
+```
+
+
+```{r}
+# (LC3.17) How could one use starts_with(), ends_with(), and contains() to 
+# select columns from the flights data frame? Provide three different examples 
+# in total: one for starts_with(), one for ends_with(), and one for contains().
+```
+
+```{r}
+# starts_with
+flights %>% 
+  select(starts_with("dep"))
+```
+
+```{r}
+# ends_with
+flights %>% 
+  select(ends_with("time"))
+```
+
+```{r}
+# contains
+flights %>% 
+  select(contains("hour"))
+```
+
+```{r}
+
+# (LC3.18) Why might we want to use the select function on a data frame?
+
+# A: To get rid of superfluous variables; this helps with managing the data 
+
+# (LC3.19) Create a new data frame that shows the top 5 airports with the 
+# largest arrival delays from NYC in 2013.
+
+flights %>% 
+  select(dest, arr_delay) %>% 
+  group_by(dest) %>% 
+  summarise(mean_delay = mean(arr_delay, na.rm = TRUE)) %>% 
+  inner_join(airports %>% select(faa, name), by = c("dest" = "faa")) %>% 
+  select(name, mean_delay) %>% 
+  slice_max(mean_delay, n = 5)
+```
+
+```{r}
+# (LC3.20) Let’s now put your newly acquired data wrangling skills to the test!
+
+# An airline industry measure of a passenger airline’s capacity is the available 
+# seat miles, which is equal to the number of seats available multiplied by the
+# number of miles or kilometers flown summed over all flights.
+
+# For example, let’s consider the scenario in Figure 3.10. Since the airplane 
+# has 4 seats and it travels 200 miles, the available seat miles are 4×200=800.
+
+# Extending this idea, let’s say an airline had 2 flights using a plane with 10 
+# seats that flew 500 miles and 3 flights using a plane with 20 seats that flew 
+# 1000 miles, the available seat miles would be 2×10×500+3×20×1000=70,000 seat miles.
+
+# Using the datasets included in the nycflights13 package, compute the available
+# seat miles for each airline sorted in descending order. After completing all 
+# the necessary data wrangling steps, the resulting data frame should have 16 
+# rows (one for each airline) and 2 columns (airline name and available seat miles).
+
+flights %>%
+  inner_join(airlines, by = "carrier") %>% 
+  inner_join(planes, by = "tailnum") %>% 
+  select(name, seats, distance) %>% 
+  mutate(available_seat_miles = seats * distance) %>% 
+  group_by(name) %>% 
+  summarise(total_available_seat_miles = sum(available_seat_miles)) %>% 
+  arrange(desc(total_available_seat_miles))
+```
+

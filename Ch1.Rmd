@@ -1,0 +1,75 @@
+---
+title: "ModernDive Ch 1: Getting Started with Data in R"
+output: html_notebook
+---
+
+#### 1.4 Explore your first datasets
+```{r}
+# Load libraries
+library(nycflights13)
+library(tidyverse)
+library(knitr)
+```
+
+```{r}
+# (LC1.3) What does any ONE row in this flights dataset refer to?
+
+  #  A. Data on an airline
+  #  B. Data on a flight
+  #  C. Data on an airport
+  #  D. Data on multiple flights
+
+# Answer: B
+
+```
+
+```{r}
+glimpse(flights)
+```
+
+```{r}
+# LC1.4) What are some other examples in this dataset of categorical variables? 
+# What makes them different than quantitative variables?
+
+# A: tailnum, dest; these can't be used for numerical computations
+```
+
+```{r}
+# This is another way to look at the data (base function)
+str(flights)
+```
+
+```{r}
+kable(airlines)
+```
+
+```{r}
+airlines$name
+```
+
+```{r}
+# The skimr::skim gives a nice overlook of the data
+skimr::skim(flights)
+```
+
+```{r}
+glimpse(airports)
+```
+
+```{r}
+# (LC1.5) What properties of each airport do the variables 
+# lat, lon, alt, tz, dst, and tzone describe in the airports data frame? 
+# Take your best guess.
+
+# A: lat = latitude, lon = longitude, tzone = time zone, dst = ??
+
+# (LC1.6) Provide the names of variables in a data frame with at least three 
+# variables where one of them is an identification variable and the other two are not. 
+# Further, create your own tidy data frame that matches these conditions.
+
+# A: 
+planes %>% 
+  select(tailnum, manufacturer, engines) %>% 
+  glimpse()
+```
+
