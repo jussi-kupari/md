@@ -11,6 +11,13 @@ library(tidyverse)
 library(moderndive)
 library(skimr)
 library(ISLR)
+```
+
+```
+## Warning: package 'ISLR' was built under R version 4.1.3
+```
+
+```r
 library(patchwork)
 ```
 

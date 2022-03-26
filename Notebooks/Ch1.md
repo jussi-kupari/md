@@ -8,8 +8,19 @@ output: html_notebook
 ```r
 # Load libraries
 library(nycflights13)
+```
+
+```
+## Warning: package 'nycflights13' was built under R version 4.1.3
+```
+
+```r
 library(tidyverse)
 library(knitr)
+```
+
+```
+## Warning: package 'knitr' was built under R version 4.1.3
 ```
 
 

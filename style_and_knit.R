@@ -1,5 +1,3 @@
-library(tidyverse)
-
 # Create knitting function
 knit_notebook <- function(file) {
   ezknitr::ezknit(
@@ -16,6 +14,6 @@ knit_notebook <- function(file) {
 styler::style_dir(here::here())
 
 # Knit all Notebooks
-fs::dir_ls() %>%
-  str_subset(".Rmd$") %>%
-  walk(knit_notebook)
+fs::dir_ls() |>
+  stringr::str_subset(".Rmd$") |>
+  purrr::walk(knit_notebook)

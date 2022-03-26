@@ -7,10 +7,82 @@ output: html_notebook
 ```r
 # Load libraries
 library(tidyverse)
+```
+
+```
+## -- Attaching packages ----------------------------------------------------------------------- tidyverse 1.3.1 --
+```
+
+```
+## v ggplot2 3.3.5     v purrr   0.3.4
+## v tibble  3.1.6     v dplyr   1.0.8
+## v tidyr   1.2.0     v stringr 1.4.0
+## v readr   2.1.2     v forcats 0.5.1
+```
+
+```
+## -- Conflicts -------------------------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+```
+
+```r
 library(magrittr)
+```
+
+```
+## 
+## Attaching package: 'magrittr'
+```
+
+```
+## The following object is masked from 'package:purrr':
+## 
+##     set_names
+```
+
+```
+## The following object is masked from 'package:tidyr':
+## 
+##     extract
+```
+
+```r
 library(moderndive)
+```
+
+```
+## Warning: package 'moderndive' was built under R version 4.1.3
+```
+
+```r
 library(infer)
+```
+
+```
+## Warning: package 'infer' was built under R version 4.1.3
+```
+
+```r
 library(janitor)
+```
+
+```
+## Warning: package 'janitor' was built under R version 4.1.3
+```
+
+```
+## 
+## Attaching package: 'janitor'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     chisq.test, fisher.test
+```
+
+```r
 library(patchwork)
 ```
 

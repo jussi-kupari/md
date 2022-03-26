@@ -12,6 +12,10 @@ library(skimr)
 library(gapminder)
 ```
 
+```
+## Warning: package 'gapminder' was built under R version 4.1.3
+```
+
 ### 5.1 One numerical explanatory variable
 #### 5.1.1 Exploratory data analysis
 
