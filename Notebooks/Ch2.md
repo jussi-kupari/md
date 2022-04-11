@@ -123,7 +123,7 @@ alaska_flights %>%
 ## Warning: Removed 5 rows containing missing values (geom_point).
 ```
 
-![plot of chunk unnamed-chunk-5](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-5](Ch2/unnamed-chunk-5-1.png)
 
 
 ```r
@@ -199,7 +199,7 @@ alaska_flights %>%
 ## Warning: Removed 5 rows containing missing values (geom_point).
 ```
 
-![plot of chunk unnamed-chunk-10](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-10-1.png)
+![plot of chunk unnamed-chunk-10](Ch2/unnamed-chunk-10-1.png)
 
 
 ```r
@@ -212,7 +212,7 @@ alaska_flights %>%
 ## Warning: Removed 5 rows containing missing values (geom_point).
 ```
 
-![plot of chunk unnamed-chunk-11](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-11-1.png)
+![plot of chunk unnamed-chunk-11](Ch2/unnamed-chunk-11-1.png)
 
 
 ```r
@@ -225,7 +225,7 @@ alaska_flights %>%
 ## Warning: Removed 5 rows containing missing values (geom_point).
 ```
 
-![plot of chunk unnamed-chunk-12](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-12-1.png)
+![plot of chunk unnamed-chunk-12](Ch2/unnamed-chunk-12-1.png)
 
 
 ```r
@@ -354,7 +354,7 @@ early_january_weather %>%
   geom_line() 
 ```
 
-![plot of chunk unnamed-chunk-18](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-18-1.png)
+![plot of chunk unnamed-chunk-18](Ch2/unnamed-chunk-18-1.png)
 
 
 ```r
@@ -375,7 +375,7 @@ early_january_weather %>%
   geom_line()
 ```
 
-![plot of chunk unnamed-chunk-19](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-19-1.png)
+![plot of chunk unnamed-chunk-19](Ch2/unnamed-chunk-19-1.png)
 
 #### 5NG#3: Histograms
 
@@ -394,7 +394,7 @@ weather %>%
 ## Warning: Removed 1 rows containing non-finite values (stat_bin).
 ```
 
-![plot of chunk unnamed-chunk-20](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-20-1.png)
+![plot of chunk unnamed-chunk-20](Ch2/unnamed-chunk-20-1.png)
 
 
 ```r
@@ -412,7 +412,7 @@ weather %>%
 ## Warning: Removed 1 rows containing non-finite values (stat_bin).
 ```
 
-![plot of chunk unnamed-chunk-21](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-21-1.png)
+![plot of chunk unnamed-chunk-21](Ch2/unnamed-chunk-21-1.png)
 
 
 ```r
@@ -430,7 +430,7 @@ weather %>%
 ## Warning: Removed 1 rows containing non-finite values (stat_bin).
 ```
 
-![plot of chunk unnamed-chunk-22](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-22-1.png)
+![plot of chunk unnamed-chunk-22](Ch2/unnamed-chunk-22-1.png)
 
 
 ```r
@@ -444,7 +444,7 @@ weather %>%
 ## Warning: Removed 1 rows containing non-finite values (stat_bin).
 ```
 
-![plot of chunk unnamed-chunk-23](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-23-1.png)
+![plot of chunk unnamed-chunk-23](Ch2/unnamed-chunk-23-1.png)
 
 
 ```r
@@ -458,7 +458,7 @@ weather %>%
 ## Warning: Removed 1 rows containing non-finite values (stat_bin).
 ```
 
-![plot of chunk unnamed-chunk-24](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-24-1.png)
+![plot of chunk unnamed-chunk-24](Ch2/unnamed-chunk-24-1.png)
 
 
 ```r
@@ -495,7 +495,7 @@ ggplot(aes(temp)) +
 ## Warning: Removed 1 rows containing non-finite values (stat_bin).
 ```
 
-![plot of chunk unnamed-chunk-26](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-26-1.png)
+![plot of chunk unnamed-chunk-26](Ch2/unnamed-chunk-26-1.png)
 
 
 ```r
@@ -510,7 +510,7 @@ ggplot(aes(temp)) +
 ## Warning: Removed 1 rows containing non-finite values (stat_bin).
 ```
 
-![plot of chunk unnamed-chunk-27](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-27-1.png)
+![plot of chunk unnamed-chunk-27](Ch2/unnamed-chunk-27-1.png)
 
 
 ```r
@@ -552,7 +552,7 @@ weather %>%
 ## Warning: Removed 1 rows containing non-finite values (stat_boxplot).
 ```
 
-![plot of chunk unnamed-chunk-29](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-29-1.png)
+![plot of chunk unnamed-chunk-29](Ch2/unnamed-chunk-29-1.png)
 
 
 ```r
@@ -566,7 +566,7 @@ weather %>%
 ## Warning: Removed 1 rows containing non-finite values (stat_boxplot).
 ```
 
-![plot of chunk unnamed-chunk-30](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-30-1.png)
+![plot of chunk unnamed-chunk-30](Ch2/unnamed-chunk-30-1.png)
 
 
 ```r
@@ -641,7 +641,7 @@ fruits %>%
   geom_bar()
 ```
 
-![plot of chunk unnamed-chunk-35](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-35-1.png)
+![plot of chunk unnamed-chunk-35](Ch2/unnamed-chunk-35-1.png)
 
 
 ```r
@@ -651,7 +651,7 @@ fruits_counted %>%
   geom_col()
 ```
 
-![plot of chunk unnamed-chunk-36](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-36-1.png)
+![plot of chunk unnamed-chunk-36](Ch2/unnamed-chunk-36-1.png)
 
 
 ```r
@@ -661,7 +661,7 @@ flights %>%
   geom_bar()
 ```
 
-![plot of chunk unnamed-chunk-37](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-37-1.png)
+![plot of chunk unnamed-chunk-37](Ch2/unnamed-chunk-37-1.png)
 
 
 ```r
@@ -672,7 +672,7 @@ flights %>%
   geom_col()
 ```
 
-![plot of chunk unnamed-chunk-38](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-38-1.png)
+![plot of chunk unnamed-chunk-38](Ch2/unnamed-chunk-38-1.png)
 
 
 
@@ -737,7 +737,7 @@ flights %>%
   geom_bar()
 ```
 
-![plot of chunk unnamed-chunk-41](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-41-1.png)
+![plot of chunk unnamed-chunk-41](Ch2/unnamed-chunk-41-1.png)
 
 
 ```r
@@ -746,7 +746,7 @@ flights %>%
   geom_bar()
 ```
 
-![plot of chunk unnamed-chunk-42](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-42-1.png)
+![plot of chunk unnamed-chunk-42](Ch2/unnamed-chunk-42-1.png)
 
 
 ```r
@@ -755,7 +755,7 @@ flights %>%
   geom_bar(position = "dodge")
 ```
 
-![plot of chunk unnamed-chunk-43](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-43-1.png)
+![plot of chunk unnamed-chunk-43](Ch2/unnamed-chunk-43-1.png)
 
 
 ```r
@@ -764,7 +764,7 @@ flights %>%
   geom_bar(position = position_dodge(preserve = "single"))
 ```
 
-![plot of chunk unnamed-chunk-44](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-44-1.png)
+![plot of chunk unnamed-chunk-44](Ch2/unnamed-chunk-44-1.png)
 
 
 ```r
@@ -774,7 +774,7 @@ flights %>%
   facet_wrap(vars(origin), ncol = 1)
 ```
 
-![plot of chunk unnamed-chunk-45](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-45-1.png)
+![plot of chunk unnamed-chunk-45](Ch2/unnamed-chunk-45-1.png)
 
 
 ```r
@@ -804,46 +804,6 @@ flights %>%
 
 ```r
 clear_libraries()
-```
-
-```
-## Warning: 'forcats' namespace cannot be unloaded:
-##   namespace 'forcats' is imported by 'tidyverse', 'haven' so cannot be unloaded
-```
-
-```
-## Warning: 'stringr' namespace cannot be unloaded:
-##   namespace 'stringr' is imported by 'tidyverse', 'janitor' so cannot be unloaded
-```
-
-```
-## Warning: 'dplyr' namespace cannot be unloaded:
-##   namespace 'dplyr' is imported by 'broom', 'janitor', 'tidyr', 'dbplyr', 'infer' so cannot be unloaded
-```
-
-```
-## Warning: 'purrr' namespace cannot be unloaded:
-##   namespace 'purrr' is imported by 'broom', 'tidyr', 'modelr', 'styler', 'tidyselect', 'infer' so cannot be unloaded
-```
-
-```
-## Warning: 'readr' namespace cannot be unloaded:
-##   namespace 'readr' is imported by 'tidyverse' so cannot be unloaded
-```
-
-```
-## Warning: 'tidyr' namespace cannot be unloaded:
-##   namespace 'tidyr' is imported by 'tidyverse', 'broom' so cannot be unloaded
-```
-
-```
-## Warning: 'tibble' namespace cannot be unloaded:
-##   namespace 'tibble' is imported by 'broom', 'ggplot2', 'tidyr', 'modelr', 'haven', 'dplyr', 'dbplyr', 'styler', 'readr', 'infer' so cannot be unloaded
-```
-
-```
-## Warning: 'ggplot2' namespace cannot be unloaded:
-##   namespace 'ggplot2' is imported by 'tidyverse', 'infer' so cannot be unloaded
 ```
 
 

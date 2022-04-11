@@ -83,7 +83,7 @@ pennies_sample %>%
   geom_histogram(binwidth = 10, color = "white")
 ```
 
-![plot of chunk unnamed-chunk-3](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-3-1.png)
+![plot of chunk unnamed-chunk-3](Ch8/unnamed-chunk-3-1.png)
 
 
 ```r
@@ -175,7 +175,7 @@ pennies_sample %>%
   labs(title = "Original sample of 50 pennies")
 ```
 
-![plot of chunk unnamed-chunk-6](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-6-1.png)
+![plot of chunk unnamed-chunk-6](Ch8/unnamed-chunk-6-1.png)
 
 
 ```r
@@ -232,7 +232,7 @@ resampled_means %>%
   labs(x = "Sampled mean year")
 ```
 
-![plot of chunk unnamed-chunk-9](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-9-1.png)
+![plot of chunk unnamed-chunk-9](Ch8/unnamed-chunk-9-1.png)
 
 #### 8.1.4 What did we just do?
 
@@ -342,7 +342,7 @@ virtual_resampled_means %>%
   labs(x = "Resample mean year")
 ```
 
-![plot of chunk unnamed-chunk-14](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-14-1.png)
+![plot of chunk unnamed-chunk-14](Ch8/unnamed-chunk-14-1.png)
 
 #### 8.2.3 Virtually resampling 1000 times
 
@@ -437,7 +437,7 @@ virtual_resampled_means %>%
   labs(x = "sample mean")
 ```
 
-![plot of chunk unnamed-chunk-18](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-18-1.png)
+![plot of chunk unnamed-chunk-18](Ch8/unnamed-chunk-18-1.png)
 
 
 ```r
@@ -665,7 +665,7 @@ pennies_sample %>%
   visualize() 
 ```
 
-![plot of chunk unnamed-chunk-30](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-30-1.png)
+![plot of chunk unnamed-chunk-30](Ch8/unnamed-chunk-30-1.png)
 
 
 ```r
@@ -675,7 +675,7 @@ bootstrap_distribution %>%
   geom_histogram(binwidth = 1, color = "white")
 ```
 
-![plot of chunk unnamed-chunk-31](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-31-1.png)
+![plot of chunk unnamed-chunk-31](Ch8/unnamed-chunk-31-1.png)
 
 #### 8.4.3 Percentile method with infer
 
@@ -703,7 +703,7 @@ bootstrap_distribution %>%
   shade_confidence_interval(endpoints = percentile_ci) 
 ```
 
-![plot of chunk unnamed-chunk-33](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-33-1.png)
+![plot of chunk unnamed-chunk-33](Ch8/unnamed-chunk-33-1.png)
 
 
 ```r
@@ -719,7 +719,7 @@ bootstrap_distribution %>%
   )
 ```
 
-![plot of chunk unnamed-chunk-34](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-34-1.png)
+![plot of chunk unnamed-chunk-34](Ch8/unnamed-chunk-34-1.png)
 
 
 ```r
@@ -745,7 +745,7 @@ bootstrap_distribution %>%
   shade_ci(endpoints = standard_error_ci)
 ```
 
-![plot of chunk unnamed-chunk-36](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-36-1.png)
+![plot of chunk unnamed-chunk-36](Ch8/unnamed-chunk-36-1.png)
 
 
 ```r
@@ -780,7 +780,7 @@ bootstrap_distribution_median %>%
   shade_ci(endpoints = ci_95_percentile)
 ```
 
-![plot of chunk unnamed-chunk-38](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-38-1.png)
+![plot of chunk unnamed-chunk-38](Ch8/unnamed-chunk-38-1.png)
 
 ### 8.5 Interpreting confidence intervals
 
@@ -934,7 +934,7 @@ sample_1_bootstrap %>%
   geom_vline(xintercept = 0.42, linetype = "dashed")
 ```
 
-![plot of chunk unnamed-chunk-45](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-45-1.png)
+![plot of chunk unnamed-chunk-45](Ch8/unnamed-chunk-45-1.png)
 
 
 ```r
@@ -1154,7 +1154,7 @@ bootstrap_distribution_yawning %>%
   geom_vline(xintercept = 0)
 ```
 
-![plot of chunk unnamed-chunk-55](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-55-1.png)
+![plot of chunk unnamed-chunk-55](Ch8/unnamed-chunk-55-1.png)
 
 
 ```r
@@ -1194,7 +1194,7 @@ bootstrap_distribution_yawning %>%
   shade_ci(endpoints = myth_ci_se, color = "gray")
 ```
 
-![plot of chunk unnamed-chunk-58](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-58-1.png)
+![plot of chunk unnamed-chunk-58](Ch8/unnamed-chunk-58-1.png)
 
 #### 8.6.4 Interpreting the confidence interval
 
@@ -1223,7 +1223,7 @@ sampling_distribution %>%
        title = "Sampling distribution")
 ```
 
-![plot of chunk unnamed-chunk-59](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-59-1.png)
+![plot of chunk unnamed-chunk-59](Ch8/unnamed-chunk-59-1.png)
 
 
 ```r
@@ -1273,7 +1273,7 @@ bootstrap_distribution %>%
   visualize()
 ```
 
-![plot of chunk unnamed-chunk-62](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-62-1.png)
+![plot of chunk unnamed-chunk-62](Ch8/unnamed-chunk-62-1.png)
 
 
 ```r
@@ -1340,49 +1340,4 @@ mean(conf_ints$captured_pop_prop)
 
 ```r
 clear_libraries()
-```
-
-```
-## Warning: 'infer' namespace cannot be unloaded:
-##   namespace 'infer' is imported by 'moderndive' so cannot be unloaded
-```
-
-```
-## Warning: 'forcats' namespace cannot be unloaded:
-##   namespace 'forcats' is imported by 'tidyverse', 'haven' so cannot be unloaded
-```
-
-```
-## Warning: 'stringr' namespace cannot be unloaded:
-##   namespace 'stringr' is imported by 'tidyverse', 'janitor' so cannot be unloaded
-```
-
-```
-## Warning: 'dplyr' namespace cannot be unloaded:
-##   namespace 'dplyr' is imported by 'broom', 'janitor', 'tidyr', 'dbplyr', 'infer' so cannot be unloaded
-```
-
-```
-## Warning: 'purrr' namespace cannot be unloaded:
-##   namespace 'purrr' is imported by 'broom', 'tidyr', 'modelr', 'styler', 'tidyselect', 'infer' so cannot be unloaded
-```
-
-```
-## Warning: 'readr' namespace cannot be unloaded:
-##   namespace 'readr' is imported by 'tidyverse' so cannot be unloaded
-```
-
-```
-## Warning: 'tidyr' namespace cannot be unloaded:
-##   namespace 'tidyr' is imported by 'tidyverse', 'broom' so cannot be unloaded
-```
-
-```
-## Warning: 'tibble' namespace cannot be unloaded:
-##   namespace 'tibble' is imported by 'broom', 'ggplot2', 'tidyr', 'modelr', 'haven', 'dplyr', 'dbplyr', 'styler', 'readr', 'infer' so cannot be unloaded
-```
-
-```
-## Warning: 'ggplot2' namespace cannot be unloaded:
-##   namespace 'ggplot2' is imported by 'tidyverse', 'infer' so cannot be unloaded
 ```

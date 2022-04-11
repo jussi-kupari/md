@@ -90,7 +90,7 @@ promotions %>%
   labs(x = "Gender of name in résumé") 
 ```
 
-![plot of chunk unnamed-chunk-3](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-3-1.png)
+![plot of chunk unnamed-chunk-3](Ch9/unnamed-chunk-3-1.png)
 
 
 ```r
@@ -122,7 +122,7 @@ promotions %>%
        title = "Shuffled"))
 ```
 
-![plot of chunk unnamed-chunk-5](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-5](Ch9/unnamed-chunk-5-1.png)
 
 
 ```r
@@ -293,7 +293,7 @@ null_distribution %>%
   shade_p_value(obs_stat = obs_diff_prop, direction = "right")
 ```
 
-![plot of chunk unnamed-chunk-12](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-12-1.png)
+![plot of chunk unnamed-chunk-12](Ch9/unnamed-chunk-12-1.png)
 
 
 ```r
@@ -352,7 +352,7 @@ bootstrap_distribution %>%
   shade_ci(endpoints = percentile_ci)
 ```
 
-![plot of chunk unnamed-chunk-16](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-16-1.png)
+![plot of chunk unnamed-chunk-16](Ch9/unnamed-chunk-16-1.png)
 
 
 ```r
@@ -381,7 +381,7 @@ visualize(bootstrap_distribution) +
   shade_confidence_interval(endpoints = se_ci)
 ```
 
-![plot of chunk unnamed-chunk-18](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-18-1.png)
+![plot of chunk unnamed-chunk-18](Ch9/unnamed-chunk-18-1.png)
 
 
 ```r
@@ -502,7 +502,7 @@ movies_sample %>%
   labs(y = "IMDb rating")
 ```
 
-![plot of chunk unnamed-chunk-24](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-24-1.png)
+![plot of chunk unnamed-chunk-24](Ch9/unnamed-chunk-24-1.png)
 
 
 ```r
@@ -670,7 +670,7 @@ null_distribution_movies %>%
   shade_p_value(obs_stat = obs_diff_means, direction = "both")
 ```
 
-![plot of chunk unnamed-chunk-31](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-31-1.png)
+![plot of chunk unnamed-chunk-31](Ch9/unnamed-chunk-31-1.png)
 
 
 ```r
@@ -714,7 +714,7 @@ null_distribution_median %>%
   shade_p_value(obs_stat = obs_diff_median, direction = "both")
 ```
 
-![plot of chunk unnamed-chunk-34](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-34-1.png)
+![plot of chunk unnamed-chunk-34](Ch9/unnamed-chunk-34-1.png)
 
 ```r
 null_distribution_median %>% 
@@ -745,7 +745,7 @@ movies_sample %>%
   facet_wrap(vars(genre), ncol = 1)
 ```
 
-![plot of chunk unnamed-chunk-37](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-37-1.png)
+![plot of chunk unnamed-chunk-37](Ch9/unnamed-chunk-37-1.png)
 
 
 ```r
@@ -793,7 +793,7 @@ a_and_r <-
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-![plot of chunk unnamed-chunk-38](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-38-1.png)
+![plot of chunk unnamed-chunk-38](Ch9/unnamed-chunk-38-1.png)
 
 ### 9.6 Conclusion
 ##### 9.6.1 Theory-based hypothesis tests
@@ -826,7 +826,7 @@ null_distribution_movies <-
 visualize(null_distribution_movies, bins = 10)
 ```
 
-![plot of chunk unnamed-chunk-40](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-40-1.png)
+![plot of chunk unnamed-chunk-40](Ch9/unnamed-chunk-40-1.png)
 
 
 ```r
@@ -841,7 +841,7 @@ null_distribution_movies_t <-
 visualize(null_distribution_movies_t, bins = 10)
 ```
 
-![plot of chunk unnamed-chunk-41](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-41-1.png)
+![plot of chunk unnamed-chunk-41](Ch9/unnamed-chunk-41-1.png)
 
 
 ```r
@@ -855,7 +855,7 @@ null_distribution_movies_t %>%
 ## check these for you.
 ```
 
-![plot of chunk unnamed-chunk-42](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-42-1.png)
+![plot of chunk unnamed-chunk-42](Ch9/unnamed-chunk-42-1.png)
 
 
 ```r
@@ -889,7 +889,7 @@ null_distribution_movies_t %>%
 ## check these for you.
 ```
 
-![plot of chunk unnamed-chunk-44](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-44-1.png)
+![plot of chunk unnamed-chunk-44](Ch9/unnamed-chunk-44-1.png)
 
 
 ```r
@@ -911,49 +911,4 @@ null_distribution_movies_t %>%
 
 ```r
 clear_libraries()
-```
-
-```
-## Warning: 'infer' namespace cannot be unloaded:
-##   namespace 'infer' is imported by 'moderndive' so cannot be unloaded
-```
-
-```
-## Warning: 'forcats' namespace cannot be unloaded:
-##   namespace 'forcats' is imported by 'tidyverse', 'haven' so cannot be unloaded
-```
-
-```
-## Warning: 'stringr' namespace cannot be unloaded:
-##   namespace 'stringr' is imported by 'tidyverse', 'janitor' so cannot be unloaded
-```
-
-```
-## Warning: 'dplyr' namespace cannot be unloaded:
-##   namespace 'dplyr' is imported by 'broom', 'janitor', 'tidyr', 'dbplyr', 'infer' so cannot be unloaded
-```
-
-```
-## Warning: 'purrr' namespace cannot be unloaded:
-##   namespace 'purrr' is imported by 'broom', 'tidyr', 'modelr', 'styler', 'tidyselect', 'infer' so cannot be unloaded
-```
-
-```
-## Warning: 'readr' namespace cannot be unloaded:
-##   namespace 'readr' is imported by 'tidyverse' so cannot be unloaded
-```
-
-```
-## Warning: 'tidyr' namespace cannot be unloaded:
-##   namespace 'tidyr' is imported by 'tidyverse', 'broom' so cannot be unloaded
-```
-
-```
-## Warning: 'tibble' namespace cannot be unloaded:
-##   namespace 'tibble' is imported by 'broom', 'ggplot2', 'tidyr', 'modelr', 'haven', 'dplyr', 'dbplyr', 'styler', 'readr', 'infer' so cannot be unloaded
-```
-
-```
-## Warning: 'ggplot2' namespace cannot be unloaded:
-##   namespace 'ggplot2' is imported by 'tidyverse', 'infer' so cannot be unloaded
 ```

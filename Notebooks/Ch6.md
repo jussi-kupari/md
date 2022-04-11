@@ -170,7 +170,7 @@ evals_ch6 %>%
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-7](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-7-1.png)
+![plot of chunk unnamed-chunk-7](Ch6/unnamed-chunk-7-1.png)
 #### 6.1.2 Interaction model
 
 ```r
@@ -203,7 +203,7 @@ evals_ch6 %>%
   labs(x = "Age", y = "Teaching score", color = "Gender")
 ```
 
-![plot of chunk unnamed-chunk-9](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-9-1.png)
+![plot of chunk unnamed-chunk-9](Ch6/unnamed-chunk-9-1.png)
 
 
 ```r
@@ -403,7 +403,7 @@ credit_ch6 %>%
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-18](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-18-1.png)
+![plot of chunk unnamed-chunk-18](Ch6/unnamed-chunk-18-1.png)
 
 
 ```r
@@ -482,7 +482,7 @@ credit_ch6 %>%
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-21](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-21-1.png)
+![plot of chunk unnamed-chunk-21](Ch6/unnamed-chunk-21-1.png)
 
 #### 6.2.2 Regression plane
 
@@ -574,7 +574,7 @@ MA_schools %>%
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-25](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-25-1.png)
+![plot of chunk unnamed-chunk-25](Ch6/unnamed-chunk-25-1.png)
 
 ```r
 # Parallel slopes model
@@ -587,7 +587,7 @@ MA_schools %>%
        color = "School size", title = "Parallel slopes model") 
 ```
 
-![plot of chunk unnamed-chunk-26](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-26-1.png)
+![plot of chunk unnamed-chunk-26](Ch6/unnamed-chunk-26-1.png)
 
 
 ```r
@@ -613,7 +613,7 @@ MA_schools %>%
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-27](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-27-1.png)
+![plot of chunk unnamed-chunk-27](Ch6/unnamed-chunk-27-1.png)
 
 ```r
 model_2_interaction <-
@@ -770,7 +770,7 @@ credit_ch6 %>%
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-![plot of chunk unnamed-chunk-36](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-36-1.png)
+![plot of chunk unnamed-chunk-36](Ch6/unnamed-chunk-36-1.png)
 
 
 ```r
@@ -807,49 +807,9 @@ credit_ch6 %>%
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-37](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-37-1.png)
+![plot of chunk unnamed-chunk-37](Ch6/unnamed-chunk-37-1.png)
 
 
 ```r
 clear_libraries()
-```
-
-```
-## Warning: 'forcats' namespace cannot be unloaded:
-##   namespace 'forcats' is imported by 'tidyverse', 'haven' so cannot be unloaded
-```
-
-```
-## Warning: 'stringr' namespace cannot be unloaded:
-##   namespace 'stringr' is imported by 'tidyverse', 'janitor' so cannot be unloaded
-```
-
-```
-## Warning: 'dplyr' namespace cannot be unloaded:
-##   namespace 'dplyr' is imported by 'broom', 'janitor', 'tidyr', 'dbplyr', 'infer' so cannot be unloaded
-```
-
-```
-## Warning: 'purrr' namespace cannot be unloaded:
-##   namespace 'purrr' is imported by 'broom', 'tidyr', 'modelr', 'styler', 'tidyselect', 'infer' so cannot be unloaded
-```
-
-```
-## Warning: 'readr' namespace cannot be unloaded:
-##   namespace 'readr' is imported by 'tidyverse' so cannot be unloaded
-```
-
-```
-## Warning: 'tidyr' namespace cannot be unloaded:
-##   namespace 'tidyr' is imported by 'tidyverse', 'broom' so cannot be unloaded
-```
-
-```
-## Warning: 'tibble' namespace cannot be unloaded:
-##   namespace 'tibble' is imported by 'broom', 'ggplot2', 'tidyr', 'modelr', 'haven', 'dplyr', 'dbplyr', 'styler', 'readr', 'infer' so cannot be unloaded
-```
-
-```
-## Warning: 'ggplot2' namespace cannot be unloaded:
-##   namespace 'ggplot2' is imported by 'tidyverse', 'infer' so cannot be unloaded
 ```

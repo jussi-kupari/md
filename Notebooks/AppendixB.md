@@ -150,7 +150,7 @@ age_at_marriage %>%
   geom_histogram(binwidth = 1, color = "white")
 ```
 
-![plot of chunk unnamed-chunk-4](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-4](AppendixB/unnamed-chunk-4-1.png)
 
 
 ```r
@@ -226,7 +226,7 @@ null_distn_one_mean %>%
   visualize()
 ```
 
-![plot of chunk unnamed-chunk-7](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-7-1.png)
+![plot of chunk unnamed-chunk-7](AppendixB/unnamed-chunk-7-1.png)
 
 
 ```r
@@ -236,7 +236,7 @@ null_distn_one_mean %>%
   shade_p_value(obs_stat = age_mean_obs, direction = "greater")
 ```
 
-![plot of chunk unnamed-chunk-8](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-8-1.png)
+![plot of chunk unnamed-chunk-8](AppendixB/unnamed-chunk-8-1.png)
 
 
 ```r
@@ -283,7 +283,7 @@ bootstrap_distn_one_mean %>%
   shade_confidence_interval(endpoints = ci)
 ```
 
-![plot of chunk unnamed-chunk-11](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-11-1.png)
+![plot of chunk unnamed-chunk-11](AppendixB/unnamed-chunk-11-1.png)
 We see that 23 is not contained in this confidence interval as a plausible value of μ 
 (the unknown population mean) and the entire interval is larger than 23. 
 This matches with our hypothesis test results of rejecting the null hypothesis 
@@ -315,7 +315,7 @@ age_at_marriage %>%
   stat_qq_line()
 ```
 
-![plot of chunk unnamed-chunk-12](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-12-1.png)
+![plot of chunk unnamed-chunk-12](AppendixB/unnamed-chunk-12-1.png)
 
 Observed test statistic
 
@@ -440,7 +440,7 @@ elec %>%
   geom_bar()
 ```
 
-![plot of chunk unnamed-chunk-16](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-16-1.png)
+![plot of chunk unnamed-chunk-16](AppendixB/unnamed-chunk-16-1.png)
 
 
 ```r
@@ -489,7 +489,7 @@ null_distn_one_prop %>%
   shade_p_value(obs_stat = p_hat, direction = "both")
 ```
 
-![plot of chunk unnamed-chunk-19](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-19-1.png)
+![plot of chunk unnamed-chunk-19](AppendixB/unnamed-chunk-19-1.png)
 
 
 ```r
@@ -574,7 +574,7 @@ visualize() +
   shade_ci(endpoints = ci)
 ```
 
-![plot of chunk unnamed-chunk-23](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-23-1.png)
+![plot of chunk unnamed-chunk-23](AppendixB/unnamed-chunk-23-1.png)
 We see that 0.80 is contained in this confidence interval as a plausible value of π
 
 (the unknown population proportion). This matches with our hypothesis test results of failing to reject the null hypothesis.
@@ -637,7 +637,7 @@ elec %>%
 ## check these for you.
 ```
 
-![plot of chunk unnamed-chunk-25](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-25-1.png)
+![plot of chunk unnamed-chunk-25](AppendixB/unnamed-chunk-25-1.png)
 
 
 ```r
@@ -761,7 +761,7 @@ offshore %>%
   coord_flip()
 ```
 
-![plot of chunk unnamed-chunk-31](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-31-1.png)
+![plot of chunk unnamed-chunk-31](AppendixB/unnamed-chunk-31-1.png)
 
 
 Guess about statistical significance
@@ -832,7 +832,7 @@ null_distn_two_props %>%
   shade_p_value(obs_stat = d_hat, direction = "both")
 ```
 
-![plot of chunk unnamed-chunk-34](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-34-1.png)
+![plot of chunk unnamed-chunk-34](AppendixB/unnamed-chunk-34-1.png)
 
 
 ```r
@@ -908,7 +908,7 @@ boot_distn_two_props %>%
   shade_ci(endpoints = ci)
 ```
 
-![plot of chunk unnamed-chunk-38](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-38-1.png)
+![plot of chunk unnamed-chunk-38](AppendixB/unnamed-chunk-38-1.png)
 
 We see that 0 is not contained in this confidence interval as a plausible value. This matches with our hypothesis test results of rejecting the null hypothesis. Since zero is not a plausible value of the population parameter, we have evidence that the proportion of college graduates in California with no opinion on drilling is different than that of non-college graduates.
 
@@ -1036,7 +1036,7 @@ cle_sac %>%
 ## Warning: `fun.y` is deprecated. Use `fun` instead.
 ```
 
-![plot of chunk unnamed-chunk-43](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-43-1.png)
+![plot of chunk unnamed-chunk-43](AppendixB/unnamed-chunk-43-1.png)
 
 
 **Guess about statistical significance**
@@ -1111,7 +1111,7 @@ null_distn_two_means %>%
   shade_p_value(obs_stat = d_hat, direction = "both")
 ```
 
-![plot of chunk unnamed-chunk-46](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-46-1.png)
+![plot of chunk unnamed-chunk-46](AppendixB/unnamed-chunk-46-1.png)
 
 
 ```r
@@ -1183,7 +1183,7 @@ boot_distn_two_means %>%
   shade_ci(endpoints = ci)
 ```
 
-![plot of chunk unnamed-chunk-50](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-50-1.png)
+![plot of chunk unnamed-chunk-50](AppendixB/unnamed-chunk-50-1.png)
 
 We see that 0 is contained in this confidence interval as a plausible value.  This matches with our hypothesis test results of failing to reject the null hypothesis. Since zero is a plausible value of the population parameter, we do not have evidence that Sacramento incomes are different than Cleveland incomes.
 
@@ -1210,7 +1210,7 @@ ggplot(aes(income)) +
   facet_wrap(~metro_area)
 ```
 
-![plot of chunk unnamed-chunk-51](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-51-1.png)
+![plot of chunk unnamed-chunk-51](AppendixB/unnamed-chunk-51-1.png)
 
 We have some reason to doubt the normality assumption here since both the histograms show deviation from a normal model fitting the data well for each group. The sample sizes for each group are greater than 100 though so the assumptions should still apply.
 
@@ -1383,7 +1383,7 @@ zinc_diff %>%
   geom_histogram(color = "white", binwidth = 0.04)
 ```
 
-![plot of chunk unnamed-chunk-58](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-58-1.png)
+![plot of chunk unnamed-chunk-58](AppendixB/unnamed-chunk-58-1.png)
 
 
 Guess about statistical significance
@@ -1429,7 +1429,7 @@ null_distn_paired_means %>%
   shade_p_value(obs_stat = d_hat, direction = "less")
 ```
 
-![plot of chunk unnamed-chunk-60](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-60-1.png)
+![plot of chunk unnamed-chunk-60](AppendixB/unnamed-chunk-60-1.png)
 
 
 ```r
@@ -1499,7 +1499,7 @@ boot_distn_paired_means %>%
   shade_ci(endpoints = ci)
 ```
 
-![plot of chunk unnamed-chunk-64](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-64-1.png)
+![plot of chunk unnamed-chunk-64](AppendixB/unnamed-chunk-64-1.png)
 
 We see that 0 is not contained in this confidence interval as a plausible value.
 
@@ -1565,60 +1565,5 @@ Observing the bootstrap distribution and the null distribution that were created
 
 ```r
 clear_libraries()
-```
-
-```
-## Warning: 'janitor' namespace cannot be unloaded:
-##   namespace 'janitor' is imported by 'moderndive' so cannot be unloaded
-```
-
-```
-## Warning: 'infer' namespace cannot be unloaded:
-##   namespace 'infer' is imported by 'moderndive' so cannot be unloaded
-```
-
-```
-## Warning: 'magrittr' namespace cannot be unloaded:
-##   namespace 'magrittr' is imported by 'rvest', 'purrr', 'forcats', 'tidyverse', 'infer', 'dbplyr', 'dplyr', 'tibble', 'janitor', 'modelr', 'stringr', 'styler', 'tidyr' so cannot be unloaded
-```
-
-```
-## Warning: 'forcats' namespace cannot be unloaded:
-##   namespace 'forcats' is imported by 'haven', 'tidyverse' so cannot be unloaded
-```
-
-```
-## Warning: 'stringr' namespace cannot be unloaded:
-##   namespace 'stringr' is imported by 'tidyverse', 'janitor' so cannot be unloaded
-```
-
-```
-## Warning: 'dplyr' namespace cannot be unloaded:
-##   namespace 'dplyr' is imported by 'infer', 'dbplyr', 'janitor', 'broom', 'tidyr' so cannot be unloaded
-```
-
-```
-## Warning: 'purrr' namespace cannot be unloaded:
-##   namespace 'purrr' is imported by 'infer', 'tidyselect', 'modelr', 'broom', 'styler', 'tidyr' so cannot be unloaded
-```
-
-```
-## Warning: 'readr' namespace cannot be unloaded:
-##   namespace 'readr' is imported by 'tidyverse' so cannot be unloaded
-```
-
-```
-## Warning: 'tidyr' namespace cannot be unloaded:
-##   namespace 'tidyr' is imported by 'tidyverse', 'broom' so cannot be unloaded
-```
-
-```
-## Warning: 'tibble' namespace cannot be unloaded:
-##   namespace 'tibble' is imported by 'haven', 'infer', 'dbplyr', 'dplyr', 'modelr', 'broom', 'readr', 'styler', 'ggplot2', 'tidyr' so cannot be unloaded
-```
-
-```
-## Warning: 'ggplot2' namespace cannot be unloaded:
-##   namespace 'ggplot2' is imported by 'tidyverse', 'infer' so cannot be unloaded
 ```
 

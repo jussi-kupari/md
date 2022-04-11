@@ -215,7 +215,7 @@ evals_ch5 %>%
        title = "Relationship of teaching and beauty scores")
 ```
 
-![plot of chunk unnamed-chunk-10](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-10-1.png)
+![plot of chunk unnamed-chunk-10](Ch5/unnamed-chunk-10-1.png)
 
 
 ```r
@@ -228,7 +228,7 @@ evals_ch5 %>%
        title = "Relationship of teaching and beauty scores")
 ```
 
-![plot of chunk unnamed-chunk-11](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-11-1.png)
+![plot of chunk unnamed-chunk-11](Ch5/unnamed-chunk-11-1.png)
 
 
 ```r
@@ -246,7 +246,7 @@ evals_ch5 %>%
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-12](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-12-1.png)
+![plot of chunk unnamed-chunk-12](Ch5/unnamed-chunk-12-1.png)
 
 
 ```r
@@ -335,7 +335,7 @@ evals_ch5 %>%
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-16](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-16-1.png)
+![plot of chunk unnamed-chunk-16](Ch5/unnamed-chunk-16-1.png)
 
 #### 5.1.2 Simple linear regression
 
@@ -523,7 +523,7 @@ gapminder_2007 %>%
        title = "Histogram of distributions of worldwide life expectancies")
 ```
 
-![plot of chunk unnamed-chunk-24](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-24-1.png)
+![plot of chunk unnamed-chunk-24](Ch5/unnamed-chunk-24-1.png)
 
 
 ```r
@@ -538,7 +538,7 @@ gapminder_2007 %>%
   facet_wrap(~ continent, nrow = 2)
 ```
 
-![plot of chunk unnamed-chunk-25](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-25-1.png)
+![plot of chunk unnamed-chunk-25](Ch5/unnamed-chunk-25-1.png)
 
 
 ```r
@@ -554,7 +554,7 @@ gapminder_2007 %>%
   )
 ```
 
-![plot of chunk unnamed-chunk-26](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-26-1.png)
+![plot of chunk unnamed-chunk-26](Ch5/unnamed-chunk-26-1.png)
 
 
 ```r
@@ -607,7 +607,7 @@ gapminder_2007 %>%
   geom_point()
 ```
 
-![plot of chunk unnamed-chunk-29](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-29-1.png)
+![plot of chunk unnamed-chunk-29](Ch5/unnamed-chunk-29-1.png)
 
 ```r
 # Answer: Europe and Oceania have clearly the highest gdpPercap,
@@ -786,44 +786,4 @@ best_fit < red_dotted & green_dashed
 
 ```r
 clear_libraries()
-```
-
-```
-## Warning: 'forcats' namespace cannot be unloaded:
-##   namespace 'forcats' is imported by 'tidyverse', 'haven' so cannot be unloaded
-```
-
-```
-## Warning: 'stringr' namespace cannot be unloaded:
-##   namespace 'stringr' is imported by 'tidyverse', 'janitor' so cannot be unloaded
-```
-
-```
-## Warning: 'dplyr' namespace cannot be unloaded:
-##   namespace 'dplyr' is imported by 'broom', 'janitor', 'tidyr', 'dbplyr', 'infer' so cannot be unloaded
-```
-
-```
-## Warning: 'purrr' namespace cannot be unloaded:
-##   namespace 'purrr' is imported by 'broom', 'tidyr', 'modelr', 'styler', 'tidyselect', 'infer' so cannot be unloaded
-```
-
-```
-## Warning: 'readr' namespace cannot be unloaded:
-##   namespace 'readr' is imported by 'tidyverse' so cannot be unloaded
-```
-
-```
-## Warning: 'tidyr' namespace cannot be unloaded:
-##   namespace 'tidyr' is imported by 'tidyverse', 'broom' so cannot be unloaded
-```
-
-```
-## Warning: 'tibble' namespace cannot be unloaded:
-##   namespace 'tibble' is imported by 'broom', 'ggplot2', 'tidyr', 'modelr', 'haven', 'dplyr', 'dbplyr', 'styler', 'readr', 'infer' so cannot be unloaded
-```
-
-```
-## Warning: 'ggplot2' namespace cannot be unloaded:
-##   namespace 'ggplot2' is imported by 'tidyverse', 'infer' so cannot be unloaded
 ```
