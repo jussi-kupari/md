@@ -7,13 +7,52 @@ output: html_notebook
 ```r
 # Load libraries
 library(tidyverse)
+```
+
+```
+## -- Attaching packages ------------------------------------------------------------------------ tidyverse 1.3.1 --
+```
+
+```
+## v ggplot2 3.3.5     v purrr   0.3.4
+## v tibble  3.1.6     v dplyr   1.0.8
+## v tidyr   1.2.0     v stringr 1.4.0
+## v readr   2.1.2     v forcats 0.5.1
+```
+
+```
+## -- Conflicts --------------------------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+```
+
+```r
 library(moderndive)
+```
+
+```
+## Warning: package 'moderndive' was built under R version 4.1.3
+```
+
+```r
 library(skimr)
+```
+
+```
+## Warning: package 'skimr' was built under R version 4.1.3
+```
+
+```r
 library(gapminder)
 ```
 
 ```
 ## Warning: package 'gapminder' was built under R version 4.1.3
+```
+
+```r
+# Load function to clear libraries
+source(here::here("clear_libraries.R"))
 ```
 
 ### 5.1 One numerical explanatory variable
@@ -64,10 +103,10 @@ glimpse(evals_ch5)
 ```
 ## Rows: 463
 ## Columns: 4
-## $ ID      <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,~
-## $ score   <dbl> 4.7, 4.1, 3.9, 4.8, 4.6, 4.3, 2.8, 4.1, 3.4, 4.5, 3.8, 4.5, 4.6, 3.9, 3.9, 4.3, 4.5, 4.8, 4.6,~
-## $ bty_avg <dbl> 5.000, 5.000, 5.000, 5.000, 3.000, 3.000, 3.000, 3.333, 3.333, 3.167, 3.167, 3.167, 3.167, 3.1~
-## $ age     <int> 36, 36, 36, 36, 59, 59, 59, 51, 51, 40, 40, 40, 40, 40, 40, 40, 40, 31, 31, 31, 31, 31, 31, 62~
+## $ ID      <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, ~
+## $ score   <dbl> 4.7, 4.1, 3.9, 4.8, 4.6, 4.3, 2.8, 4.1, 3.4, 4.5, 3.8, 4.5, 4.6, 3.9, 3.9, 4.3, 4.5, 4.8, 4.6, ~
+## $ bty_avg <dbl> 5.000, 5.000, 5.000, 5.000, 3.000, 3.000, 3.000, 3.333, 3.333, 3.167, 3.167, 3.167, 3.167, 3.16~
+## $ age     <int> 36, 36, 36, 36, 59, 59, 59, 51, 51, 40, 40, 40, 40, 40, 40, 40, 40, 31, 31, 31, 31, 31, 31, 62,~
 ```
 
 
@@ -176,7 +215,7 @@ evals_ch5 %>%
        title = "Relationship of teaching and beauty scores")
 ```
 
-![plot of chunk unnamed-chunk-10](Ch5/unnamed-chunk-10-1.png)
+![plot of chunk unnamed-chunk-10](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-10-1.png)
 
 
 ```r
@@ -189,7 +228,7 @@ evals_ch5 %>%
        title = "Relationship of teaching and beauty scores")
 ```
 
-![plot of chunk unnamed-chunk-11](Ch5/unnamed-chunk-11-1.png)
+![plot of chunk unnamed-chunk-11](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-11-1.png)
 
 
 ```r
@@ -207,7 +246,7 @@ evals_ch5 %>%
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-12](Ch5/unnamed-chunk-12-1.png)
+![plot of chunk unnamed-chunk-12](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-12-1.png)
 
 
 ```r
@@ -232,10 +271,10 @@ glimpse(evals_ch5)
 ```
 ## Rows: 463
 ## Columns: 4
-## $ ID      <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,~
-## $ score   <dbl> 4.7, 4.1, 3.9, 4.8, 4.6, 4.3, 2.8, 4.1, 3.4, 4.5, 3.8, 4.5, 4.6, 3.9, 3.9, 4.3, 4.5, 4.8, 4.6,~
-## $ bty_avg <dbl> 5.000, 5.000, 5.000, 5.000, 3.000, 3.000, 3.000, 3.333, 3.333, 3.167, 3.167, 3.167, 3.167, 3.1~
-## $ age     <int> 36, 36, 36, 36, 59, 59, 59, 51, 51, 40, 40, 40, 40, 40, 40, 40, 40, 31, 31, 31, 31, 31, 31, 62~
+## $ ID      <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, ~
+## $ score   <dbl> 4.7, 4.1, 3.9, 4.8, 4.6, 4.3, 2.8, 4.1, 3.4, 4.5, 3.8, 4.5, 4.6, 3.9, 3.9, 4.3, 4.5, 4.8, 4.6, ~
+## $ bty_avg <dbl> 5.000, 5.000, 5.000, 5.000, 3.000, 3.000, 3.000, 3.333, 3.333, 3.167, 3.167, 3.167, 3.167, 3.16~
+## $ age     <int> 36, 36, 36, 36, 59, 59, 59, 51, 51, 40, 40, 40, 40, 40, 40, 40, 40, 31, 31, 31, 31, 31, 31, 62,~
 ```
 
 
@@ -296,7 +335,7 @@ evals_ch5 %>%
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-16](Ch5/unnamed-chunk-16-1.png)
+![plot of chunk unnamed-chunk-16](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-16-1.png)
 
 #### 5.1.2 Simple linear regression
 
@@ -411,10 +450,10 @@ glimpse(gapminder_2007)
 ```
 ## Rows: 142
 ## Columns: 4
-## $ country   <fct> "Afghanistan", "Albania", "Algeria", "Angola", "Argentina", "Australia", "Austria", "Bahrain~
-## $ lifeExp   <dbl> 43.828, 76.423, 72.301, 42.731, 75.320, 81.235, 79.829, 75.635, 64.062, 79.441, 56.728, 65.5~
-## $ continent <fct> Asia, Europe, Africa, Africa, Americas, Oceania, Europe, Asia, Asia, Europe, Africa, America~
-## $ gdpPercap <dbl> 974.5803, 5937.0295, 6223.3675, 4797.2313, 12779.3796, 34435.3674, 36126.4927, 29796.0483, 1~
+## $ country   <fct> "Afghanistan", "Albania", "Algeria", "Angola", "Argentina", "Australia", "Austria", "Bahrain"~
+## $ lifeExp   <dbl> 43.828, 76.423, 72.301, 42.731, 75.320, 81.235, 79.829, 75.635, 64.062, 79.441, 56.728, 65.55~
+## $ continent <fct> Asia, Europe, Africa, Africa, Americas, Oceania, Europe, Asia, Asia, Europe, Africa, Americas~
+## $ gdpPercap <dbl> 974.5803, 5937.0295, 6223.3675, 4797.2313, 12779.3796, 34435.3674, 36126.4927, 29796.0483, 13~
 ```
 
 
@@ -484,7 +523,7 @@ gapminder_2007 %>%
        title = "Histogram of distributions of worldwide life expectancies")
 ```
 
-![plot of chunk unnamed-chunk-24](Ch5/unnamed-chunk-24-1.png)
+![plot of chunk unnamed-chunk-24](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-24-1.png)
 
 
 ```r
@@ -499,7 +538,7 @@ gapminder_2007 %>%
   facet_wrap(~ continent, nrow = 2)
 ```
 
-![plot of chunk unnamed-chunk-25](Ch5/unnamed-chunk-25-1.png)
+![plot of chunk unnamed-chunk-25](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-25-1.png)
 
 
 ```r
@@ -515,7 +554,7 @@ gapminder_2007 %>%
   )
 ```
 
-![plot of chunk unnamed-chunk-26](Ch5/unnamed-chunk-26-1.png)
+![plot of chunk unnamed-chunk-26](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-26-1.png)
 
 
 ```r
@@ -568,7 +607,7 @@ gapminder_2007 %>%
   geom_point()
 ```
 
-![plot of chunk unnamed-chunk-29](Ch5/unnamed-chunk-29-1.png)
+![plot of chunk unnamed-chunk-29](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-29-1.png)
 
 ```r
 # Answer: Europe and Oceania have clearly the highest gdpPercap,
@@ -742,4 +781,49 @@ best_fit < red_dotted & green_dashed
 
 ```
 ## [1] TRUE
+```
+
+
+```r
+clear_libraries()
+```
+
+```
+## Warning: 'forcats' namespace cannot be unloaded:
+##   namespace 'forcats' is imported by 'tidyverse', 'haven' so cannot be unloaded
+```
+
+```
+## Warning: 'stringr' namespace cannot be unloaded:
+##   namespace 'stringr' is imported by 'tidyverse', 'janitor' so cannot be unloaded
+```
+
+```
+## Warning: 'dplyr' namespace cannot be unloaded:
+##   namespace 'dplyr' is imported by 'broom', 'janitor', 'tidyr', 'dbplyr', 'infer' so cannot be unloaded
+```
+
+```
+## Warning: 'purrr' namespace cannot be unloaded:
+##   namespace 'purrr' is imported by 'broom', 'tidyr', 'modelr', 'styler', 'tidyselect', 'infer' so cannot be unloaded
+```
+
+```
+## Warning: 'readr' namespace cannot be unloaded:
+##   namespace 'readr' is imported by 'tidyverse' so cannot be unloaded
+```
+
+```
+## Warning: 'tidyr' namespace cannot be unloaded:
+##   namespace 'tidyr' is imported by 'tidyverse', 'broom' so cannot be unloaded
+```
+
+```
+## Warning: 'tibble' namespace cannot be unloaded:
+##   namespace 'tibble' is imported by 'broom', 'ggplot2', 'tidyr', 'modelr', 'haven', 'dplyr', 'dbplyr', 'styler', 'readr', 'infer' so cannot be unloaded
+```
+
+```
+## Warning: 'ggplot2' namespace cannot be unloaded:
+##   namespace 'ggplot2' is imported by 'tidyverse', 'infer' so cannot be unloaded
 ```

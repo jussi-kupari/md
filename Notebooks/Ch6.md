@@ -8,8 +8,42 @@ output: html_notebook
 # Load libraries
 
 library(tidyverse)
+```
+
+```
+## -- Attaching packages ------------------------------------------------------------------------ tidyverse 1.3.1 --
+```
+
+```
+## v ggplot2 3.3.5     v purrr   0.3.4
+## v tibble  3.1.6     v dplyr   1.0.8
+## v tidyr   1.2.0     v stringr 1.4.0
+## v readr   2.1.2     v forcats 0.5.1
+```
+
+```
+## -- Conflicts --------------------------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+```
+
+```r
 library(moderndive)
+```
+
+```
+## Warning: package 'moderndive' was built under R version 4.1.3
+```
+
+```r
 library(skimr)
+```
+
+```
+## Warning: package 'skimr' was built under R version 4.1.3
+```
+
+```r
 library(ISLR)
 ```
 
@@ -19,6 +53,9 @@ library(ISLR)
 
 ```r
 library(patchwork)
+
+# Load function to clear libraries
+source(here::here("clear_libraries.R"))
 ```
 
 ### 6.1 One numerical and one categorical explanatory variable
@@ -40,10 +77,10 @@ glimpse(evals_ch6)
 ```
 ## Rows: 463
 ## Columns: 4
-## $ ID     <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, ~
-## $ score  <dbl> 4.7, 4.1, 3.9, 4.8, 4.6, 4.3, 2.8, 4.1, 3.4, 4.5, 3.8, 4.5, 4.6, 3.9, 3.9, 4.3, 4.5, 4.8, 4.6, ~
-## $ age    <int> 36, 36, 36, 36, 59, 59, 59, 51, 51, 40, 40, 40, 40, 40, 40, 40, 40, 31, 31, 31, 31, 31, 31, 62,~
-## $ gender <fct> female, female, female, female, male, male, male, male, male, female, female, female, female, f~
+## $ ID     <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 2~
+## $ score  <dbl> 4.7, 4.1, 3.9, 4.8, 4.6, 4.3, 2.8, 4.1, 3.4, 4.5, 3.8, 4.5, 4.6, 3.9, 3.9, 4.3, 4.5, 4.8, 4.6, 4~
+## $ age    <int> 36, 36, 36, 36, 59, 59, 59, 51, 51, 40, 40, 40, 40, 40, 40, 40, 40, 31, 31, 31, 31, 31, 31, 62, ~
+## $ gender <fct> female, female, female, female, male, male, male, male, male, female, female, female, female, fe~
 ```
 
 
@@ -133,7 +170,7 @@ evals_ch6 %>%
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-7](Ch6/unnamed-chunk-7-1.png)
+![plot of chunk unnamed-chunk-7](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-7-1.png)
 #### 6.1.2 Interaction model
 
 ```r
@@ -166,7 +203,7 @@ evals_ch6 %>%
   labs(x = "Age", y = "Teaching score", color = "Gender")
 ```
 
-![plot of chunk unnamed-chunk-9](Ch6/unnamed-chunk-9-1.png)
+![plot of chunk unnamed-chunk-9](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-9-1.png)
 
 
 ```r
@@ -267,12 +304,12 @@ glimpse(credit_ch6)
 ```
 ## Rows: 400
 ## Columns: 6
-## $ ID            <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 2~
-## $ debt          <int> 333, 903, 580, 964, 331, 1151, 203, 872, 279, 1350, 1407, 0, 204, 1081, 148, 0, 0, 368, ~
-## $ credit_limit  <int> 3606, 6645, 7075, 9504, 4897, 8047, 3388, 7114, 3300, 6819, 8117, 1311, 5308, 6922, 3291~
-## $ income        <dbl> 14.891, 106.025, 104.593, 148.924, 55.882, 80.180, 20.996, 71.408, 15.125, 71.061, 63.09~
-## $ credit_rating <int> 283, 483, 514, 681, 357, 569, 259, 512, 266, 491, 589, 138, 394, 511, 269, 200, 286, 339~
-## $ age           <int> 34, 82, 71, 36, 68, 77, 37, 87, 66, 41, 30, 64, 57, 49, 75, 57, 73, 69, 28, 44, 63, 72, ~
+## $ ID            <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25~
+## $ debt          <int> 333, 903, 580, 964, 331, 1151, 203, 872, 279, 1350, 1407, 0, 204, 1081, 148, 0, 0, 368, 8~
+## $ credit_limit  <int> 3606, 6645, 7075, 9504, 4897, 8047, 3388, 7114, 3300, 6819, 8117, 1311, 5308, 6922, 3291,~
+## $ income        <dbl> 14.891, 106.025, 104.593, 148.924, 55.882, 80.180, 20.996, 71.408, 15.125, 71.061, 63.095~
+## $ credit_rating <int> 283, 483, 514, 681, 357, 569, 259, 512, 266, 491, 589, 138, 394, 511, 269, 200, 286, 339,~
+## $ age           <int> 34, 82, 71, 36, 68, 77, 37, 87, 66, 41, 30, 64, 57, 49, 75, 57, 73, 69, 28, 44, 63, 72, 6~
 ```
 
 
@@ -366,7 +403,7 @@ credit_ch6 %>%
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-18](Ch6/unnamed-chunk-18-1.png)
+![plot of chunk unnamed-chunk-18](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-18-1.png)
 
 
 ```r
@@ -445,7 +482,7 @@ credit_ch6 %>%
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-21](Ch6/unnamed-chunk-21-1.png)
+![plot of chunk unnamed-chunk-21](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-21-1.png)
 
 #### 6.2.2 Regression plane
 
@@ -537,7 +574,7 @@ MA_schools %>%
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-25](Ch6/unnamed-chunk-25-1.png)
+![plot of chunk unnamed-chunk-25](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-25-1.png)
 
 ```r
 # Parallel slopes model
@@ -550,7 +587,7 @@ MA_schools %>%
        color = "School size", title = "Parallel slopes model") 
 ```
 
-![plot of chunk unnamed-chunk-26](Ch6/unnamed-chunk-26-1.png)
+![plot of chunk unnamed-chunk-26](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-26-1.png)
 
 
 ```r
@@ -576,7 +613,7 @@ MA_schools %>%
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-27](Ch6/unnamed-chunk-27-1.png)
+![plot of chunk unnamed-chunk-27](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-27-1.png)
 
 ```r
 model_2_interaction <-
@@ -733,7 +770,7 @@ credit_ch6 %>%
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-![plot of chunk unnamed-chunk-36](Ch6/unnamed-chunk-36-1.png)
+![plot of chunk unnamed-chunk-36](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-36-1.png)
 
 
 ```r
@@ -770,5 +807,49 @@ credit_ch6 %>%
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-37](Ch6/unnamed-chunk-37-1.png)
+![plot of chunk unnamed-chunk-37](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-37-1.png)
 
+
+```r
+clear_libraries()
+```
+
+```
+## Warning: 'forcats' namespace cannot be unloaded:
+##   namespace 'forcats' is imported by 'tidyverse', 'haven' so cannot be unloaded
+```
+
+```
+## Warning: 'stringr' namespace cannot be unloaded:
+##   namespace 'stringr' is imported by 'tidyverse', 'janitor' so cannot be unloaded
+```
+
+```
+## Warning: 'dplyr' namespace cannot be unloaded:
+##   namespace 'dplyr' is imported by 'broom', 'janitor', 'tidyr', 'dbplyr', 'infer' so cannot be unloaded
+```
+
+```
+## Warning: 'purrr' namespace cannot be unloaded:
+##   namespace 'purrr' is imported by 'broom', 'tidyr', 'modelr', 'styler', 'tidyselect', 'infer' so cannot be unloaded
+```
+
+```
+## Warning: 'readr' namespace cannot be unloaded:
+##   namespace 'readr' is imported by 'tidyverse' so cannot be unloaded
+```
+
+```
+## Warning: 'tidyr' namespace cannot be unloaded:
+##   namespace 'tidyr' is imported by 'tidyverse', 'broom' so cannot be unloaded
+```
+
+```
+## Warning: 'tibble' namespace cannot be unloaded:
+##   namespace 'tibble' is imported by 'broom', 'ggplot2', 'tidyr', 'modelr', 'haven', 'dplyr', 'dbplyr', 'styler', 'readr', 'infer' so cannot be unloaded
+```
+
+```
+## Warning: 'ggplot2' namespace cannot be unloaded:
+##   namespace 'ggplot2' is imported by 'tidyverse', 'infer' so cannot be unloaded
+```

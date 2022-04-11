@@ -7,8 +7,51 @@ output: html_notebook
 ```r
 # Libraries
 library(tidyverse)
+```
+
+```
+## -- Attaching packages ------------------------------------------------------------------------ tidyverse 1.3.1 --
+```
+
+```
+## v ggplot2 3.3.5     v purrr   0.3.4
+## v tibble  3.1.6     v dplyr   1.0.8
+## v tidyr   1.2.0     v stringr 1.4.0
+## v readr   2.1.2     v forcats 0.5.1
+```
+
+```
+## -- Conflicts --------------------------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+```
+
+```r
 library(nycflights13)
+```
+
+```
+## Warning: package 'nycflights13' was built under R version 4.1.3
+```
+
+```r
 library(fivethirtyeight)
+```
+
+```
+## Warning: package 'fivethirtyeight' was built under R version 4.1.3
+```
+
+```
+## Some larger datasets need to be installed separately, like senators and house_district_forecast. To
+## install these, we recommend you install the fivethirtyeightdata package by running:
+## install.packages('fivethirtyeightdata', repos = 'https://fivethirtyeightdata.github.io/drat/', type
+## = 'source')
+```
+
+```r
+# Load function to clear libraries
+source(here::here("clear_libraries.R"))
 ```
 
 
@@ -19,7 +62,7 @@ dem_score <- read_csv("https://moderndive.com/data/dem_score.csv")
 
 ```
 ## Rows: 96 Columns: 10
-## -- Column specification ----------------------------------------------------------------------------------------
+## -- Column specification -----------------------------------------------------------------------------------------
 ## Delimiter: ","
 ## chr (1): country
 ## dbl (9): 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992
@@ -135,7 +178,7 @@ drinks_smaller_tidy %>%
   geom_col(position = "dodge")
 ```
 
-![plot of chunk unnamed-chunk-7](Ch4/unnamed-chunk-7-1.png)
+![plot of chunk unnamed-chunk-7](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-7-1.png)
 
 
 ```r
@@ -259,7 +302,7 @@ guat_geom_tidy %>%
   labs(x = "Year", y = "Democracy Score")
 ```
 
-![plot of chunk unnamed-chunk-12](Ch4/unnamed-chunk-12-1.png)
+![plot of chunk unnamed-chunk-12](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-12-1.png)
 
 
 
@@ -304,10 +347,10 @@ life_exp <- read_csv("https://moderndive.com/data/le_mess.csv")
 
 ```
 ## Rows: 202 Columns: 67
-## -- Column specification ----------------------------------------------------------------------------------------
+## -- Column specification -----------------------------------------------------------------------------------------
 ## Delimiter: ","
 ## chr  (1): country
-## dbl (66): 1951, 1952, 1953, 1954, 1955, 1956, 1957, 1958, 1959, 1960, 1961, 1962, 1963, 1964, 1965, 1966, 19...
+## dbl (66): 1951, 1952, 1953, 1954, 1955, 1956, 1957, 1958, 1959, 1960, 1961, 1962, 1963, 1964, 1965, 1966, 196...
 ## 
 ## i Use `spec()` to retrieve the full column specification for this data.
 ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
@@ -319,18 +362,18 @@ life_exp
 
 ```
 ## # A tibble: 202 x 67
-##    country     `1951` `1952` `1953` `1954` `1955` `1956` `1957` `1958` `1959` `1960` `1961` `1962` `1963` `1964`
-##    <chr>        <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
-##  1 Afghanistan   27.1   27.7   28.2   28.7   29.3   29.8   30.3   30.9   31.4   31.9   32.5   33.0   33.5   34.1
-##  2 Albania       54.7   55.2   55.8   56.6   57.4   58.4   59.5   60.6   61.8   62.9   63.9   64.8   65.6   66.2
-##  3 Algeria       43.0   43.5   44.0   44.4   44.9   45.4   45.9   46.4   47.0   47.5   48.0   48.6   49.1   49.6
-##  4 Angola        31.0   31.6   32.1   32.7   33.2   33.8   34.3   34.9   35.4   36.0   36.5   37.1   37.6   38.2
-##  5 Antigua an~   58.3   58.8   59.3   59.9   60.4   60.9   61.4   62.0   62.5   63.0   63.5   63.9   64.4   64.8
-##  6 Argentina     61.9   62.5   63.1   63.6   64.0   64.4   64.7   65     65.2   65.4   65.5   65.6   65.7   65.8
-##  7 Armenia       62.7   63.1   63.6   64.1   64.5   65     65.4   65.9   66.4   66.9   67.3   67.8   68.3   68.8
-##  8 Aruba         59.0   60.0   61.0   61.9   62.7   63.4   64.1   64.7   65.2   65.7   66.1   66.4   66.8   67.1
-##  9 Australia     68.7   69.1   69.7   69.8   70.2   70.0   70.3   70.9   70.4   70.9   71.1   70.9   71.0   70.6
-## 10 Austria       65.2   66.8   67.3   67.3   67.6   67.7   67.5   68.5   68.4   68.8   69.7   69.5   69.6   70.1
+##    country      `1951` `1952` `1953` `1954` `1955` `1956` `1957` `1958` `1959` `1960` `1961` `1962` `1963` `1964`
+##    <chr>         <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
+##  1 Afghanistan    27.1   27.7   28.2   28.7   29.3   29.8   30.3   30.9   31.4   31.9   32.5   33.0   33.5   34.1
+##  2 Albania        54.7   55.2   55.8   56.6   57.4   58.4   59.5   60.6   61.8   62.9   63.9   64.8   65.6   66.2
+##  3 Algeria        43.0   43.5   44.0   44.4   44.9   45.4   45.9   46.4   47.0   47.5   48.0   48.6   49.1   49.6
+##  4 Angola         31.0   31.6   32.1   32.7   33.2   33.8   34.3   34.9   35.4   36.0   36.5   37.1   37.6   38.2
+##  5 Antigua and~   58.3   58.8   59.3   59.9   60.4   60.9   61.4   62.0   62.5   63.0   63.5   63.9   64.4   64.8
+##  6 Argentina      61.9   62.5   63.1   63.6   64.0   64.4   64.7   65     65.2   65.4   65.5   65.6   65.7   65.8
+##  7 Armenia        62.7   63.1   63.6   64.1   64.5   65     65.4   65.9   66.4   66.9   67.3   67.8   68.3   68.8
+##  8 Aruba          59.0   60.0   61.0   61.9   62.7   63.4   64.1   64.7   65.2   65.7   66.1   66.4   66.8   67.1
+##  9 Australia      68.7   69.1   69.7   69.8   70.2   70.0   70.3   70.9   70.4   70.9   71.1   70.9   71.0   70.6
+## 10 Austria        65.2   66.8   67.3   67.3   67.6   67.7   67.5   68.5   68.4   68.8   69.7   69.5   69.6   70.1
 ## # ... with 192 more rows, and 52 more variables: `1965` <dbl>, `1966` <dbl>, `1967` <dbl>, `1968` <dbl>,
 ## #   `1969` <dbl>, `1970` <dbl>, `1971` <dbl>, `1972` <dbl>, `1973` <dbl>, `1974` <dbl>, `1975` <dbl>,
 ## #   `1976` <dbl>, `1977` <dbl>, `1978` <dbl>, `1979` <dbl>, `1980` <dbl>, `1981` <dbl>, `1982` <dbl>,
@@ -368,4 +411,49 @@ life_exp_tidy
 ##  9 Afghanistan  1959     31.4
 ## 10 Afghanistan  1960     31.9
 ## # ... with 13,322 more rows
+```
+
+
+```r
+clear_libraries()
+```
+
+```
+## Warning: 'forcats' namespace cannot be unloaded:
+##   namespace 'forcats' is imported by 'tidyverse', 'haven' so cannot be unloaded
+```
+
+```
+## Warning: 'stringr' namespace cannot be unloaded:
+##   namespace 'stringr' is imported by 'tidyverse', 'janitor' so cannot be unloaded
+```
+
+```
+## Warning: 'dplyr' namespace cannot be unloaded:
+##   namespace 'dplyr' is imported by 'broom', 'janitor', 'tidyr', 'dbplyr', 'infer' so cannot be unloaded
+```
+
+```
+## Warning: 'purrr' namespace cannot be unloaded:
+##   namespace 'purrr' is imported by 'broom', 'tidyr', 'modelr', 'styler', 'tidyselect', 'infer' so cannot be unloaded
+```
+
+```
+## Warning: 'readr' namespace cannot be unloaded:
+##   namespace 'readr' is imported by 'tidyverse' so cannot be unloaded
+```
+
+```
+## Warning: 'tidyr' namespace cannot be unloaded:
+##   namespace 'tidyr' is imported by 'tidyverse', 'broom' so cannot be unloaded
+```
+
+```
+## Warning: 'tibble' namespace cannot be unloaded:
+##   namespace 'tibble' is imported by 'broom', 'ggplot2', 'tidyr', 'modelr', 'haven', 'dplyr', 'dbplyr', 'styler', 'readr', 'infer' so cannot be unloaded
+```
+
+```
+## Warning: 'ggplot2' namespace cannot be unloaded:
+##   namespace 'ggplot2' is imported by 'tidyverse', 'infer' so cannot be unloaded
 ```

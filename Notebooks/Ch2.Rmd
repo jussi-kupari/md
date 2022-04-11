@@ -1,0 +1,455 @@
+---
+title: "ModernDive Ch 2: Data Visualization"
+output: html_notebook
+---
+
+```{r}
+# Load libraries
+library(tidyverse)
+library(nycflights13)
+
+# Load function to clear libraries
+source(here::here("clear_libraries.R"))
+```
+
+```{r}
+# (LC2.1) Take a look at both the flights and alaska_flights data frames by 
+# running View(flights) and View(alaska_flights). 
+# In what respect do these data frames differ? 
+# For example, think about the number of rows in each dataset.
+
+# A: (see outputs below)
+# The alaska_flights df has only 714 rows compared to >336k in the full df
+```
+
+```{r}
+glimpse(flights)
+```
+
+```{r}
+alaska_flights <-
+  flights %>% 
+  filter(carrier == "AS") 
+
+glimpse(alaska_flights)
+```
+#### 5NG#1: Scatterplots
+```{r}
+alaska_flights %>% 
+  ggplot(aes(dep_delay, arr_delay)) +
+  geom_point() 
+```
+
+```{r}
+# (LC2.2) What are some practical reasons why dep_delay and arr_delay have 
+# a positive relationship?
+
+# A: Any flight that leaves late is more likely to arrive late
+```
+
+```{r}
+# (LC2.3) What variables in the weather data frame would you expect to have a 
+# negative correlation (i.e., a negative relationship) with dep_delay? Why? 
+# Remember that we are focusing on numerical variables here. 
+# Hint: Explore the weather dataset by using the View() function.
+
+# A: visib (lower visibility, higher delay)
+
+glimpse(weather)
+```
+
+```{r}
+# (LC2.4) Why do you believe there is a cluster of points near (0, 0)?
+# What does (0, 0) correspond to in terms of the Alaska Air flights?
+
+# A: Many flights depart and arrive on time. (0, 0) is zero delay
+```
+
+```{r}
+
+# (LC2.5) What are some other features of the plot that stand out to you?
+
+# A: the linear correlation is high (~0.84)
+cor(alaska_flights$dep_delay, alaska_flights$arr_delay, use = "complete.obs")
+```
+#### Scatterplots
+```{r}
+# (LC2.6) Create a new scatterplot using different variables in the 
+# alaska_flights data frame by modifying the example given.
+
+alaska_flights %>% 
+  ggplot(aes(arr_delay, air_time)) +
+  geom_point()
+```
+
+```{r}
+alaska_flights %>% 
+  ggplot(aes(dep_delay, arr_delay)) +
+  geom_point(alpha = 0.2) 
+```
+
+```{r}
+alaska_flights %>% 
+  ggplot(aes(dep_delay, arr_delay)) +
+  geom_jitter(width = 30, height = 30) 
+```
+
+```{r}
+# (LC2.7) Why is setting the alpha argument value useful with scatterplots? 
+# What further information does it give you that a regular scatterplot cannot?
+
+# A: You can see if/where overplotting occurs. 
+    # You can see where observations accumulate (distribution of observations)
+
+# (LC2.8) After viewing Figure 2.4, give an approximate range of arrival delays 
+# and departure delays that occur most frequently. 
+
+# A: (-20, -70) to (10, 10)
+
+# How has that region changed compared to when you observed the same plot 
+# without alpha = 0.2 set in Figure 2.2?
+
+# A: It is more clear to see individual points
+```
+
+#### 5NG#2: Linegraphs
+
+```{r}
+glimpse(weather)
+```
+
+```{r}
+early_january_weather <-
+  weather %>% 
+  filter(origin == "EWR", month == 1, day <= 15)
+```
+
+```{r}
+# (LC2.9) Take a look at both the weather and early_january_weather data frames 
+# by running View(weather) and View(early_january_weather). 
+# In what respect do these data frames differ?
+
+glimpse(early_january_weather)
+
+# A: early_january_weather has only 358 rows compared to the >26k in the full df
+```
+
+```{r}
+# (LC2.10) View() the flights data frame again. Why does the time_hour variable 
+# uniquely identify the hour of the measurement, whereas the hour variable does not?
+
+# A: time_hour identifies the year/month/day together with the hour/minutes/seconds
+
+glimpse(flights)
+```
+
+```{r}
+early_january_weather %>% 
+  ggplot(aes(time_hour, temp)) +
+  geom_line() 
+```
+
+```{r}
+# (LC2.11) Why should linegraphs be avoided when there is not a clear ordering 
+# of the horizontal axis?
+
+# A: linegraphs are only good for data where there is a clear sequential order
+
+# (LC2.12) Why are linegraphs frequently used when time is the explanatory 
+# variable on the x-axis?
+
+# A: This creates a nice time-series graph due to the sequental connection of points
+
+# (LC2.13) Plot a time series of a variable other than temp for Newark Airport 
+# in the first 15 days of January 2013.
+early_january_weather %>% 
+  ggplot(aes(time_hour, temp)) +
+  geom_line()
+```
+
+#### 5NG#3: Histograms
+```{r}
+# Basic histogram
+weather %>% 
+  ggplot(aes(temp)) +
+  geom_histogram() 
+```
+
+```{r}
+# Add white borders
+weather %>% 
+  ggplot(aes(temp)) +
+  geom_histogram(color = "white")
+```
+
+```{r}
+# Change color
+weather %>% 
+  ggplot(aes(temp)) +
+  geom_histogram(color = "white", fill = "steelblue")
+```
+
+```{r}
+# Change number of bins
+weather %>% 
+  ggplot(aes(temp)) +
+  geom_histogram(color = "white", bins = 40)
+```
+
+```{r}
+# Change width of bins
+weather %>% 
+  ggplot(aes(temp)) +
+  geom_histogram(color = "white", binwidth = 10)
+```
+
+```{r}
+# (LC2.14) What does changing the number of bins from 30 to 40 tell us about 
+# the distribution of temperatures?
+
+# A: the distribution is not as smooth with 40 bins; some temps are more frequent
+
+# (LC2.15) Would you classify the distribution of temperatures as symmetric or 
+# skewed in one direction or another?
+
+# A: The distribution is symmetric
+
+# (LC2.16) What would you guess is the “center” value in this distribution? 
+# Why did you make that choice?
+
+# A: Around 55; This is at the middle of the histogram
+
+# (LC2.17) Is this data spread out greatly from the center or is it close? Why?
+
+# A: Most of the values are between 30-80, so I guess it is quite spread
+```
+
+```{r}
+# Facet wrap
+weather %>% 
+ggplot(aes(temp)) +
+  geom_histogram(binwidth = 5, color = "white") +
+  facet_wrap(vars(month))
+```
+
+```{r}
+# Change number of rows
+weather %>% 
+ggplot(aes(temp)) +
+  geom_histogram(binwidth = 5, color = "white") +
+  facet_wrap(vars(month), nrow = 4)
+```
+
+```{r}
+# (LC2.18) What other things do you notice about this faceted plot? 
+# How does a faceted plot help us see relationships between two variables?
+
+# A: You can observe the differences in distribution shape between facets
+
+# (LC2.19) What do the numbers 1-12 correspond to in the plot? 
+# What about 25, 50, 75, 100?
+
+# A: 1-12 correspond to the months jan-dec; 25-100 correspond to temp in F.
+
+# (LC2.20) For which types of datasets would faceted plots not work well in 
+# comparing relationships between variables? Give an example describing the 
+# nature of these variables and other important characteristics.
+
+# A: 
+
+# (LC2.21) Does the temp variable in the weather dataset have a lot of variability? 
+# Why do you say that?
+
+# A: As answered before, there is quite a broad scale of temperatures
+```
+
+#### 5NG#4: Boxplots
+```{r}
+weather %>% 
+  ggplot(aes(month, temp)) +
+  geom_boxplot()
+```
+
+```{r}
+# Month as factor
+weather %>% 
+  ggplot(aes(factor(month), temp)) +
+  geom_boxplot()
+```
+
+```{r}
+# (LC2.22) What does the dot at the bottom of the plot for May correspond to? 
+# Explain what might have occurred in May to produce this point.
+
+# A: The dot is one observation of low temp that is considered an outlier
+  # This could be due to a measurement error or a true freezing night.
+
+# (LC2.23) Which months have the highest variability in temperature? 
+# What reasons can you give for this?
+
+# A: Looks like Nov-Jan has the greatest IQR
+
+# (LC2.24) We looked at the distribution of the numerical variable temp split 
+# by the numerical variable month that we converted using the factor() function
+# in order to make a side-by-side boxplot. Why would a boxplot of temp split by 
+# the numerical variable pressure similarly converted to a categorical variable
+# using the factor() not be informative?
+
+# A: Pressure is a continuous variable unlike 'month', so splitting it to a
+  # categorical variable is not simple. It can be done by binning, however.
+
+# (LC2.25) Boxplots provide a simple way to identify outliers. 
+# Why may outliers be easier to identify when looking at a boxplot instead of 
+# a faceted histogram?
+
+# A: outliers are not pointed out in a histogram so they are more easy to miss.
+```
+
+#### 5NG#5: Barplots
+```{r}
+fruits <- tibble(fruit = c("apple", "apple", "orange", "apple", "orange"))
+fruits_counted <- tibble(fruit = c("apple", "orange"), number = c(3, 2))
+```
+
+```{r}
+fruits
+```
+
+```{r}
+fruits_counted
+```
+
+```{r}
+# Not pre-counted
+fruits %>% 
+  ggplot(aes(fruit)) +
+  geom_bar()
+```
+
+```{r}
+# Pre-counted
+fruits_counted %>% 
+  ggplot(aes(fruit, number)) +
+  geom_col()
+```
+
+```{r}
+# Using geom_bar for un-counted
+flights %>% 
+  ggplot(aes(carrier)) +
+  geom_bar()
+```
+
+```{r}
+# Using geom_col for pre-counted
+flights %>% 
+  count(carrier) %>% 
+  ggplot(aes(carrier, n)) +
+  geom_col()
+```
+
+
+```{r}
+# (LC2.26) Why are histograms inappropriate for categorical variables?
+
+# A: Historgrams are used for visualizing the distribution of a continuous
+  # variable (in discrete bins)
+
+# (LC2.27) What is the difference between histograms and barplots?
+
+# A: I a barplot, the observations belong in categories or levels of factors
+
+# (LC2.28) How many Envoy Air flights departed NYC in 2013?
+
+flights %>% 
+  filter(carrier == "MQ") %>% 
+  nrow() 
+
+# A: 26397
+
+# (LC2.29) What was the 7th highest airline for departed flights from NYC in 2013? 
+  # How could we better present the table to get this answer quickly?
+flights %>% 
+  count(carrier, sort = TRUE) %>% 
+  slice(7) %>% 
+  pull(carrier) 
+
+# A: US
+```
+
+```{r}
+# Avoid Pie charts
+
+# (LC2.30) Why should pie charts be avoided and replaced by barplots?
+
+# A: Pie charts make it difficult to judge proportions
+
+# (LC2.31) Why do you think people continue to use pie charts?
+
+# A: Pie charts are common in bussiness viz and easy to do in MS Excel
+  # People think they should use them
+```
+
+```{r}
+flights %>% 
+  ggplot(aes(carrier, fill = origin)) +
+  geom_bar()
+```
+
+```{r}
+flights %>% 
+  ggplot(aes(carrier, color = origin)) +
+  geom_bar()
+```
+
+```{r}
+flights %>% 
+  ggplot(aes(carrier, fill = origin)) +
+  geom_bar(position = "dodge")
+```
+
+```{r}
+flights %>% 
+  ggplot(aes(carrier, fill = origin)) +
+  geom_bar(position = position_dodge(preserve = "single"))
+```
+
+```{r}
+flights %>% 
+  ggplot(aes(carrier)) +
+  geom_bar() +
+  facet_wrap(vars(origin), ncol = 1)
+```
+
+```{r}
+# (LC2.32) What kinds of questions are not easily answered by looking at Figure 2.23?
+
+# A: It is difficult to compare the heights of individual color bars
+
+# (LC2.33) What can you say, if anything, about the relationship between airline 
+# and airport in NYC in 2013 in regards to the number of departing flights?
+
+# A: EV and UA use EWR, whereas B6 uses JFK more
+
+# (LC2.34) Why might the side-by-side barplot be preferable to a stacked 
+# barplot in this case?
+
+# A: It is easier to compare the number of flights between origins
+
+# (LC2.35) What are the disadvantages of using a dodged barplot, in general?
+
+# (LC2.36) Why is the faceted barplot preferred to the side-by-side and stacked 
+# barplots in this case?
+
+# (LC2.37) What information about the different carriers at different airports 
+# is more easily seen in the faceted barplot?
+```
+
+```{r}
+clear_libraries()
+```
+
+
+
+
+

@@ -7,7 +7,36 @@ output: html_notebook
 ```r
 # Load libraries
 library(tidyverse)
+```
+
+```
+## -- Attaching packages ------------------------------------------------------------------------ tidyverse 1.3.1 --
+```
+
+```
+## v ggplot2 3.3.5     v purrr   0.3.4
+## v tibble  3.1.6     v dplyr   1.0.8
+## v tidyr   1.2.0     v stringr 1.4.0
+## v readr   2.1.2     v forcats 0.5.1
+```
+
+```
+## -- Conflicts --------------------------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+```
+
+```r
 library(nycflights13)
+```
+
+```
+## Warning: package 'nycflights13' was built under R version 4.1.3
+```
+
+```r
+# Load function to clear libraries
+source(here::here("clear_libraries.R"))
 ```
 
 
@@ -29,25 +58,25 @@ glimpse(flights)
 ```
 ## Rows: 336,776
 ## Columns: 19
-## $ year           <int> 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 201~
-## $ month          <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~
-## $ day            <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~
-## $ dep_time       <int> 517, 533, 542, 544, 554, 554, 555, 557, 557, 558, 558, 558, 558, 558, 559, 559, 559, 60~
-## $ sched_dep_time <int> 515, 529, 540, 545, 600, 558, 600, 600, 600, 600, 600, 600, 600, 600, 600, 559, 600, 60~
-## $ dep_delay      <dbl> 2, 4, 2, -1, -6, -4, -5, -3, -3, -2, -2, -2, -2, -2, -1, 0, -1, 0, 0, 1, -8, -3, -4, -4~
-## $ arr_time       <int> 830, 850, 923, 1004, 812, 740, 913, 709, 838, 753, 849, 853, 924, 923, 941, 702, 854, 8~
-## $ sched_arr_time <int> 819, 830, 850, 1022, 837, 728, 854, 723, 846, 745, 851, 856, 917, 937, 910, 706, 902, 8~
-## $ arr_delay      <dbl> 11, 20, 33, -18, -25, 12, 19, -14, -8, 8, -2, -3, 7, -14, 31, -4, -8, -7, 12, -6, -8, 1~
-## $ carrier        <chr> "UA", "UA", "AA", "B6", "DL", "UA", "B6", "EV", "B6", "AA", "B6", "B6", "UA", "UA", "AA~
-## $ flight         <int> 1545, 1714, 1141, 725, 461, 1696, 507, 5708, 79, 301, 49, 71, 194, 1124, 707, 1806, 118~
-## $ tailnum        <chr> "N14228", "N24211", "N619AA", "N804JB", "N668DN", "N39463", "N516JB", "N829AS", "N593JB~
-## $ origin         <chr> "EWR", "LGA", "JFK", "JFK", "LGA", "EWR", "EWR", "LGA", "JFK", "LGA", "JFK", "JFK", "JF~
-## $ dest           <chr> "IAH", "IAH", "MIA", "BQN", "ATL", "ORD", "FLL", "IAD", "MCO", "ORD", "PBI", "TPA", "LA~
-## $ air_time       <dbl> 227, 227, 160, 183, 116, 150, 158, 53, 140, 138, 149, 158, 345, 361, 257, 44, 337, 152,~
-## $ distance       <dbl> 1400, 1416, 1089, 1576, 762, 719, 1065, 229, 944, 733, 1028, 1005, 2475, 2565, 1389, 18~
-## $ hour           <dbl> 5, 5, 5, 5, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, ~
-## $ minute         <dbl> 15, 29, 40, 45, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 0, 0, 0, 0, 10, 5, 10, 10, 7, 0, ~
-## $ time_hour      <dttm> 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-01 05:00:00, 20~
+## $ year           <int> 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013~
+## $ month          <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1~
+## $ day            <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1~
+## $ dep_time       <int> 517, 533, 542, 544, 554, 554, 555, 557, 557, 558, 558, 558, 558, 558, 559, 559, 559, 600~
+## $ sched_dep_time <int> 515, 529, 540, 545, 600, 558, 600, 600, 600, 600, 600, 600, 600, 600, 600, 559, 600, 600~
+## $ dep_delay      <dbl> 2, 4, 2, -1, -6, -4, -5, -3, -3, -2, -2, -2, -2, -2, -1, 0, -1, 0, 0, 1, -8, -3, -4, -4,~
+## $ arr_time       <int> 830, 850, 923, 1004, 812, 740, 913, 709, 838, 753, 849, 853, 924, 923, 941, 702, 854, 85~
+## $ sched_arr_time <int> 819, 830, 850, 1022, 837, 728, 854, 723, 846, 745, 851, 856, 917, 937, 910, 706, 902, 85~
+## $ arr_delay      <dbl> 11, 20, 33, -18, -25, 12, 19, -14, -8, 8, -2, -3, 7, -14, 31, -4, -8, -7, 12, -6, -8, 16~
+## $ carrier        <chr> "UA", "UA", "AA", "B6", "DL", "UA", "B6", "EV", "B6", "AA", "B6", "B6", "UA", "UA", "AA"~
+## $ flight         <int> 1545, 1714, 1141, 725, 461, 1696, 507, 5708, 79, 301, 49, 71, 194, 1124, 707, 1806, 1187~
+## $ tailnum        <chr> "N14228", "N24211", "N619AA", "N804JB", "N668DN", "N39463", "N516JB", "N829AS", "N593JB"~
+## $ origin         <chr> "EWR", "LGA", "JFK", "JFK", "LGA", "EWR", "EWR", "LGA", "JFK", "LGA", "JFK", "JFK", "JFK~
+## $ dest           <chr> "IAH", "IAH", "MIA", "BQN", "ATL", "ORD", "FLL", "IAD", "MCO", "ORD", "PBI", "TPA", "LAX~
+## $ air_time       <dbl> 227, 227, 160, 183, 116, 150, 158, 53, 140, 138, 149, 158, 345, 361, 257, 44, 337, 152, ~
+## $ distance       <dbl> 1400, 1416, 1089, 1576, 762, 719, 1065, 229, 944, 733, 1028, 1005, 2475, 2565, 1389, 187~
+## $ hour           <dbl> 5, 5, 5, 5, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6~
+## $ minute         <dbl> 15, 29, 40, 45, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 0, 0, 0, 0, 10, 5, 10, 10, 7, 0, 0~
+## $ time_hour      <dttm> 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-01 05:00:00, 201~
 ```
 
 
@@ -62,25 +91,25 @@ glimpse(alaska_flights)
 ```
 ## Rows: 714
 ## Columns: 19
-## $ year           <int> 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 201~
-## $ month          <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~
-## $ day            <int> 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 1~
-## $ dep_time       <int> 724, 1808, 722, 1818, 724, 1817, 725, 1808, 725, 1803, 722, 1817, 727, 1826, 719, 1844,~
-## $ sched_dep_time <int> 725, 1815, 725, 1815, 725, 1815, 725, 1815, 725, 1815, 725, 1815, 725, 1815, 725, 1815,~
-## $ dep_delay      <dbl> -1, -7, -3, 3, -1, 2, 0, -7, 0, -12, -3, 2, 2, 11, -6, 29, 15, 10, -6, -4, -6, 5, 24, -~
-## $ arr_time       <int> 1020, 2111, 949, 2131, 1012, 2121, 1031, 2101, 1011, 2118, 1024, 2146, 1100, 2138, 1037~
-## $ sched_arr_time <int> 1030, 2130, 1030, 2130, 1030, 2130, 1030, 2130, 1030, 2130, 1030, 2130, 1030, 2130, 103~
-## $ arr_delay      <dbl> -10, -19, -41, 1, -18, -9, 1, -29, -19, -12, -6, 16, 30, 8, 7, 29, 32, 40, -19, -19, -5~
-## $ carrier        <chr> "AS", "AS", "AS", "AS", "AS", "AS", "AS", "AS", "AS", "AS", "AS", "AS", "AS", "AS", "AS~
-## $ flight         <int> 11, 7, 11, 7, 11, 7, 11, 7, 11, 7, 11, 7, 11, 7, 11, 7, 11, 7, 11, 7, 11, 7, 11, 7, 11,~
-## $ tailnum        <chr> "N594AS", "N553AS", "N592AS", "N552AS", "N533AS", "N552AS", "N579AS", "N553AS", "N546AS~
-## $ origin         <chr> "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EW~
-## $ dest           <chr> "SEA", "SEA", "SEA", "SEA", "SEA", "SEA", "SEA", "SEA", "SEA", "SEA", "SEA", "SEA", "SE~
-## $ air_time       <dbl> 338, 336, 314, 332, 325, 327, 345, 338, 330, 343, 341, 350, 364, 336, 347, 346, 358, 35~
-## $ distance       <dbl> 2402, 2402, 2402, 2402, 2402, 2402, 2402, 2402, 2402, 2402, 2402, 2402, 2402, 2402, 240~
-## $ hour           <dbl> 7, 18, 7, 18, 7, 18, 7, 18, 7, 18, 7, 18, 7, 18, 7, 18, 7, 18, 7, 18, 7, 18, 7, 18, 7, ~
-## $ minute         <dbl> 25, 15, 25, 15, 25, 15, 25, 15, 25, 15, 25, 15, 25, 15, 25, 15, 25, 15, 25, 15, 25, 15,~
-## $ time_hour      <dttm> 2013-01-01 07:00:00, 2013-01-01 18:00:00, 2013-01-02 07:00:00, 2013-01-02 18:00:00, 20~
+## $ year           <int> 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013~
+## $ month          <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1~
+## $ day            <int> 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 14~
+## $ dep_time       <int> 724, 1808, 722, 1818, 724, 1817, 725, 1808, 725, 1803, 722, 1817, 727, 1826, 719, 1844, ~
+## $ sched_dep_time <int> 725, 1815, 725, 1815, 725, 1815, 725, 1815, 725, 1815, 725, 1815, 725, 1815, 725, 1815, ~
+## $ dep_delay      <dbl> -1, -7, -3, 3, -1, 2, 0, -7, 0, -12, -3, 2, 2, 11, -6, 29, 15, 10, -6, -4, -6, 5, 24, -1~
+## $ arr_time       <int> 1020, 2111, 949, 2131, 1012, 2121, 1031, 2101, 1011, 2118, 1024, 2146, 1100, 2138, 1037,~
+## $ sched_arr_time <int> 1030, 2130, 1030, 2130, 1030, 2130, 1030, 2130, 1030, 2130, 1030, 2130, 1030, 2130, 1030~
+## $ arr_delay      <dbl> -10, -19, -41, 1, -18, -9, 1, -29, -19, -12, -6, 16, 30, 8, 7, 29, 32, 40, -19, -19, -52~
+## $ carrier        <chr> "AS", "AS", "AS", "AS", "AS", "AS", "AS", "AS", "AS", "AS", "AS", "AS", "AS", "AS", "AS"~
+## $ flight         <int> 11, 7, 11, 7, 11, 7, 11, 7, 11, 7, 11, 7, 11, 7, 11, 7, 11, 7, 11, 7, 11, 7, 11, 7, 11, ~
+## $ tailnum        <chr> "N594AS", "N553AS", "N592AS", "N552AS", "N533AS", "N552AS", "N579AS", "N553AS", "N546AS"~
+## $ origin         <chr> "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR~
+## $ dest           <chr> "SEA", "SEA", "SEA", "SEA", "SEA", "SEA", "SEA", "SEA", "SEA", "SEA", "SEA", "SEA", "SEA~
+## $ air_time       <dbl> 338, 336, 314, 332, 325, 327, 345, 338, 330, 343, 341, 350, 364, 336, 347, 346, 358, 359~
+## $ distance       <dbl> 2402, 2402, 2402, 2402, 2402, 2402, 2402, 2402, 2402, 2402, 2402, 2402, 2402, 2402, 2402~
+## $ hour           <dbl> 7, 18, 7, 18, 7, 18, 7, 18, 7, 18, 7, 18, 7, 18, 7, 18, 7, 18, 7, 18, 7, 18, 7, 18, 7, 1~
+## $ minute         <dbl> 25, 15, 25, 15, 25, 15, 25, 15, 25, 15, 25, 15, 25, 15, 25, 15, 25, 15, 25, 15, 25, 15, ~
+## $ time_hour      <dttm> 2013-01-01 07:00:00, 2013-01-01 18:00:00, 2013-01-02 07:00:00, 2013-01-02 18:00:00, 201~
 ```
 #### 5NG#1: Scatterplots
 
@@ -94,7 +123,7 @@ alaska_flights %>%
 ## Warning: Removed 5 rows containing missing values (geom_point).
 ```
 
-![plot of chunk unnamed-chunk-5](Ch2/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-5](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-5-1.png)
 
 
 ```r
@@ -119,21 +148,21 @@ glimpse(weather)
 ```
 ## Rows: 26,115
 ## Columns: 15
-## $ origin     <chr> "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", ~
-## $ year       <int> 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2~
-## $ month      <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1~
-## $ day        <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2~
-## $ hour       <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 0, 1, 2, 3, ~
-## $ temp       <dbl> 39.02, 39.02, 39.02, 39.92, 39.02, 37.94, 39.02, 39.92, 39.92, 41.00, 41.00, 39.20, 39.02, ~
-## $ dewp       <dbl> 26.06, 26.96, 28.04, 28.04, 28.04, 28.04, 28.04, 28.04, 28.04, 28.04, 26.96, 28.40, 24.08, ~
-## $ humid      <dbl> 59.37, 61.63, 64.43, 62.21, 64.43, 67.21, 64.43, 62.21, 62.21, 59.65, 57.06, 69.67, 54.68, ~
-## $ wind_dir   <dbl> 270, 250, 240, 250, 260, 240, 240, 250, 260, 260, 260, 330, 280, 290, 300, 330, 310, 320, 3~
-## $ wind_speed <dbl> 10.35702, 8.05546, 11.50780, 12.65858, 12.65858, 11.50780, 14.96014, 10.35702, 14.96014, 13~
-## $ wind_gust  <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 20.71404, NA, 25.31716, NA, NA, 26.~
-## $ precip     <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0~
-## $ pressure   <dbl> 1012.0, 1012.3, 1012.5, 1012.2, 1011.9, 1012.4, 1012.2, 1012.2, 1012.7, 1012.4, 1011.4, NA,~
-## $ visib      <dbl> 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,~
-## $ time_hour  <dttm> 2013-01-01 01:00:00, 2013-01-01 02:00:00, 2013-01-01 03:00:00, 2013-01-01 04:00:00, 2013-0~
+## $ origin     <chr> "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "~
+## $ year       <int> 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 20~
+## $ month      <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,~
+## $ day        <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2,~
+## $ hour       <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 0, 1, 2, 3, 4~
+## $ temp       <dbl> 39.02, 39.02, 39.02, 39.92, 39.02, 37.94, 39.02, 39.92, 39.92, 41.00, 41.00, 39.20, 39.02, 3~
+## $ dewp       <dbl> 26.06, 26.96, 28.04, 28.04, 28.04, 28.04, 28.04, 28.04, 28.04, 28.04, 26.96, 28.40, 24.08, 2~
+## $ humid      <dbl> 59.37, 61.63, 64.43, 62.21, 64.43, 67.21, 64.43, 62.21, 62.21, 59.65, 57.06, 69.67, 54.68, 5~
+## $ wind_dir   <dbl> 270, 250, 240, 250, 260, 240, 240, 250, 260, 260, 260, 330, 280, 290, 300, 330, 310, 320, 31~
+## $ wind_speed <dbl> 10.35702, 8.05546, 11.50780, 12.65858, 12.65858, 11.50780, 14.96014, 10.35702, 14.96014, 13.~
+## $ wind_gust  <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 20.71404, NA, 25.31716, NA, NA, 26.4~
+## $ precip     <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,~
+## $ pressure   <dbl> 1012.0, 1012.3, 1012.5, 1012.2, 1011.9, 1012.4, 1012.2, 1012.2, 1012.7, 1012.4, 1011.4, NA, ~
+## $ visib      <dbl> 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, ~
+## $ time_hour  <dttm> 2013-01-01 01:00:00, 2013-01-01 02:00:00, 2013-01-01 03:00:00, 2013-01-01 04:00:00, 2013-01~
 ```
 
 
@@ -170,7 +199,7 @@ alaska_flights %>%
 ## Warning: Removed 5 rows containing missing values (geom_point).
 ```
 
-![plot of chunk unnamed-chunk-10](Ch2/unnamed-chunk-10-1.png)
+![plot of chunk unnamed-chunk-10](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-10-1.png)
 
 
 ```r
@@ -183,7 +212,7 @@ alaska_flights %>%
 ## Warning: Removed 5 rows containing missing values (geom_point).
 ```
 
-![plot of chunk unnamed-chunk-11](Ch2/unnamed-chunk-11-1.png)
+![plot of chunk unnamed-chunk-11](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-11-1.png)
 
 
 ```r
@@ -196,7 +225,7 @@ alaska_flights %>%
 ## Warning: Removed 5 rows containing missing values (geom_point).
 ```
 
-![plot of chunk unnamed-chunk-12](Ch2/unnamed-chunk-12-1.png)
+![plot of chunk unnamed-chunk-12](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-12-1.png)
 
 
 ```r
@@ -227,21 +256,21 @@ glimpse(weather)
 ```
 ## Rows: 26,115
 ## Columns: 15
-## $ origin     <chr> "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", ~
-## $ year       <int> 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2~
-## $ month      <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1~
-## $ day        <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2~
-## $ hour       <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 0, 1, 2, 3, ~
-## $ temp       <dbl> 39.02, 39.02, 39.02, 39.92, 39.02, 37.94, 39.02, 39.92, 39.92, 41.00, 41.00, 39.20, 39.02, ~
-## $ dewp       <dbl> 26.06, 26.96, 28.04, 28.04, 28.04, 28.04, 28.04, 28.04, 28.04, 28.04, 26.96, 28.40, 24.08, ~
-## $ humid      <dbl> 59.37, 61.63, 64.43, 62.21, 64.43, 67.21, 64.43, 62.21, 62.21, 59.65, 57.06, 69.67, 54.68, ~
-## $ wind_dir   <dbl> 270, 250, 240, 250, 260, 240, 240, 250, 260, 260, 260, 330, 280, 290, 300, 330, 310, 320, 3~
-## $ wind_speed <dbl> 10.35702, 8.05546, 11.50780, 12.65858, 12.65858, 11.50780, 14.96014, 10.35702, 14.96014, 13~
-## $ wind_gust  <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 20.71404, NA, 25.31716, NA, NA, 26.~
-## $ precip     <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0~
-## $ pressure   <dbl> 1012.0, 1012.3, 1012.5, 1012.2, 1011.9, 1012.4, 1012.2, 1012.2, 1012.7, 1012.4, 1011.4, NA,~
-## $ visib      <dbl> 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,~
-## $ time_hour  <dttm> 2013-01-01 01:00:00, 2013-01-01 02:00:00, 2013-01-01 03:00:00, 2013-01-01 04:00:00, 2013-0~
+## $ origin     <chr> "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "~
+## $ year       <int> 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 20~
+## $ month      <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,~
+## $ day        <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2,~
+## $ hour       <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 0, 1, 2, 3, 4~
+## $ temp       <dbl> 39.02, 39.02, 39.02, 39.92, 39.02, 37.94, 39.02, 39.92, 39.92, 41.00, 41.00, 39.20, 39.02, 3~
+## $ dewp       <dbl> 26.06, 26.96, 28.04, 28.04, 28.04, 28.04, 28.04, 28.04, 28.04, 28.04, 26.96, 28.40, 24.08, 2~
+## $ humid      <dbl> 59.37, 61.63, 64.43, 62.21, 64.43, 67.21, 64.43, 62.21, 62.21, 59.65, 57.06, 69.67, 54.68, 5~
+## $ wind_dir   <dbl> 270, 250, 240, 250, 260, 240, 240, 250, 260, 260, 260, 330, 280, 290, 300, 330, 310, 320, 31~
+## $ wind_speed <dbl> 10.35702, 8.05546, 11.50780, 12.65858, 12.65858, 11.50780, 14.96014, 10.35702, 14.96014, 13.~
+## $ wind_gust  <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 20.71404, NA, 25.31716, NA, NA, 26.4~
+## $ precip     <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,~
+## $ pressure   <dbl> 1012.0, 1012.3, 1012.5, 1012.2, 1011.9, 1012.4, 1012.2, 1012.2, 1012.7, 1012.4, 1011.4, NA, ~
+## $ visib      <dbl> 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, ~
+## $ time_hour  <dttm> 2013-01-01 01:00:00, 2013-01-01 02:00:00, 2013-01-01 03:00:00, 2013-01-01 04:00:00, 2013-01~
 ```
 
 
@@ -263,21 +292,21 @@ glimpse(early_january_weather)
 ```
 ## Rows: 358
 ## Columns: 15
-## $ origin     <chr> "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", ~
-## $ year       <int> 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2~
-## $ month      <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1~
-## $ day        <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2~
-## $ hour       <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 0, 1, 2, 3, ~
-## $ temp       <dbl> 39.02, 39.02, 39.02, 39.92, 39.02, 37.94, 39.02, 39.92, 39.92, 41.00, 41.00, 39.20, 39.02, ~
-## $ dewp       <dbl> 26.06, 26.96, 28.04, 28.04, 28.04, 28.04, 28.04, 28.04, 28.04, 28.04, 26.96, 28.40, 24.08, ~
-## $ humid      <dbl> 59.37, 61.63, 64.43, 62.21, 64.43, 67.21, 64.43, 62.21, 62.21, 59.65, 57.06, 69.67, 54.68, ~
-## $ wind_dir   <dbl> 270, 250, 240, 250, 260, 240, 240, 250, 260, 260, 260, 330, 280, 290, 300, 330, 310, 320, 3~
-## $ wind_speed <dbl> 10.35702, 8.05546, 11.50780, 12.65858, 12.65858, 11.50780, 14.96014, 10.35702, 14.96014, 13~
-## $ wind_gust  <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 20.71404, NA, 25.31716, NA, NA, 26.~
-## $ precip     <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0~
-## $ pressure   <dbl> 1012.0, 1012.3, 1012.5, 1012.2, 1011.9, 1012.4, 1012.2, 1012.2, 1012.7, 1012.4, 1011.4, NA,~
-## $ visib      <dbl> 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,~
-## $ time_hour  <dttm> 2013-01-01 01:00:00, 2013-01-01 02:00:00, 2013-01-01 03:00:00, 2013-01-01 04:00:00, 2013-0~
+## $ origin     <chr> "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "EWR", "~
+## $ year       <int> 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 20~
+## $ month      <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,~
+## $ day        <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2,~
+## $ hour       <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 0, 1, 2, 3, 4~
+## $ temp       <dbl> 39.02, 39.02, 39.02, 39.92, 39.02, 37.94, 39.02, 39.92, 39.92, 41.00, 41.00, 39.20, 39.02, 3~
+## $ dewp       <dbl> 26.06, 26.96, 28.04, 28.04, 28.04, 28.04, 28.04, 28.04, 28.04, 28.04, 26.96, 28.40, 24.08, 2~
+## $ humid      <dbl> 59.37, 61.63, 64.43, 62.21, 64.43, 67.21, 64.43, 62.21, 62.21, 59.65, 57.06, 69.67, 54.68, 5~
+## $ wind_dir   <dbl> 270, 250, 240, 250, 260, 240, 240, 250, 260, 260, 260, 330, 280, 290, 300, 330, 310, 320, 31~
+## $ wind_speed <dbl> 10.35702, 8.05546, 11.50780, 12.65858, 12.65858, 11.50780, 14.96014, 10.35702, 14.96014, 13.~
+## $ wind_gust  <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 20.71404, NA, 25.31716, NA, NA, 26.4~
+## $ precip     <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,~
+## $ pressure   <dbl> 1012.0, 1012.3, 1012.5, 1012.2, 1011.9, 1012.4, 1012.2, 1012.2, 1012.7, 1012.4, 1011.4, NA, ~
+## $ visib      <dbl> 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, ~
+## $ time_hour  <dttm> 2013-01-01 01:00:00, 2013-01-01 02:00:00, 2013-01-01 03:00:00, 2013-01-01 04:00:00, 2013-01~
 ```
 
 ```r
@@ -297,25 +326,25 @@ glimpse(flights)
 ```
 ## Rows: 336,776
 ## Columns: 19
-## $ year           <int> 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 201~
-## $ month          <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~
-## $ day            <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~
-## $ dep_time       <int> 517, 533, 542, 544, 554, 554, 555, 557, 557, 558, 558, 558, 558, 558, 559, 559, 559, 60~
-## $ sched_dep_time <int> 515, 529, 540, 545, 600, 558, 600, 600, 600, 600, 600, 600, 600, 600, 600, 559, 600, 60~
-## $ dep_delay      <dbl> 2, 4, 2, -1, -6, -4, -5, -3, -3, -2, -2, -2, -2, -2, -1, 0, -1, 0, 0, 1, -8, -3, -4, -4~
-## $ arr_time       <int> 830, 850, 923, 1004, 812, 740, 913, 709, 838, 753, 849, 853, 924, 923, 941, 702, 854, 8~
-## $ sched_arr_time <int> 819, 830, 850, 1022, 837, 728, 854, 723, 846, 745, 851, 856, 917, 937, 910, 706, 902, 8~
-## $ arr_delay      <dbl> 11, 20, 33, -18, -25, 12, 19, -14, -8, 8, -2, -3, 7, -14, 31, -4, -8, -7, 12, -6, -8, 1~
-## $ carrier        <chr> "UA", "UA", "AA", "B6", "DL", "UA", "B6", "EV", "B6", "AA", "B6", "B6", "UA", "UA", "AA~
-## $ flight         <int> 1545, 1714, 1141, 725, 461, 1696, 507, 5708, 79, 301, 49, 71, 194, 1124, 707, 1806, 118~
-## $ tailnum        <chr> "N14228", "N24211", "N619AA", "N804JB", "N668DN", "N39463", "N516JB", "N829AS", "N593JB~
-## $ origin         <chr> "EWR", "LGA", "JFK", "JFK", "LGA", "EWR", "EWR", "LGA", "JFK", "LGA", "JFK", "JFK", "JF~
-## $ dest           <chr> "IAH", "IAH", "MIA", "BQN", "ATL", "ORD", "FLL", "IAD", "MCO", "ORD", "PBI", "TPA", "LA~
-## $ air_time       <dbl> 227, 227, 160, 183, 116, 150, 158, 53, 140, 138, 149, 158, 345, 361, 257, 44, 337, 152,~
-## $ distance       <dbl> 1400, 1416, 1089, 1576, 762, 719, 1065, 229, 944, 733, 1028, 1005, 2475, 2565, 1389, 18~
-## $ hour           <dbl> 5, 5, 5, 5, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, ~
-## $ minute         <dbl> 15, 29, 40, 45, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 0, 0, 0, 0, 10, 5, 10, 10, 7, 0, ~
-## $ time_hour      <dttm> 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-01 05:00:00, 20~
+## $ year           <int> 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013~
+## $ month          <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1~
+## $ day            <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1~
+## $ dep_time       <int> 517, 533, 542, 544, 554, 554, 555, 557, 557, 558, 558, 558, 558, 558, 559, 559, 559, 600~
+## $ sched_dep_time <int> 515, 529, 540, 545, 600, 558, 600, 600, 600, 600, 600, 600, 600, 600, 600, 559, 600, 600~
+## $ dep_delay      <dbl> 2, 4, 2, -1, -6, -4, -5, -3, -3, -2, -2, -2, -2, -2, -1, 0, -1, 0, 0, 1, -8, -3, -4, -4,~
+## $ arr_time       <int> 830, 850, 923, 1004, 812, 740, 913, 709, 838, 753, 849, 853, 924, 923, 941, 702, 854, 85~
+## $ sched_arr_time <int> 819, 830, 850, 1022, 837, 728, 854, 723, 846, 745, 851, 856, 917, 937, 910, 706, 902, 85~
+## $ arr_delay      <dbl> 11, 20, 33, -18, -25, 12, 19, -14, -8, 8, -2, -3, 7, -14, 31, -4, -8, -7, 12, -6, -8, 16~
+## $ carrier        <chr> "UA", "UA", "AA", "B6", "DL", "UA", "B6", "EV", "B6", "AA", "B6", "B6", "UA", "UA", "AA"~
+## $ flight         <int> 1545, 1714, 1141, 725, 461, 1696, 507, 5708, 79, 301, 49, 71, 194, 1124, 707, 1806, 1187~
+## $ tailnum        <chr> "N14228", "N24211", "N619AA", "N804JB", "N668DN", "N39463", "N516JB", "N829AS", "N593JB"~
+## $ origin         <chr> "EWR", "LGA", "JFK", "JFK", "LGA", "EWR", "EWR", "LGA", "JFK", "LGA", "JFK", "JFK", "JFK~
+## $ dest           <chr> "IAH", "IAH", "MIA", "BQN", "ATL", "ORD", "FLL", "IAD", "MCO", "ORD", "PBI", "TPA", "LAX~
+## $ air_time       <dbl> 227, 227, 160, 183, 116, 150, 158, 53, 140, 138, 149, 158, 345, 361, 257, 44, 337, 152, ~
+## $ distance       <dbl> 1400, 1416, 1089, 1576, 762, 719, 1065, 229, 944, 733, 1028, 1005, 2475, 2565, 1389, 187~
+## $ hour           <dbl> 5, 5, 5, 5, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6~
+## $ minute         <dbl> 15, 29, 40, 45, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 0, 0, 0, 0, 10, 5, 10, 10, 7, 0, 0~
+## $ time_hour      <dttm> 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-01 05:00:00, 201~
 ```
 
 
@@ -325,7 +354,7 @@ early_january_weather %>%
   geom_line() 
 ```
 
-![plot of chunk unnamed-chunk-18](Ch2/unnamed-chunk-18-1.png)
+![plot of chunk unnamed-chunk-18](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-18-1.png)
 
 
 ```r
@@ -346,7 +375,7 @@ early_january_weather %>%
   geom_line()
 ```
 
-![plot of chunk unnamed-chunk-19](Ch2/unnamed-chunk-19-1.png)
+![plot of chunk unnamed-chunk-19](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-19-1.png)
 
 #### 5NG#3: Histograms
 
@@ -365,7 +394,7 @@ weather %>%
 ## Warning: Removed 1 rows containing non-finite values (stat_bin).
 ```
 
-![plot of chunk unnamed-chunk-20](Ch2/unnamed-chunk-20-1.png)
+![plot of chunk unnamed-chunk-20](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-20-1.png)
 
 
 ```r
@@ -383,7 +412,7 @@ weather %>%
 ## Warning: Removed 1 rows containing non-finite values (stat_bin).
 ```
 
-![plot of chunk unnamed-chunk-21](Ch2/unnamed-chunk-21-1.png)
+![plot of chunk unnamed-chunk-21](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-21-1.png)
 
 
 ```r
@@ -401,7 +430,7 @@ weather %>%
 ## Warning: Removed 1 rows containing non-finite values (stat_bin).
 ```
 
-![plot of chunk unnamed-chunk-22](Ch2/unnamed-chunk-22-1.png)
+![plot of chunk unnamed-chunk-22](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-22-1.png)
 
 
 ```r
@@ -415,7 +444,7 @@ weather %>%
 ## Warning: Removed 1 rows containing non-finite values (stat_bin).
 ```
 
-![plot of chunk unnamed-chunk-23](Ch2/unnamed-chunk-23-1.png)
+![plot of chunk unnamed-chunk-23](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-23-1.png)
 
 
 ```r
@@ -429,7 +458,7 @@ weather %>%
 ## Warning: Removed 1 rows containing non-finite values (stat_bin).
 ```
 
-![plot of chunk unnamed-chunk-24](Ch2/unnamed-chunk-24-1.png)
+![plot of chunk unnamed-chunk-24](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-24-1.png)
 
 
 ```r
@@ -466,7 +495,7 @@ ggplot(aes(temp)) +
 ## Warning: Removed 1 rows containing non-finite values (stat_bin).
 ```
 
-![plot of chunk unnamed-chunk-26](Ch2/unnamed-chunk-26-1.png)
+![plot of chunk unnamed-chunk-26](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-26-1.png)
 
 
 ```r
@@ -481,7 +510,7 @@ ggplot(aes(temp)) +
 ## Warning: Removed 1 rows containing non-finite values (stat_bin).
 ```
 
-![plot of chunk unnamed-chunk-27](Ch2/unnamed-chunk-27-1.png)
+![plot of chunk unnamed-chunk-27](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-27-1.png)
 
 
 ```r
@@ -523,7 +552,7 @@ weather %>%
 ## Warning: Removed 1 rows containing non-finite values (stat_boxplot).
 ```
 
-![plot of chunk unnamed-chunk-29](Ch2/unnamed-chunk-29-1.png)
+![plot of chunk unnamed-chunk-29](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-29-1.png)
 
 
 ```r
@@ -537,7 +566,7 @@ weather %>%
 ## Warning: Removed 1 rows containing non-finite values (stat_boxplot).
 ```
 
-![plot of chunk unnamed-chunk-30](Ch2/unnamed-chunk-30-1.png)
+![plot of chunk unnamed-chunk-30](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-30-1.png)
 
 
 ```r
@@ -612,7 +641,7 @@ fruits %>%
   geom_bar()
 ```
 
-![plot of chunk unnamed-chunk-35](Ch2/unnamed-chunk-35-1.png)
+![plot of chunk unnamed-chunk-35](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-35-1.png)
 
 
 ```r
@@ -622,7 +651,7 @@ fruits_counted %>%
   geom_col()
 ```
 
-![plot of chunk unnamed-chunk-36](Ch2/unnamed-chunk-36-1.png)
+![plot of chunk unnamed-chunk-36](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-36-1.png)
 
 
 ```r
@@ -632,7 +661,7 @@ flights %>%
   geom_bar()
 ```
 
-![plot of chunk unnamed-chunk-37](Ch2/unnamed-chunk-37-1.png)
+![plot of chunk unnamed-chunk-37](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-37-1.png)
 
 
 ```r
@@ -643,7 +672,7 @@ flights %>%
   geom_col()
 ```
 
-![plot of chunk unnamed-chunk-38](Ch2/unnamed-chunk-38-1.png)
+![plot of chunk unnamed-chunk-38](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-38-1.png)
 
 
 
@@ -708,7 +737,7 @@ flights %>%
   geom_bar()
 ```
 
-![plot of chunk unnamed-chunk-41](Ch2/unnamed-chunk-41-1.png)
+![plot of chunk unnamed-chunk-41](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-41-1.png)
 
 
 ```r
@@ -717,7 +746,7 @@ flights %>%
   geom_bar()
 ```
 
-![plot of chunk unnamed-chunk-42](Ch2/unnamed-chunk-42-1.png)
+![plot of chunk unnamed-chunk-42](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-42-1.png)
 
 
 ```r
@@ -726,7 +755,7 @@ flights %>%
   geom_bar(position = "dodge")
 ```
 
-![plot of chunk unnamed-chunk-43](Ch2/unnamed-chunk-43-1.png)
+![plot of chunk unnamed-chunk-43](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-43-1.png)
 
 
 ```r
@@ -735,7 +764,7 @@ flights %>%
   geom_bar(position = position_dodge(preserve = "single"))
 ```
 
-![plot of chunk unnamed-chunk-44](Ch2/unnamed-chunk-44-1.png)
+![plot of chunk unnamed-chunk-44](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-44-1.png)
 
 
 ```r
@@ -745,7 +774,7 @@ flights %>%
   facet_wrap(vars(origin), ncol = 1)
 ```
 
-![plot of chunk unnamed-chunk-45](Ch2/unnamed-chunk-45-1.png)
+![plot of chunk unnamed-chunk-45](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-45-1.png)
 
 
 ```r
@@ -773,6 +802,49 @@ flights %>%
 ```
 
 
+```r
+clear_libraries()
+```
+
+```
+## Warning: 'forcats' namespace cannot be unloaded:
+##   namespace 'forcats' is imported by 'tidyverse', 'haven' so cannot be unloaded
+```
+
+```
+## Warning: 'stringr' namespace cannot be unloaded:
+##   namespace 'stringr' is imported by 'tidyverse', 'janitor' so cannot be unloaded
+```
+
+```
+## Warning: 'dplyr' namespace cannot be unloaded:
+##   namespace 'dplyr' is imported by 'broom', 'janitor', 'tidyr', 'dbplyr', 'infer' so cannot be unloaded
+```
+
+```
+## Warning: 'purrr' namespace cannot be unloaded:
+##   namespace 'purrr' is imported by 'broom', 'tidyr', 'modelr', 'styler', 'tidyselect', 'infer' so cannot be unloaded
+```
+
+```
+## Warning: 'readr' namespace cannot be unloaded:
+##   namespace 'readr' is imported by 'tidyverse' so cannot be unloaded
+```
+
+```
+## Warning: 'tidyr' namespace cannot be unloaded:
+##   namespace 'tidyr' is imported by 'tidyverse', 'broom' so cannot be unloaded
+```
+
+```
+## Warning: 'tibble' namespace cannot be unloaded:
+##   namespace 'tibble' is imported by 'broom', 'ggplot2', 'tidyr', 'modelr', 'haven', 'dplyr', 'dbplyr', 'styler', 'readr', 'infer' so cannot be unloaded
+```
+
+```
+## Warning: 'ggplot2' namespace cannot be unloaded:
+##   namespace 'ggplot2' is imported by 'tidyverse', 'infer' so cannot be unloaded
+```
 
 
 

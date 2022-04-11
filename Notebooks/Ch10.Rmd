@@ -3,46 +3,12 @@ title: "ModernDive Ch10: Inference for Regression"
 output: html_notebook
 ---
 
-
-```r
+```{r}
 # Load packages
 library(tidyverse)
-```
-
-```
-## -- Attaching packages ------------------------------------------------------------------------ tidyverse 1.3.1 --
-```
-
-```
-## v ggplot2 3.3.5     v purrr   0.3.4
-## v tibble  3.1.6     v dplyr   1.0.8
-## v tidyr   1.2.0     v stringr 1.4.0
-## v readr   2.1.2     v forcats 0.5.1
-```
-
-```
-## -- Conflicts --------------------------------------------------------------------------- tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-```
-
-```r
 library(moderndive)
-```
-
-```
-## Warning: package 'moderndive' was built under R version 4.1.3
-```
-
-```r
 library(infer)
-```
 
-```
-## Warning: package 'infer' was built under R version 4.1.3
-```
-
-```r
 # Load function to clear libraries
 source(here::here("clear_libraries.R"))
 ```
@@ -50,25 +16,14 @@ source(here::here("clear_libraries.R"))
 ### 10.1 Regression refresher
 #### 10.1.1 Teaching evaluations analysis
 
-
-```r
+```{r}
 evals_ch5 <- evals %>%
   select(ID, score, bty_avg, age)
 
 evals_ch5 %>% 
 glimpse()
 ```
-
-```
-## Rows: 463
-## Columns: 4
-## $ ID      <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, ~
-## $ score   <dbl> 4.7, 4.1, 3.9, 4.8, 4.6, 4.3, 2.8, 4.1, 3.4, 4.5, 3.8, 4.5, 4.6, 3.9, 3.9, 4.3, 4.5, 4.8, 4.6, ~
-## $ bty_avg <dbl> 5.000, 5.000, 5.000, 5.000, 3.000, 3.000, 3.000, 3.333, 3.333, 3.167, 3.167, 3.167, 3.167, 3.16~
-## $ age     <int> 36, 36, 36, 36, 59, 59, 59, 51, 51, 40, 40, 40, 40, 40, 40, 40, 40, 31, 31, 31, 31, 31, 31, 62,~
-```
-
-```r
+```{r}
 ggplot(evals_ch5, 
        aes(x = bty_avg, y = score)) +
   geom_point() +
@@ -77,26 +32,11 @@ ggplot(evals_ch5,
        title = "Relationship between teaching and beauty scores") +  
   geom_smooth(method = "lm", se = FALSE)
 ```
-
-```
-## `geom_smooth()` using formula 'y ~ x'
-```
-
-![plot of chunk unnamed-chunk-3](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-3-1.png)
-
-```r
+```{r}
 # Fit regression model:
 score_model <- lm(score ~ bty_avg, data = evals_ch5)
 # Get regression table:
 get_regression_table(score_model)
-```
-
-```
-## # A tibble: 2 x 7
-##   term      estimate std_error statistic p_value lower_ci upper_ci
-##   <chr>        <dbl>     <dbl>     <dbl>   <dbl>    <dbl>    <dbl>
-## 1 intercept    3.88      0.076     51.0        0    3.73     4.03 
-## 2 bty_avg      0.067     0.016      4.09       0    0.035    0.099
 ```
 
 #### 10.1.2 Sampling scenario
@@ -161,30 +101,12 @@ and conduct hypothesis tests for inference for regression.
 ### 10.3 Conditions for inference for regression
 #### 10.3.1 Residuals refresher
 
-
-```r
+```{r}
 # Fit regression model:
 score_model <- lm(score ~ bty_avg, data = evals_ch5)
 # Get regression points:
 regression_points <- get_regression_points(score_model)
 regression_points
-```
-
-```
-## # A tibble: 463 x 5
-##       ID score bty_avg score_hat residual
-##    <int> <dbl>   <dbl>     <dbl>    <dbl>
-##  1     1   4.7    5         4.21    0.486
-##  2     2   4.1    5         4.21   -0.114
-##  3     3   3.9    5         4.21   -0.314
-##  4     4   4.8    5         4.21    0.586
-##  5     5   4.6    3         4.08    0.52 
-##  6     6   4.3    3         4.08    0.22 
-##  7     7   2.8    3         4.08   -1.28 
-##  8     8   4.1    3.33      4.10   -0.002
-##  9     9   3.4    3.33      4.10   -0.702
-## 10    10   4.5    3.17      4.09    0.409
-## # ... with 453 more rows
 ```
 #### 10.3.2 Linearity of relationship
 
@@ -194,27 +116,9 @@ feel this relationship is “linear enough.”
 
 #### 10.3.3 Independence of residuals
 
-
-```r
+```{r}
 evals %>% 
   select(ID, prof_ID, score, bty_avg)
-```
-
-```
-## # A tibble: 463 x 4
-##       ID prof_ID score bty_avg
-##    <int>   <int> <dbl>   <dbl>
-##  1     1       1   4.7    5   
-##  2     2       1   4.1    5   
-##  3     3       1   3.9    5   
-##  4     4       1   4.8    5   
-##  5     5       2   4.6    3   
-##  6     6       2   4.3    3   
-##  7     7       2   2.8    3   
-##  8     8       3   4.1    3.33
-##  9     9       3   3.4    3.33
-## 10    10       4   4.5    3.17
-## # ... with 453 more rows
 ```
 
 In this case, we say there exists dependence between observations. The first four 
@@ -226,14 +130,11 @@ So in this case, the independence condition is not met. What does this mean for
 our analysis?
 
 #### 10.3.4 Normality of residuals
-
-```r
+```{r}
 ggplot(regression_points, aes(x = residual)) +
   geom_histogram(binwidth = 0.25, color = "white") +
   labs(x = "Residual")
 ```
-
-![plot of chunk unnamed-chunk-7](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-7-1.png)
 
 This histogram shows that we have more positive residuals than negative.
 
@@ -247,16 +148,13 @@ isn’t drastic. On the other hand, others might disagree with our assessment.
 
 #### 10.3.5 Equality of variance
 
-
-```r
+```{r}
 #  Plot of residuals over beauty score. 
 ggplot(regression_points, aes(x = bty_avg, y = residual)) +
   geom_point() +
   labs(x = "Beauty Score", y = "Residual") +
   geom_hline(yintercept = 0, col = "blue", size = 1)
 ```
-
-![plot of chunk unnamed-chunk-8](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-8-1.png)
 
 You can think of this figure as a modified version of the plot with the regression 
 line in Figure 10.1, but with the regression line flattened out to y=0. Looking at 
@@ -267,8 +165,7 @@ However, it can be argued that there isn’t a drastic non-constancy.
 
 #### 10.3.6 What’s the conclusion?
 
-
-```r
+```{r}
 # (LC10.1) Continuing with our regression using age as the explanatory variable and teaching score as the outcome variable. 
 
 # Use the get_regression_points() function to get the observed values, fitted values, and residuals for all 463 instructors. Perform a residual analysis and look for any systematic patterns in the residuals. Ideally, there should be little to no pattern but comment on what you find here.
@@ -282,62 +179,38 @@ regression_points2 <-
   get_regression_points()
 ```
 
-
-```r
+```{r}
 # L
 evals_ch5 %>% 
   ggplot(aes(age, score)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE)
-```
 
-```
-## `geom_smooth()` using formula 'y ~ x'
-```
-
-![plot of chunk unnamed-chunk-10](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-10-1.png)
-
-```r
 # A: Yes
 ```
 
-
-```r
+```{r}
 # N  
 regression_points2 %>% 
   ggplot(aes(residual)) +
   geom_histogram()
-```
 
-```
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-```
-
-![plot of chunk unnamed-chunk-11](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-11-1.png)
-
-```r
 # A: somewhat normal (with left skew)
 ```
-
-```r
+```{r}
 # E
 regression_points2 %>% 
   ggplot(aes(age, residual)) +
   geom_point() +
   geom_hline(yintercept = 0, size = 1, color = "blue")
-```
 
-![plot of chunk unnamed-chunk-12](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-12-1.png)
-
-```r
 # A: Acceptable; negative skew visible
 ```
 
 ### 10.4 Simulation-based inference for regression
 #### 10.4.1 Confidence interval for slope
 
-
-```r
+```{r}
 # Let’s first construct the bootstrap distribution for the fitted slope b1:
 bootstrap_distn_slope <-
   evals %>% 
@@ -347,52 +220,21 @@ bootstrap_distn_slope <-
 bootstrap_distn_slope
 ```
 
-```
-## Response: score (numeric)
-## Explanatory: bty_avg (numeric)
-## # A tibble: 1,000 x 2
-##    replicate   stat
-##        <int>  <dbl>
-##  1         1 0.0537
-##  2         2 0.0679
-##  3         3 0.0499
-##  4         4 0.0667
-##  5         5 0.0543
-##  6         6 0.0806
-##  7         7 0.0474
-##  8         8 0.0564
-##  9         9 0.0768
-## 10        10 0.0472
-## # ... with 990 more rows
-```
-
-
-```r
+```{r}
 # Let's visualize
 bootstrap_distn_slope %>% visualize()
 ```
 
-![plot of chunk unnamed-chunk-14](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-14-1.png)
-
 Percentile-method
-
-```r
+```{r}
 percentile_ci <-
   bootstrap_distn_slope %>% 
   get_ci(level = 0.95, type = "percentile")
 percentile_ci
 ```
 
-```
-## # A tibble: 1 x 2
-##   lower_ci upper_ci
-##      <dbl>    <dbl>
-## 1   0.0333   0.0976
-```
-
 Standard error method
-
-```r
+```{r}
 obs_slope <-
   evals %>% 
   specify(score ~ bty_avg) %>% 
@@ -400,33 +242,15 @@ obs_slope <-
 obs_slope
 ```
 
-```
-## Response: score (numeric)
-## Explanatory: bty_avg (numeric)
-## # A tibble: 1 x 1
-##     stat
-##    <dbl>
-## 1 0.0666
-```
-
-
-```r
+```{r}
 se_ci <-
   bootstrap_distn_slope %>% 
   get_ci(level = 0.95, type = "se", point_estimate = obs_slope)
 se_ci
 ```
 
-```
-## # A tibble: 1 x 2
-##   lower_ci upper_ci
-##      <dbl>    <dbl>
-## 1   0.0337   0.0996
-```
-
 Comparing all three
-
-```r
+```{r}
 bootstrap_distn_slope %>% 
 visualize() + 
   shade_confidence_interval(endpoints = percentile_ci, fill = NULL, 
@@ -437,12 +261,9 @@ visualize() +
                             linetype = "dotted", color = "black")
 ```
 
-![plot of chunk unnamed-chunk-18](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-18-1.png)
-
 #### 10.4.2 Hypothesis test for slope
 
-
-```r
+```{r}
 null_distn_slope <- 
   evals %>% 
   specify(score ~ bty_avg) %>%
@@ -452,57 +273,20 @@ null_distn_slope <-
 null_distn_slope
 ```
 
-```
-## Response: score (numeric)
-## Explanatory: bty_avg (numeric)
-## Null Hypothesis: independence
-## # A tibble: 1,000 x 2
-##    replicate     stat
-##        <int>    <dbl>
-##  1         1  0.00423
-##  2         2 -0.0421 
-##  3         3  0.00678
-##  4         4  0.00371
-##  5         5  0.0311 
-##  6         6 -0.00446
-##  7         7 -0.0111 
-##  8         8  0.0170 
-##  9         9  0.00489
-## 10        10  0.0193 
-## # ... with 990 more rows
-```
-
-
-```r
+```{r}
 # Visualize null distribution and p-value
 null_distn_slope %>% 
   visualize() + 
   shade_p_value(direction = "both", obs_stat = obs_slope)
 ```
 
-![plot of chunk unnamed-chunk-20](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-20-1.png)
-
-
-```r
+```{r}
 # Get p-value
 null_distn_slope %>% 
   get_p_value(obs_stat = obs_slope, direction = "both")
 ```
 
-```
-## Warning: Please be cautious in reporting a p-value of 0. This result is an approximation based on the number of
-## `reps` chosen in the `generate()` step. See `?get_p_value()` for more information.
-```
-
-```
-## # A tibble: 1 x 1
-##   p_value
-##     <dbl>
-## 1       0
-```
-
-
-```r
+```{r}
 # (LC10.2) Repeat the inference but this time for the correlation coefficient instead of the slope. Note the implementation of stat = "correlation" in the calculate() function of the infer package.
 
 null_distn_cc <- 
@@ -520,72 +304,11 @@ null_distn_cc %>%
   visualize() + 
   shade_p_value(direction = "both", obs_stat = obs_cc)
 ```
-
-![plot of chunk unnamed-chunk-22](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-22-1.png)
-
-```r
+```{r}
 null_distn_cc %>% 
 get_p_value(obs_stat = obs_cc, direction = "both")
 ```
 
-```
-## Warning: Please be cautious in reporting a p-value of 0. This result is an approximation based on the number of
-## `reps` chosen in the `generate()` step. See `?get_p_value()` for more information.
-```
-
-```
-## # A tibble: 1 x 1
-##   p_value
-##     <dbl>
-## 1       0
-```
-
-
-```r
+```{r}
 clear_libraries()
-```
-
-```
-## Warning: 'infer' namespace cannot be unloaded:
-##   namespace 'infer' is imported by 'moderndive' so cannot be unloaded
-```
-
-```
-## Warning: 'forcats' namespace cannot be unloaded:
-##   namespace 'forcats' is imported by 'tidyverse', 'haven' so cannot be unloaded
-```
-
-```
-## Warning: 'stringr' namespace cannot be unloaded:
-##   namespace 'stringr' is imported by 'tidyverse', 'janitor' so cannot be unloaded
-```
-
-```
-## Warning: 'dplyr' namespace cannot be unloaded:
-##   namespace 'dplyr' is imported by 'broom', 'janitor', 'skimr', 'tidyr', 'dbplyr', 'infer' so cannot be unloaded
-```
-
-```
-## Warning: 'purrr' namespace cannot be unloaded:
-##   namespace 'purrr' is imported by 'broom', 'tidyr', 'modelr', 'styler', 'tidyselect', 'infer' so cannot be unloaded
-```
-
-```
-## Warning: 'readr' namespace cannot be unloaded:
-##   namespace 'readr' is imported by 'tidyverse' so cannot be unloaded
-```
-
-```
-## Warning: 'tidyr' namespace cannot be unloaded:
-##   namespace 'tidyr' is imported by 'tidyverse', 'broom' so cannot be unloaded
-```
-
-```
-## Warning: 'tibble' namespace cannot be unloaded:
-##   namespace 'tibble' is imported by 'broom', 'ggplot2', 'tidyr', 'modelr', 'haven', 'dplyr', 'dbplyr', 'styler', 'readr', 'infer' so cannot be unloaded
-```
-
-```
-## Warning: 'ggplot2' namespace cannot be unloaded:
-##   namespace 'ggplot2' is imported by 'tidyverse', 'infer' so cannot be unloaded
 ```

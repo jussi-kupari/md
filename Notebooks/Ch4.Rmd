@@ -1,0 +1,172 @@
+---
+title: "ModernDive Ch 4: Data Importing and “Tidy” Data"
+output: html_notebook
+---
+
+```{r}
+# Libraries
+library(tidyverse)
+library(nycflights13)
+library(fivethirtyeight)
+
+# Load function to clear libraries
+source(here::here("clear_libraries.R"))
+```
+
+```{r}
+# Read a csv from the web
+dem_score <- read_csv("https://moderndive.com/data/dem_score.csv")
+dem_score
+```
+
+```{r}
+# Wide/untidy data
+drinks_smaller <-
+  drinks %>%
+  filter(country %in% c("USA", "China", "Italy", "Saudi Arabia")) %>%
+  select(-total_litres_of_pure_alcohol) %>%
+  rename_with(~ str_remove(.x, "_servings"))
+drinks_smaller
+```
+
+```{r}
+# In tidy data:
+
+#  Each variable forms a column.
+#  Each observation forms a row.
+#  Each type of observational unit forms a table.
+```
+
+```{r}
+# (LC4.1) What are common characteristics of “tidy” data frames?
+
+# A: Every value belongs to a variable and an observation. A variable contains
+# all values that measure the same underlying attribute (like height,
+# temperature, duration) across units. An observation contains all values
+# measured on the same unit (like a person, or a day, or a city) across attributes.
+
+#  Each variable forms a column.
+#  Each observation forms a row.
+#  Each type of observational unit forms a table.
+
+
+# (LC4.2) What makes “tidy” data frames useful for organizing data?
+
+# A: Tidy data always has the same general structure, whereas messy data is
+# usually messy in a custom way.
+```
+
+
+```{r}
+# Long/tidy data
+drinks_smaller_tidy <-
+  drinks_smaller %>%
+  pivot_longer(cols = -country, names_to = "type", values_to = "servings")
+drinks_smaller_tidy
+```
+
+
+```{r}
+drinks_smaller_tidy %>%
+  ggplot(aes(country, servings, fill = type)) +
+  geom_col(position = "dodge")
+```
+
+```{r}
+# (LC4.3) Take a look at the airline_safety data frame included in the
+# fivethirtyeight data package. Run the following:
+
+# airline_safety
+
+# After reading the help file by running ?airline_safety, we see that
+# airline_safety is a data frame containing information on different airline
+# companies’ safety records. This data was originally reported on the data
+# journalism website, FiveThirtyEight.com, in Nate Silver’s article, “Should
+# Travelers Avoid Flying Airlines That Have Had Crashes in the Past?”.
+# Let’s only consider the variables airlines and those relating to fatalities for simplicity:
+
+airline_safety_smaller <- airline_safety %>%
+  select(airline, starts_with("fatalities"))
+airline_safety_smaller
+
+
+# This data frame is not in “tidy” format. How would you convert this data frame
+# to be in “tidy” format, in particular so that it has a variable fatalities_years
+# indicating the incident year and a variable count of the fatality counts?
+```
+
+
+```{r}
+airline_safety_smaller %>%
+  pivot_longer(
+    cols = -airline,
+    names_to = "fatalities_years",
+    values_to = "count"
+  )
+```
+
+
+```{r}
+guat_dem <-
+  dem_score %>%
+  filter(country == "Guatemala")
+guat_dem
+```
+
+```{r}
+guat_geom_tidy <-
+  guat_dem %>%
+  pivot_longer(
+    cols = -country,
+    names_to = "year",
+    values_to = "democracy_score",
+    names_transform = list(year = as.integer)
+  )
+guat_geom_tidy
+```
+
+```{r}
+guat_geom_tidy %>%
+  ggplot(aes(year, democracy_score)) +
+  geom_line() +
+  labs(x = "Year", y = "Democracy Score")
+```
+
+
+```{r}
+# (LC4.4) Convert the dem_score data frame into a “tidy” data frame and assign
+# the name of dem_score_tidy to the resulting long-formatted data frame.
+dem_score_tidy <-
+  dem_score %>%
+  pivot_longer(
+    cols = -country,
+    names_to = "year",
+    values_to = "democracy_score",
+    names_transform = list(year = as.integer)
+  )
+dem_score_tidy
+```
+
+```{r}
+# (LC4.5) Read in the life expectancy data stored at
+# https://moderndive.com/data/le_mess.csv and convert it to a “tidy” data frame.
+
+life_exp <- read_csv("https://moderndive.com/data/le_mess.csv")
+life_exp
+```
+
+```{r}
+life_exp_tidy <-
+  life_exp %>%
+  pivot_longer(
+    cols = -country,
+    names_to = "year",
+    values_to = "life_exp",
+    names_transform = list(year = as.integer)
+  )
+life_exp_tidy
+```
+
+```{r}
+clear_libraries()
+```

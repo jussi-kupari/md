@@ -7,9 +7,46 @@ output: html_notebook
 ```r
 # Load libraries
 library(tidyverse)
+```
+
+```
+## -- Attaching packages ------------------------------------------------------------------------ tidyverse 1.3.1 --
+```
+
+```
+## v ggplot2 3.3.5     v purrr   0.3.4
+## v tibble  3.1.6     v dplyr   1.0.8
+## v tidyr   1.2.0     v stringr 1.4.0
+## v readr   2.1.2     v forcats 0.5.1
+```
+
+```
+## -- Conflicts --------------------------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+```
+
+```r
 library(moderndive)
+```
+
+```
+## Warning: package 'moderndive' was built under R version 4.1.3
+```
+
+```r
 library(infer)
+```
+
+```
+## Warning: package 'infer' was built under R version 4.1.3
+```
+
+```r
 library(patchwork)
+
+# Load function to clear libraries
+source(here::here("clear_libraries.R"))
 ```
 
 ### 8.1 Pennies activity
@@ -46,7 +83,7 @@ pennies_sample %>%
   geom_histogram(binwidth = 10, color = "white")
 ```
 
-![plot of chunk unnamed-chunk-3](Ch8/unnamed-chunk-3-1.png)
+![plot of chunk unnamed-chunk-3](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-3-1.png)
 
 
 ```r
@@ -138,7 +175,7 @@ pennies_sample %>%
   labs(title = "Original sample of 50 pennies")
 ```
 
-![plot of chunk unnamed-chunk-6](Ch8/unnamed-chunk-6-1.png)
+![plot of chunk unnamed-chunk-6](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-6-1.png)
 
 
 ```r
@@ -195,7 +232,7 @@ resampled_means %>%
   labs(x = "Sampled mean year")
 ```
 
-![plot of chunk unnamed-chunk-9](Ch8/unnamed-chunk-9-1.png)
+![plot of chunk unnamed-chunk-9](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-9-1.png)
 
 #### 8.1.4 What did we just do?
 
@@ -215,16 +252,16 @@ virtual_resample
 ## # Groups:   replicate [1]
 ##    replicate    ID  year
 ##        <int> <int> <dbl>
-##  1         1    35  1985
-##  2         1    38  1999
-##  3         1    17  2016
-##  4         1    27  1993
-##  5         1    39  2015
-##  6         1    41  1992
-##  7         1    13  2015
-##  8         1    49  2006
-##  9         1    28  2006
-## 10         1    39  2015
+##  1         1    38  1999
+##  2         1    16  2015
+##  3         1    31  2013
+##  4         1    31  2013
+##  5         1    27  1993
+##  6         1    10  2000
+##  7         1    35  1985
+##  8         1    42  1997
+##  9         1    44  2015
+## 10         1    36  2015
 ## # ... with 40 more rows
 ```
 
@@ -256,16 +293,16 @@ virtual_resamples
 ## # Groups:   replicate [35]
 ##    replicate    ID  year
 ##        <int> <int> <dbl>
-##  1         1    42  1997
-##  2         1    40  1990
-##  3         1    10  2000
-##  4         1    38  1999
-##  5         1     7  2008
-##  6         1    47  1982
-##  7         1     9  2004
-##  8         1    21  1981
-##  9         1    15  1974
-## 10         1    16  2015
+##  1         1    15  1974
+##  2         1    48  1988
+##  3         1    12  1995
+##  4         1     5  2008
+##  5         1    34  1985
+##  6         1     2  1986
+##  7         1    37  1962
+##  8         1    22  1976
+##  9         1     1  2002
+## 10         1    15  1974
 ## # ... with 1,740 more rows
 ```
 
@@ -283,16 +320,16 @@ virtual_resampled_means
 ## # A tibble: 35 x 2
 ##    replicate mean_year
 ##        <int>     <dbl>
-##  1         1     1994.
-##  2         2     1996.
-##  3         3     1998.
-##  4         4     1997.
-##  5         5     1996.
+##  1         1     1996.
+##  2         2     1993.
+##  3         3     1995.
+##  4         4     1995.
+##  5         5     1994.
 ##  6         6     1996.
-##  7         7     1993.
-##  8         8     1992.
-##  9         9     1994.
-## 10        10     1994.
+##  7         7     1995.
+##  8         8     1996.
+##  9         9     2000.
+## 10        10     1997.
 ## # ... with 25 more rows
 ```
 
@@ -305,7 +342,7 @@ virtual_resampled_means %>%
   labs(x = "Resample mean year")
 ```
 
-![plot of chunk unnamed-chunk-14](Ch8/unnamed-chunk-14-1.png)
+![plot of chunk unnamed-chunk-14](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-14-1.png)
 
 #### 8.2.3 Virtually resampling 1000 times
 
@@ -323,16 +360,16 @@ virtual_resamples
 ## # Groups:   replicate [1,000]
 ##    replicate    ID  year
 ##        <int> <int> <dbl>
-##  1         1     9  2004
-##  2         1     9  2004
-##  3         1    13  2015
-##  4         1    18  1996
-##  5         1    30  1978
-##  6         1     1  2002
-##  7         1    35  1985
-##  8         1     7  2008
-##  9         1    41  1992
-## 10         1    34  1985
+##  1         1    29  1988
+##  2         1    30  1978
+##  3         1    42  1997
+##  4         1    35  1985
+##  5         1     6  1983
+##  6         1    50  2017
+##  7         1     9  2004
+##  8         1    28  2006
+##  9         1    14  1978
+## 10         1    42  1997
 ## # ... with 49,990 more rows
 ```
 
@@ -352,14 +389,14 @@ virtual_resampled_means
 ##        <int>     <dbl>
 ##  1         1     1995.
 ##  2         2     1993.
-##  3         3     1992.
-##  4         4     1999.
+##  3         3     1994.
+##  4         4     1995.
 ##  5         5     1998.
-##  6         6     1991.
+##  6         6     1995.
 ##  7         7     1994.
-##  8         8     1996.
+##  8         8     1998.
 ##  9         9     1995.
-## 10        10     1996.
+## 10        10     1997.
 ## # ... with 990 more rows
 ```
 
@@ -378,16 +415,16 @@ virtual_resampled_means
 ## # A tibble: 1,000 x 2
 ##    replicate mean_year
 ##        <int>     <dbl>
-##  1         1     1998.
-##  2         2     1995.
-##  3         3     1994.
-##  4         4     1998.
+##  1         1     1999.
+##  2         2     1998.
+##  3         3     1993.
+##  4         4     1996.
 ##  5         5     1994.
-##  6         6     1996.
-##  7         7     1996.
+##  6         6     1997.
+##  7         7     1993.
 ##  8         8     1995.
-##  9         9     1995.
-## 10        10     1999.
+##  9         9     1996.
+## 10        10     1998.
 ## # ... with 990 more rows
 ```
 
@@ -400,7 +437,7 @@ virtual_resampled_means %>%
   labs(x = "sample mean")
 ```
 
-![plot of chunk unnamed-chunk-18](Ch8/unnamed-chunk-18-1.png)
+![plot of chunk unnamed-chunk-18](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-18-1.png)
 
 
 ```r
@@ -412,7 +449,7 @@ virtual_resampled_means %>%
 ## # A tibble: 1 x 1
 ##   mean_of_means
 ##           <dbl>
-## 1         1996.
+## 1         1995.
 ```
 
 
@@ -528,16 +565,16 @@ pennies_sample %>%
 ## # Groups:   replicate [1,000]
 ##    replicate  year
 ##        <int> <dbl>
-##  1         1  1983
-##  2         1  2006
-##  3         1  1981
-##  4         1  2004
-##  5         1  2017
-##  6         1  1988
-##  7         1  1974
-##  8         1  1990
+##  1         1  2002
+##  2         1  2015
+##  3         1  1979
+##  4         1  1981
+##  5         1  1999
+##  6         1  2015
+##  7         1  2017
+##  8         1  2015
 ##  9         1  1988
-## 10         1  2015
+## 10         1  2002
 ## # ... with 49,990 more rows
 ```
 
@@ -553,16 +590,16 @@ pennies_sample %>%
 ## # Groups:   replicate [1,000]
 ##    replicate    ID  year
 ##        <int> <int> <dbl>
-##  1         1    38  1999
-##  2         1    16  2015
-##  3         1    45  1997
-##  4         1    40  1990
-##  5         1    19  1983
-##  6         1     1  2002
-##  7         1    10  2000
-##  8         1    34  1985
-##  9         1    47  1982
-## 10         1    15  1974
+##  1         1     6  1983
+##  2         1    19  1983
+##  3         1    21  1981
+##  4         1    23  1998
+##  5         1    24  2017
+##  6         1    29  1988
+##  7         1    14  1978
+##  8         1    30  1978
+##  9         1    23  1998
+## 10         1    12  1995
 ## # ... with 49,990 more rows
 ```
 
@@ -583,15 +620,15 @@ bootstrap_distribution
 ##    replicate  stat
 ##        <int> <dbl>
 ##  1         1 1994.
-##  2         2 1992.
+##  2         2 1993.
 ##  3         3 1993.
-##  4         4 1991.
-##  5         5 1997.
-##  6         6 1996.
-##  7         7 1995.
-##  8         8 1997.
-##  9         9 1993.
-## 10        10 1993.
+##  4         4 1994.
+##  5         5 1995.
+##  6         6 1995.
+##  7         7 1997.
+##  8         8 1992.
+##  9         9 1996.
+## 10        10 1994.
 ## # ... with 990 more rows
 ```
 
@@ -608,16 +645,16 @@ pennies_sample %>%
 ## # A tibble: 1,000 x 2
 ##    replicate  stat
 ##        <int> <dbl>
-##  1         1 1999.
+##  1         1 1994.
 ##  2         2 1997.
-##  3         3 1990.
-##  4         4 1992.
-##  5         5 1995.
-##  6         6 1996.
-##  7         7 1998 
-##  8         8 1996.
-##  9         9 1995.
-## 10        10 1997.
+##  3         3 1993.
+##  4         4 1993.
+##  5         5 1996.
+##  6         6 1996 
+##  7         7 1996.
+##  8         8 1992.
+##  9         9 1998.
+## 10        10 1995.
 ## # ... with 990 more rows
 ```
 
@@ -628,7 +665,7 @@ pennies_sample %>%
   visualize() 
 ```
 
-![plot of chunk unnamed-chunk-30](Ch8/unnamed-chunk-30-1.png)
+![plot of chunk unnamed-chunk-30](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-30-1.png)
 
 
 ```r
@@ -638,7 +675,7 @@ bootstrap_distribution %>%
   geom_histogram(binwidth = 1, color = "white")
 ```
 
-![plot of chunk unnamed-chunk-31](Ch8/unnamed-chunk-31-1.png)
+![plot of chunk unnamed-chunk-31](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-31-1.png)
 
 #### 8.4.3 Percentile method with infer
 
@@ -655,7 +692,7 @@ percentile_ci
 ## # A tibble: 1 x 2
 ##   lower_ci upper_ci
 ##      <dbl>    <dbl>
-## 1    1991.    1999.
+## 1    1991.    2000.
 ```
 
 
@@ -666,7 +703,7 @@ bootstrap_distribution %>%
   shade_confidence_interval(endpoints = percentile_ci) 
 ```
 
-![plot of chunk unnamed-chunk-33](Ch8/unnamed-chunk-33-1.png)
+![plot of chunk unnamed-chunk-33](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-33-1.png)
 
 
 ```r
@@ -682,7 +719,7 @@ bootstrap_distribution %>%
   )
 ```
 
-![plot of chunk unnamed-chunk-34](Ch8/unnamed-chunk-34-1.png)
+![plot of chunk unnamed-chunk-34](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-34-1.png)
 
 
 ```r
@@ -708,7 +745,7 @@ bootstrap_distribution %>%
   shade_ci(endpoints = standard_error_ci)
 ```
 
-![plot of chunk unnamed-chunk-36](Ch8/unnamed-chunk-36-1.png)
+![plot of chunk unnamed-chunk-36](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-36-1.png)
 
 
 ```r
@@ -743,7 +780,7 @@ bootstrap_distribution_median %>%
   shade_ci(endpoints = ci_95_percentile)
 ```
 
-![plot of chunk unnamed-chunk-38](Ch8/unnamed-chunk-38-1.png)
+![plot of chunk unnamed-chunk-38](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-38-1.png)
 
 ### 8.5 Interpreting confidence intervals
 
@@ -826,15 +863,15 @@ bowl_sample_1 %>%
 ##    replicate color
 ##        <int> <fct>
 ##  1         1 white
-##  2         1 red  
-##  3         1 white
-##  4         1 red  
-##  5         1 red  
+##  2         1 white
+##  3         1 red  
+##  4         1 white
+##  5         1 white
 ##  6         1 red  
-##  7         1 white
+##  7         1 red  
 ##  8         1 white
 ##  9         1 red  
-## 10         1 red  
+## 10         1 white
 ## # ... with 49,990 more rows
 ```
 
@@ -854,16 +891,16 @@ sample_1_bootstrap
 ## # A tibble: 1,000 x 2
 ##    replicate  stat
 ##        <int> <dbl>
-##  1         1  0.66
-##  2         2  0.38
-##  3         3  0.38
-##  4         4  0.52
-##  5         5  0.34
-##  6         6  0.5 
-##  7         7  0.5 
-##  8         8  0.38
-##  9         9  0.38
-## 10        10  0.46
+##  1         1  0.38
+##  2         2  0.42
+##  3         3  0.5 
+##  4         4  0.44
+##  5         5  0.24
+##  6         6  0.4 
+##  7         7  0.32
+##  8         8  0.3 
+##  9         9  0.48
+## 10        10  0.44
 ## # ... with 990 more rows
 ```
 
@@ -880,7 +917,7 @@ percentile_ci_1
 ## # A tibble: 1 x 2
 ##   lower_ci upper_ci
 ##      <dbl>    <dbl>
-## 1     0.28     0.56
+## 1     0.28    0.560
 ```
 
 ```r
@@ -897,7 +934,7 @@ sample_1_bootstrap %>%
   geom_vline(xintercept = 0.42, linetype = "dashed")
 ```
 
-![plot of chunk unnamed-chunk-45](Ch8/unnamed-chunk-45-1.png)
+![plot of chunk unnamed-chunk-45](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-45-1.png)
 
 
 ```r
@@ -913,16 +950,16 @@ bowl_sample_2
 ## # Groups:   replicate [1]
 ##    replicate ball_ID color
 ##        <int>   <int> <chr>
-##  1         1     115 white
-##  2         1    1561 white
-##  3         1     168 red  
-##  4         1     599 white
-##  5         1    1824 red  
-##  6         1    1509 white
-##  7         1    1680 white
-##  8         1     755 red  
-##  9         1    1285 white
-## 10         1    1715 white
+##  1         1     209 red  
+##  2         1     596 red  
+##  3         1    1197 white
+##  4         1     933 white
+##  5         1    1242 red  
+##  6         1     438 white
+##  7         1     194 white
+##  8         1    1302 white
+##  9         1    1418 red  
+## 10         1    1364 white
 ## # ... with 40 more rows
 ```
 
@@ -941,16 +978,16 @@ sample_2_bootstrap
 ## # A tibble: 1,000 x 2
 ##    replicate  stat
 ##        <int> <dbl>
-##  1         1  0.36
-##  2         2  0.32
-##  3         3  0.32
-##  4         4  0.38
-##  5         5  0.34
-##  6         6  0.32
-##  7         7  0.3 
-##  8         8  0.4 
-##  9         9  0.3 
-## 10        10  0.34
+##  1         1  0.38
+##  2         2  0.3 
+##  3         3  0.46
+##  4         4  0.4 
+##  5         5  0.46
+##  6         6  0.48
+##  7         7  0.46
+##  8         8  0.44
+##  9         9  0.44
+## 10        10  0.44
 ## # ... with 990 more rows
 ```
 
@@ -967,7 +1004,7 @@ percentile_ci_2
 ## # A tibble: 1 x 2
 ##   lower_ci upper_ci
 ##      <dbl>    <dbl>
-## 1     0.22     0.48
+## 1      0.3     0.58
 ```
 
 #### 8.5.2 Precise and shorthand interpretation
@@ -1066,16 +1103,16 @@ mythbusters_yawn %>%
 ## # Groups:   replicate [1,000]
 ##    replicate yawn  group  
 ##        <int> <fct> <fct>  
-##  1         1 no    control
+##  1         1 no    seed   
 ##  2         1 no    seed   
 ##  3         1 no    seed   
 ##  4         1 no    seed   
-##  5         1 no    seed   
-##  6         1 yes   seed   
+##  5         1 no    control
+##  6         1 no    seed   
 ##  7         1 no    seed   
-##  8         1 yes   seed   
-##  9         1 no    seed   
-## 10         1 yes   seed   
+##  8         1 no    seed   
+##  9         1 no    control
+## 10         1 no    control
 ## # ... with 49,990 more rows
 ```
 
@@ -1094,18 +1131,18 @@ bootstrap_distribution_yawning
 ## Response: yawn (factor)
 ## Explanatory: group (factor)
 ## # A tibble: 1,000 x 2
-##    replicate    stat
-##        <int>   <dbl>
-##  1         1 -0.0286
-##  2         2  0.183 
-##  3         3  0.0428
-##  4         4  0.1   
-##  5         5 -0.139 
-##  6         6  0.100 
-##  7         7  0.112 
-##  8         8  0.0278
-##  9         9  0.0476
-## 10        10  0.183 
+##    replicate     stat
+##        <int>    <dbl>
+##  1         1 -0.131  
+##  2         2  0.112  
+##  3         3 -0.0478 
+##  4         4  0.0963 
+##  5         5  0.141  
+##  6         6  0.168  
+##  7         7  0.00952
+##  8         8  0.101  
+##  9         9  0.118  
+## 10        10 -0.0286 
 ## # ... with 990 more rows
 ```
 
@@ -1117,7 +1154,7 @@ bootstrap_distribution_yawning %>%
   geom_vline(xintercept = 0)
 ```
 
-![plot of chunk unnamed-chunk-55](Ch8/unnamed-chunk-55-1.png)
+![plot of chunk unnamed-chunk-55](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-55-1.png)
 
 
 ```r
@@ -1132,7 +1169,7 @@ myth_ci_percentile
 ## # A tibble: 1 x 2
 ##   lower_ci upper_ci
 ##      <dbl>    <dbl>
-## 1   -0.202    0.285
+## 1   -0.214    0.286
 ```
 
 
@@ -1157,7 +1194,7 @@ bootstrap_distribution_yawning %>%
   shade_ci(endpoints = myth_ci_se, color = "gray")
 ```
 
-![plot of chunk unnamed-chunk-58](Ch8/unnamed-chunk-58-1.png)
+![plot of chunk unnamed-chunk-58](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-58-1.png)
 
 #### 8.6.4 Interpreting the confidence interval
 
@@ -1186,7 +1223,7 @@ sampling_distribution %>%
        title = "Sampling distribution")
 ```
 
-![plot of chunk unnamed-chunk-59](Ch8/unnamed-chunk-59-1.png)
+![plot of chunk unnamed-chunk-59](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-59-1.png)
 
 
 ```r
@@ -1198,7 +1235,7 @@ sampling_distribution %>%
 ## # A tibble: 1 x 1
 ##       se
 ##    <dbl>
-## 1 0.0686
+## 1 0.0670
 ```
 
 Bootstrap distribution
@@ -1217,16 +1254,16 @@ bootstrap_distribution
 ## # A tibble: 1,000 x 2
 ##    replicate  stat
 ##        <int> <dbl>
-##  1         1  0.46
-##  2         2  0.48
-##  3         3  0.4 
-##  4         4  0.3 
+##  1         1  0.44
+##  2         2  0.36
+##  3         3  0.44
+##  4         4  0.38
 ##  5         5  0.44
-##  6         6  0.36
+##  6         6  0.46
 ##  7         7  0.48
-##  8         8  0.48
+##  8         8  0.36
 ##  9         9  0.42
-## 10        10  0.42
+## 10        10  0.36
 ## # ... with 990 more rows
 ```
 
@@ -1236,7 +1273,7 @@ bootstrap_distribution %>%
   visualize()
 ```
 
-![plot of chunk unnamed-chunk-62](Ch8/unnamed-chunk-62-1.png)
+![plot of chunk unnamed-chunk-62](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-62-1.png)
 
 
 ```r
@@ -1248,7 +1285,7 @@ bootstrap_distribution %>%
 ## # A tibble: 1 x 1
 ##       se
 ##    <dbl>
-## 1 0.0689
+## 1 0.0699
 ```
 
 Confidence intervals based on 33 tactile samples
@@ -1300,3 +1337,52 @@ mean(conf_ints$captured_pop_prop)
 # Almost
 ```
 
+
+```r
+clear_libraries()
+```
+
+```
+## Warning: 'infer' namespace cannot be unloaded:
+##   namespace 'infer' is imported by 'moderndive' so cannot be unloaded
+```
+
+```
+## Warning: 'forcats' namespace cannot be unloaded:
+##   namespace 'forcats' is imported by 'tidyverse', 'haven' so cannot be unloaded
+```
+
+```
+## Warning: 'stringr' namespace cannot be unloaded:
+##   namespace 'stringr' is imported by 'tidyverse', 'janitor' so cannot be unloaded
+```
+
+```
+## Warning: 'dplyr' namespace cannot be unloaded:
+##   namespace 'dplyr' is imported by 'broom', 'janitor', 'tidyr', 'dbplyr', 'infer' so cannot be unloaded
+```
+
+```
+## Warning: 'purrr' namespace cannot be unloaded:
+##   namespace 'purrr' is imported by 'broom', 'tidyr', 'modelr', 'styler', 'tidyselect', 'infer' so cannot be unloaded
+```
+
+```
+## Warning: 'readr' namespace cannot be unloaded:
+##   namespace 'readr' is imported by 'tidyverse' so cannot be unloaded
+```
+
+```
+## Warning: 'tidyr' namespace cannot be unloaded:
+##   namespace 'tidyr' is imported by 'tidyverse', 'broom' so cannot be unloaded
+```
+
+```
+## Warning: 'tibble' namespace cannot be unloaded:
+##   namespace 'tibble' is imported by 'broom', 'ggplot2', 'tidyr', 'modelr', 'haven', 'dplyr', 'dbplyr', 'styler', 'readr', 'infer' so cannot be unloaded
+```
+
+```
+## Warning: 'ggplot2' namespace cannot be unloaded:
+##   namespace 'ggplot2' is imported by 'tidyverse', 'infer' so cannot be unloaded
+```

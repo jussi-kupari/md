@@ -1,0 +1,192 @@
+---
+title: "ModernDive Ch11: Tell Your Story with Data"
+output: html_notebook
+---
+
+```{r}
+# Load libraries
+library(tidyverse)
+library(moderndive)
+library(skimr)
+library(fivethirtyeight)
+library(patchwork)
+
+# Load function to clear libraries
+source(here::here("clear_libraries.R"))
+```
+
+### 11.1 Review
+
+### 11.2 Case study: Seattle house prices
+#### 11.2.1 Exploratory data analysis: Part I
+
+```{r}
+# Look at raw data
+glimpse(house_prices)
+```
+
+```{r}
+# Skim interesting variables
+house_prices %>% 
+  select(price, sqft_living, condition) %>% 
+  skim()
+```
+
+```{r}
+# Exploratory vizualisations
+(house_prices %>% 
+   ggplot(aes(price)) +
+   geom_histogram(color = "white")) +
+  (house_prices %>% 
+     ggplot(aes(sqft_living)) +
+     geom_histogram(color = "white")) +
+  (house_prices %>% 
+     ggplot(aes(condition)) +
+     geom_bar())
+```
+```{r}
+# Log10 transform the numeric variables because of long right tail
+house_prices <-
+  house_prices %>% 
+  mutate(log10_price = log10(price),
+         log10_size = log10(sqft_living))
+house_prices
+```
+
+```{r}
+# Before and after visualization
+((house_prices %>% 
+   ggplot(aes(price)) +
+   geom_histogram(color = "white")) +
+  (house_prices %>% 
+   ggplot(aes(log10_price)) +
+   geom_histogram(color = "white"))) /
+  ((house_prices %>% 
+   ggplot(aes(sqft_living)) +
+   geom_histogram(color = "white")) +
+  (house_prices %>% 
+   ggplot(aes(log10_size)) +
+   geom_histogram(color = "white")))
+  
+  
+```
+
+#### 11.2.2 Exploratory data analysis: Part II
+
+```{r}
+(# Plot interaction model
+house_prices %>% 
+  ggplot(aes(log10_size, log10_price, color = condition)) +
+  geom_point(alpha = 0.05) +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme(legend.position = "none")) +
+  
+(# Plot parallel slopes model
+house_prices %>% 
+  ggplot(aes(log10_size, log10_price, color = condition)) +
+  geom_point(alpha = 0.05) +
+  geom_parallel_slopes(se = FALSE))
+  
+```
+
+```{r}
+# Show faceted version of interaction model
+house_prices %>% 
+  ggplot(aes(log10_size, log10_price, color = condition)) +
+  geom_point(alpha = 0.25) +
+  geom_smooth(method = "lm", se = FALSE) +
+  facet_wrap(~ condition)
+```
+
+#### 11.2.3 Regression modeling
+
+```{r}
+# Fit model with interaction
+price_interaction <-
+  house_prices %>% 
+  lm(log10_price ~ log10_size * condition, data = .)
+
+get_regression_table(price_interaction)
+```
+
+#### 11.2.4 Making predictions
+
+Say you’re a realtor and someone calls you asking you how much their home will sell for. They tell you that it’s in condition = 5 and is sized 1900 square feet. What do you tell them? Let’s use the interaction model we fit to make predictions!
+
+```{r}
+# Use predict to get the predicted log10 price
+predicted_log10_price_interaction <-
+  price_interaction %>% 
+  predict(newdata = tibble(condition = factor(5), log10_size = log10(1900))) %>% 
+  unname()
+predicted_log10_price_interaction
+```
+
+```{r}
+# unlog the get the real price
+10^predicted_log10_price_interaction
+```
+
+
+```{r}
+# (LC11.1) Repeat the regression modeling in Subsection 11.2.3 and the prediction making you just did on the house of condition 5 and size 1900 square feet in Subsection 11.2.4, but using the parallel slopes model you visualized in Figure 11.6. Show that it’s $524,807!
+
+# Fit model with interaction
+price_parallel_slopes <-
+  house_prices %>% 
+  lm(log10_price ~ log10_size + condition, data = .)
+
+get_regression_table(price_parallel_slopes)
+```
+```{r}
+predicted_log10_price_parallel_slopes <-
+  price_parallel_slopes %>% 
+  predict(newdata = tibble(condition = factor(5), log10_size = log10(1900))) %>% 
+  unname()
+predicted_log10_price_parallel_slopes
+```
+```{r}
+10^predicted_log10_price_parallel_slopes
+```
+
+### 11.3 Case study: Effective data storytelling
+
+#### 11.3.2 US Births in 1999
+
+```{r}
+glimpse(US_births_1994_2003)
+```
+
+```{r}
+US_Biths_1999 <-
+  US_births_1994_2003 %>% 
+  filter(year == 1999)
+```
+
+```{r}
+US_Biths_1999 %>% 
+  ggplot(aes(date, births)) +
+  geom_line() +
+  labs(x = "Date", 
+       y = "Number of births", 
+       title = "US Births in 1999")
+```
+
+```{r}
+US_Biths_1999 %>% 
+  arrange(desc(births))
+```
+
+```{r}
+# (LC11.2) What date between 1994 and 2003 has the fewest number of births in the US? What story could you tell about why this is the case?
+
+US_births_1994_2003 %>% 
+  arrange(births)
+
+# A: Chirstmas day seems to be the day when the least number of births occur.
+```
+
+```{r}
+clear_libraries()
+```
+

@@ -4,39 +4,11 @@ output: html_notebook
 
 ---
 
-
-```r
+```{r}
 # Load libraries
 
 library(tidyverse)
-```
-
-```
-## -- Attaching packages ------------------------------------------------------------------------ tidyverse 1.3.1 --
-```
-
-```
-## v ggplot2 3.3.5     v purrr   0.3.4
-## v tibble  3.1.6     v dplyr   1.0.8
-## v tidyr   1.2.0     v stringr 1.4.0
-## v readr   2.1.2     v forcats 0.5.1
-```
-
-```
-## -- Conflicts --------------------------------------------------------------------------- tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-```
-
-```r
 library(moderndive)
-```
-
-```
-## Warning: package 'moderndive' was built under R version 4.1.3
-```
-
-```r
 library(patchwork)
 
 # Load function to clear libraries
@@ -45,31 +17,12 @@ source(here::here("clear_libraries.R"))
 ### 7.1 Sampling bowl activity
 #### 7.1.1 What proportion of this bowl’s balls are red?
 
-
-```r
+```{r}
 # Results from the '33 friends' experiment
 tactile_prop_red
 ```
 
-```
-## # A tibble: 33 x 4
-##    group            replicate red_balls prop_red
-##    <chr>                <int>     <int>    <dbl>
-##  1 Ilyas, Yohan             1        21     0.42
-##  2 Morgan, Terrance         2        17     0.34
-##  3 Martin, Thomas           3        21     0.42
-##  4 Clark, Frank             4        21     0.42
-##  5 Riddhi, Karina           5        18     0.36
-##  6 Andrew, Tyler            6        19     0.38
-##  7 Julia                    7        19     0.38
-##  8 Rachel, Lauren           8        11     0.22
-##  9 Daniel, Caroline         9        15     0.3 
-## 10 Josh, Maeve             10        17     0.34
-## # ... with 23 more rows
-```
-
-
-```r
+```{r}
 # Histogram
 tactile_prop_red %>% 
   ggplot(aes(prop_red)) +
@@ -78,12 +31,9 @@ tactile_prop_red %>%
        title = "Distribution of 33 proportions red")
 ```
 
-![plot of chunk unnamed-chunk-3](C:/Users/juskup/OneDrive - Karolinska Institutet/Dokument/ModernDive/notebooks/figures/unnamed-chunk-3-1.png)
-
 #### 7.1.4 What did we just do?
 
-
-```r
+```{r}
 # (LC7.1) Why was it important to mix the bowl before we sampled the balls?
 
 # A: Randomization. So that each ball has an equal chance to be picked by the shovel. The sampled balls are put back every time to replicate the environment of the first the sampling event.
@@ -109,175 +59,86 @@ tactile_prop_red %>%
 ### 7.2 Virtual sampling
 #### 7.2.1 Using the virtual shovel once
 
-
-```r
+```{r}
 # Virtual bowl
 bowl
 ```
 
-```
-## # A tibble: 2,400 x 2
-##    ball_ID color
-##      <int> <chr>
-##  1       1 white
-##  2       2 white
-##  3       3 white
-##  4       4 red  
-##  5       5 white
-##  6       6 white
-##  7       7 red  
-##  8       8 white
-##  9       9 red  
-## 10      10 white
-## # ... with 2,390 more rows
-```
-
-
-```r
+```{r}
 # Run each of the following code segments individually and then compare the three resulting histograms.
 
 # Segment 1: sample n = 25 ------------------------------
 # 1.a) Virtually use shovel 1000 times
 virtual_samples_25 <- bowl %>% 
   rep_slice_sample(n = 25, reps = 1000)
-```
 
-```
-## Error in rep_slice_sample(., n = 25, reps = 1000): could not find function "rep_slice_sample"
-```
-
-```r
 # 1.b) Compute resulting 1000 replicates of proportion red
 virtual_prop_red_25 <- virtual_samples_25 %>% 
   group_by(replicate) %>% 
   summarize(red = sum(color == "red")) %>% 
   mutate(prop_red = red / 25)
-```
 
-```
-## Error in group_by(., replicate): object 'virtual_samples_25' not found
-```
-
-```r
 # 1.c) Plot distribution via a histogram
 ggplot(virtual_prop_red_25, aes(x = prop_red)) +
   geom_histogram(binwidth = 0.05, boundary = 0.4, color = "white") +
   labs(x = "Proportion of 25 balls that were red", title = "25") 
 ```
 
-```
-## Error in ggplot(virtual_prop_red_25, aes(x = prop_red)): object 'virtual_prop_red_25' not found
-```
-
-
-```r
+```{r}
 # Segment 2: sample n = 50 ------------------------------
 # 2.a) Virtually use shovel 1000 times
 virtual_samples_50 <- bowl %>% 
   rep_slice_sample(n = 50, reps = 1000)
-```
 
-```
-## Error in rep_slice_sample(., n = 50, reps = 1000): could not find function "rep_slice_sample"
-```
-
-```r
 # 2.b) Compute resulting 1000 replicates of proportion red
 virtual_prop_red_50 <- virtual_samples_50 %>% 
   group_by(replicate) %>% 
   summarize(red = sum(color == "red")) %>% 
   mutate(prop_red = red / 50)
-```
 
-```
-## Error in group_by(., replicate): object 'virtual_samples_50' not found
-```
-
-```r
 # 2.c) Plot distribution via a histogram
 ggplot(virtual_prop_red_50, aes(x = prop_red)) +
   geom_histogram(binwidth = 0.05, boundary = 0.4, color = "white") +
   labs(x = "Proportion of 50 balls that were red", title = "50")  
 ```
 
-```
-## Error in ggplot(virtual_prop_red_50, aes(x = prop_red)): object 'virtual_prop_red_50' not found
-```
-
-
-```r
+```{r}
 # Segment 3: sample n = 100 ------------------------------
 # 3.a) Virtually using shovel with 100 slots 1000 times
 virtual_samples_100 <- bowl %>% 
   rep_slice_sample(n = 100, reps = 1000)
-```
 
-```
-## Error in rep_slice_sample(., n = 100, reps = 1000): could not find function "rep_slice_sample"
-```
-
-```r
 # 3.b) Compute resulting 1000 replicates of proportion red
 virtual_prop_red_100 <- virtual_samples_100 %>% 
   group_by(replicate) %>% 
   summarize(red = sum(color == "red")) %>% 
   mutate(prop_red = red / 100)
-```
 
-```
-## Error in group_by(., replicate): object 'virtual_samples_100' not found
-```
-
-```r
 # 3.c) Plot distribution via a histogram
 ggplot(virtual_prop_red_100, aes(x = prop_red)) +
   geom_histogram(binwidth = 0.05, boundary = 0.4, color = "white") +
   labs(x = "Proportion of 100 balls that were red", title = "100") 
 ```
 
-```
-## Error in ggplot(virtual_prop_red_100, aes(x = prop_red)): object 'virtual_prop_red_100' not found
-```
-
-
-```r
+```{r}
 # Standard deviations
 
 # n = 25
 virtual_prop_red_25 %>% 
   summarize(sd = sd(prop_red))
-```
 
-```
-## Error in summarize(., sd = sd(prop_red)): object 'virtual_prop_red_25' not found
-```
-
-```r
 # n = 50
 virtual_prop_red_50 %>% 
   summarize(sd = sd(prop_red))
-```
 
-```
-## Error in summarize(., sd = sd(prop_red)): object 'virtual_prop_red_50' not found
-```
-
-```r
 # n = 100
 virtual_prop_red_100 %>% 
   summarize(sd = sd(prop_red))
-```
 
-```
-## Error in summarize(., sd = sd(prop_red)): object 'virtual_prop_red_100' not found
-```
-
-```r
 # As the sample size increases, our guesses at the true proportion of the bowl’s balls that are red get more precise
 ```
 
-
-```r
+```{r}
 # (LC7.6) In Figure 7.9, we used shovels to take 1000 samples each, computed the resulting 1000 proportions of the shovel’s balls that were red, and then visualized the distribution of these 1000 proportions in a histogram. We did this for shovels with 25, 50, and 100 slots in them. As the size of the shovels increased, the histograms got narrower. In other words, as the size of the shovels increased from 25 to 50 to 100, did the 1000 proportions
 
   #  A. vary less, <== 
@@ -298,54 +159,29 @@ virtual_prop_red_100 %>%
 
 #### 7.3.1 Terminology and notation
 
-
-```r
+```{r}
 # Virtual bowl census
 bowl %>% 
   summarise(red = sum(color == "red"))
 ```
 
-```
-## # A tibble: 1 x 1
-##     red
-##   <int>
-## 1   900
-```
-
-
-```r
+```{r}
 # Sampling using a shovel with 50 slots
 
 virtual_shovel <- 
   bowl %>% 
   rep_slice_sample(n = 50)
-```
 
-```
-## Error in rep_slice_sample(., n = 50): could not find function "rep_slice_sample"
-```
-
-```r
 virtual_shovel
 ```
 
-```
-## Error in eval(expr, envir, enclos): object 'virtual_shovel' not found
-```
-
-
-```r
+```{r}
 virtual_shovel %>% 
   summarise(num_red = sum(color == "red")) %>% 
   mutate(prop_red = num_red / 50)
 ```
 
-```
-## Error in summarise(., num_red = sum(color == "red")): object 'virtual_shovel' not found
-```
-
-
-```r
+```{r}
 # (LC7.8) In the case of our bowl activity, what is the population parameter? Do we know its value?
 
 # A: The population parameter is Population_proportion = 0.375
@@ -375,8 +211,7 @@ virtual_shovel %>%
 ```
 
 #### 7.3.2 Statistical definitions
-
-```r
+```{r}
 # (LC7.14) What purpose did the sampling distributions serve?
 
 # A: The sampling distributions show the effect of sample size on sample variance. Book: Using the sampling distributions, for a given sample size n, we can make statements about what values we can typically expect.
@@ -388,8 +223,7 @@ virtual_shovel %>%
 
 #### 7.3.3 The moral of the story
 
-
-```r
+```{r}
 # (LC7.16) The table that follows is a version of Table 7.3 matching sample sizes n to different standard errors of the sample proportion ˆp, but with the rows randomly re-ordered and the sample sizes removed. 
 
 # Fill in the table by matching the correct sample sizes to the correct standard errors. For the following four Learning checks, let the estimate be the sample proportion ˆp: the proportion of a shovel’s balls that were red. It estimates the population proportion p: the proportion of the bowl’s balls that were red.
@@ -401,17 +235,7 @@ tribble(~Sample_size, ~Standard_error_of_p_hat,
         100, 0.069)
 ```
 
-```
-## # A tibble: 3 x 2
-##   Sample_size Standard_error_of_p_hat
-##         <dbl>                   <dbl>
-## 1          25                   0.094
-## 2          50                   0.045
-## 3         100                   0.069
-```
-
-
-```r
+```{r}
 # (LC7.17) What is the difference between an accurate and a precise estimate?
 
 # A: Accurate estimate is 'on target' = close to the real value of pop.param. Precision is the consistency of a set of estimates (not for sigle estimate). Book: An accurate estimate gives an estimate that is close to, but not necessary the exact, actual value. A precise estimate gives the exact actual value.
@@ -429,8 +253,7 @@ tribble(~Sample_size, ~Standard_error_of_p_hat,
 
 #### 7.4 Case study: Polls
 
-
-```r
+```{r}
 # Comment on the representativeness of the following sampling methodologies:
 
 # (LC7.21) The Royal Air Force wants to study how resistant all their airplanes are to bullets. They study the bullet holes on all the airplanes on the tarmac after an air battle against the Luftwaffe (German Air Force).
@@ -450,47 +273,6 @@ tribble(~Sample_size, ~Standard_error_of_p_hat,
 # A. This sample is way too small, only 5 graduates for 10 years. Firstly, to make it representative for all the years in the timeline, the sampling should be done for each year of the 10 years separately and with more graduates per year. Many of the 'chosen' people are likely to decline taking part in the study anyway as this is sensitive personal information. The requirement for sample size might depend on the student structure of the school (diversity in multiple ways), but not sampling each year separately (then pooling the results), might lead to low accuracy (some years over/underrepresented). Book: This is not a good representation, because the sample size is too small. The sample is representative but not precise.
 ```
 
-
-```r
+```{r}
 clear_libraries()
-```
-
-```
-## Warning: 'forcats' namespace cannot be unloaded:
-##   namespace 'forcats' is imported by 'tidyverse', 'haven' so cannot be unloaded
-```
-
-```
-## Warning: 'stringr' namespace cannot be unloaded:
-##   namespace 'stringr' is imported by 'tidyverse', 'janitor' so cannot be unloaded
-```
-
-```
-## Warning: 'dplyr' namespace cannot be unloaded:
-##   namespace 'dplyr' is imported by 'broom', 'janitor', 'tidyr', 'dbplyr', 'infer' so cannot be unloaded
-```
-
-```
-## Warning: 'purrr' namespace cannot be unloaded:
-##   namespace 'purrr' is imported by 'broom', 'tidyr', 'modelr', 'styler', 'tidyselect', 'infer' so cannot be unloaded
-```
-
-```
-## Warning: 'readr' namespace cannot be unloaded:
-##   namespace 'readr' is imported by 'tidyverse' so cannot be unloaded
-```
-
-```
-## Warning: 'tidyr' namespace cannot be unloaded:
-##   namespace 'tidyr' is imported by 'tidyverse', 'broom' so cannot be unloaded
-```
-
-```
-## Warning: 'tibble' namespace cannot be unloaded:
-##   namespace 'tibble' is imported by 'broom', 'ggplot2', 'tidyr', 'modelr', 'haven', 'dplyr', 'dbplyr', 'styler', 'readr', 'infer' so cannot be unloaded
-```
-
-```
-## Warning: 'ggplot2' namespace cannot be unloaded:
-##   namespace 'ggplot2' is imported by 'tidyverse', 'infer' so cannot be unloaded
 ```

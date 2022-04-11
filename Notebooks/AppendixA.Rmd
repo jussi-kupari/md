@@ -3,8 +3,7 @@ title: "Appendix: A Statistical Background"
 output: html_notebook
 ---
 
-
-```r
+```{r}
 # Say you have a normal distribution with mean μ=6 and standard deviation σ=3.
 
 # (LCA.1) What proportion of the area under the normal curve is less than 3? 
@@ -20,4 +19,5 @@ output: html_notebook
 # A: 2.5th percentile = 0
 #    97.5th percentile = 6
 #    100th percentile = >12
+
 ```

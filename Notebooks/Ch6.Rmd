@@ -1,0 +1,384 @@
+---
+title: "ModernDive Ch6: Multiple Regression"
+output: html_notebook
+---
+
+```{r}
+# Load libraries
+
+library(tidyverse)
+library(moderndive)
+library(skimr)
+library(ISLR)
+library(patchwork)
+
+# Load function to clear libraries
+source(here::here("clear_libraries.R"))
+```
+
+### 6.1 One numerical and one categorical explanatory variable
+#### 6.1.1 Exploratory data analysis
+
+```{r}
+evals_ch6 <-
+  evals %>% 
+  select(ID, score, age, gender)
+```
+
+```{r}
+# Quick look
+glimpse(evals_ch6)
+```
+
+```{r}
+# Random sample
+evals_ch6 %>% 
+  slice_sample(n = 5)
+```
+
+```{r}
+# Skim
+
+evals_ch6 %>% 
+  select(score, age, gender) %>% 
+  skim()
+```
+
+```{r}
+# Correlation between numerical variables
+
+evals_ch6 %>% 
+  get_correlation(formula = score ~ age)
+
+```
+
+```{r}
+# Visualize
+
+evals_ch6 %>% 
+  ggplot(aes(age, score, color = gender)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(x = "Age", y = "Teaching score", color = "Gender")
+```
+#### 6.1.2 Interaction model
+```{r}
+# Fit regression model
+score_model_interaction <-
+  evals_ch6 %>% 
+  lm(score ~ age * gender, data = .)
+
+score_model_interaction %>% 
+  get_regression_table()
+```
+
+#### 6.1.3 Parallel slopes model
+```{r}
+evals_ch6 %>% 
+  ggplot(aes(age, score, color = gender)) +
+  geom_point() +
+  geom_parallel_slopes(se = FALSE) +
+  labs(x = "Age", y = "Teaching score", color = "Gender")
+```
+
+```{r}
+# Fit linear model
+
+score_model_parallel_slopes <-
+  evals_ch6 %>% 
+  lm(score ~ age + gender, data = .)
+
+score_model_parallel_slopes %>% 
+  get_regression_table()
+```
+
+#### 6.1.4 Observed/fitted values and residuals
+```{r}
+regression_points <- 
+  score_model_interaction %>% 
+  get_regression_points()
+
+regression_points
+```
+
+```{r}
+# (LC6.1) Compute the observed values, fitted values, and residuals not for the interaction model as we just did, but rather for the parallel slopes model we saved in score_model_parallel_slopes.
+
+score_model_parallel_slopes %>% 
+  get_regression_points()
+```
+
+### 6.2 Two numerical explanatory variables
+#### 6.2.1 Exploratory data analysis
+
+```{r}
+credit_ch6 <-
+  Credit %>% 
+  as_tibble() %>% 
+  select(
+    ID, 
+    debt = Balance, 
+    credit_limit = Limit,
+    income = Income,
+    credit_rating = Rating,
+    age = Age
+  )
+```
+
+```{r}
+glimpse(credit_ch6)
+```
+
+```{r}
+credit_ch6 %>% slice_sample(n = 5)
+```
+
+```{r}
+credit_ch6 %>% 
+  select(debt, credit_limit, income) %>% 
+  skim() 
+```
+
+```{r}
+credit_ch6 %>% 
+  select(debt, credit_limit, income) %>% 
+  cor()
+
+# Note collinearity between explanatory variables (credit_limit, income)
+```
+
+```{r}
+credit_ch6 %>% 
+  ggplot(aes(credit_limit, debt)) +
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    x = "Credit limit (in $)", 
+    y = "Credit card debt (in $)", 
+    title = "Debt and credit limit"
+  ) +
+  
+  credit_ch6 %>% 
+  ggplot(aes(income, debt)) +
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    x = "Income (in $1000)", 
+    title = "Debt and income"
+  )
+```
+
+```{r}
+# (LC6.2) Conduct a new exploratory data analysis with the same outcome variable y debt but with credit_rating and age as the new explanatory variables x1 and x2. What can you say about the relationship between a credit card holder’s debt and their credit rating and age?
+
+credit_ch6 %>% 
+  select(credit_rating, age) %>% 
+  skim()
+```
+
+```{r}
+credit_ch6 %>% 
+  select(debt, credit_rating, age) %>% 
+  cor()
+
+# High correlation between debt-credit_rating, low between debt-age
+# Low correlation between explanatory variables
+```
+
+```{r}
+credit_ch6 %>% 
+  ggplot(aes(credit_rating, debt)) +
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    x = "Credit rating", 
+    y = "Credit card debt (in $)", 
+    title = "Debt and credit rating"
+  ) +
+  
+  credit_ch6 %>% 
+  ggplot(aes(age, debt)) +
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    x = "Age", 
+    title = "Debt and age"
+  )
+```
+
+#### 6.2.2 Regression plane
+```{r}
+# Fit regression model
+
+debt_model <- 
+  credit_ch6 %>% 
+  lm(debt ~ credit_limit + income, data = .)
+
+debt_model %>% 
+  get_regression_table()
+```
+
+```{r}
+# (LC6.3) Fit a new simple linear regression using lm(debt ~ credit_rating + age, data = credit_ch6) where credit_rating and age are the new numerical explanatory variables x1 and x2. Get information about the “best-fitting” regression plane from the regression table by applying the get_regression_table() function. How do the regression results match up with the results from your previous exploratory data analysis?
+
+credit_ch6 %>% 
+  lm(debt ~ credit_rating + age, data = .) %>% 
+  get_regression_table()
+
+# Interptretation: When taking into account all other explanatory variables, for every increase in one unit in credit_rating, there is an increase of ~2.6 USD in debt AND when taking into consideration all other explanatory variables, there is a decrease of ~2.4 USD in debt for every added year in age.
+
+# Answer: The slope for age-debt doesn't agree with the exploratory analysis where there was a small positive association between the variables (now clearly negative).
+```
+
+#### 6.2.3 Observed/fitted values and residuals
+
+```{r}
+debt_model %>% 
+  get_regression_points()
+```
+
+### 6.3 Related topics
+#### 6.3.1 Model selection using visualizations
+```{r}
+# MA Shools
+
+# interaction model
+MA_schools %>% 
+  ggplot(aes(perc_disadvan, average_sat_math, color = size)) +
+  geom_point(alpha = 0.25) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(x = "Percent economically disadvantaged", y = "Math SAT Score", 
+       color = "School size", title = "Interaction model") 
+```
+```{r}
+# Parallel slopes model
+
+MA_schools %>% 
+   ggplot(aes(perc_disadvan, average_sat_math, color = size)) +
+  geom_point(alpha = 0.25) +
+  geom_parallel_slopes(se = FALSE) +
+  labs(x = "Percent economically disadvantaged", y = "Math SAT Score", 
+       color = "School size", title = "Parallel slopes model") 
+```
+
+```{r}
+# Side-by-side
+
+(# interaction model
+MA_schools %>% 
+  ggplot(aes(perc_disadvan, average_sat_math, color = size)) +
+  geom_point(alpha = 0.25) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(x = "Percent economically disadvantaged", y = "Math SAT Score", 
+       color = "School size", title = "Interaction model")) +
+  (# Parallel slopes model
+    MA_schools %>% 
+   ggplot(aes(perc_disadvan, average_sat_math, color = size)) +
+  geom_point(alpha = 0.25) +
+  geom_parallel_slopes(se = FALSE) +
+  labs(x = "Percent economically disadvantaged", y = "Math SAT Score", 
+       color = "School size", title = "Parallel slopes model"))
+```
+```{r}
+model_2_interaction <-
+  MA_schools %>% 
+  lm(average_sat_math ~ perc_disadvan * size, data = .)
+
+model_2_interaction %>% 
+  get_regression_table()
+```
+
+```{r}
+model_2_parallel_slopes <-
+  MA_schools %>% 
+  lm(average_sat_math ~ perc_disadvan + size, data = .)
+
+model_2_parallel_slopes %>% 
+  get_regression_table()
+```
+
+#### 6.3.2 Model selection using R-squared
+
+```{r}
+model_2_interaction %>% 
+  get_regression_points()
+```
+
+```{r}
+# Compute variance for obs, expected, and residual
+model_2_interaction %>% 
+  get_regression_points() %>% 
+  summarise(
+    var_y = var(average_sat_math), 
+    var_y_hat = var(average_sat_math_hat), 
+    var_residual = var(residual)
+  )
+```
+
+```{r}
+# R-squared for interaction model
+model_2_interaction %>% 
+  get_regression_summaries()
+```
+
+```{r}
+# R-squared for parallel slopes model
+model_2_parallel_slopes%>% 
+  get_regression_summaries()
+```
+
+#### 6.3.3 Correlation coefficient
+```{r}
+# Using dollars instead of 1000xdollars doesn't change the correlation
+credit_ch6 %>% 
+  select(debt, income) %>% 
+  mutate(income = income * 1000) %>% 
+  cor()
+```
+
+```{r}
+# The correlation coefficient is invariant to linear transformations
+credit_ch6 %>% 
+  select(debt, income) %>%  
+  cor()
+```
+
+#### 6.3.4 Simpson’s Paradox
+```{r}
+credit_ch6 %>% 
+  ggplot(aes(credit_limit)) +
+  geom_histogram(color = "white") 
+```
+
+```{r}
+credit_ch6 %>% 
+  ggplot(aes(income, debt))+ 
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    x = "Credit card debt (in $)",
+    y = "Income (in $1000",
+  ) +
+
+credit_ch6 %>% 
+  mutate(
+    credit_limit_bracket = case_when(
+      credit_limit < 3088 ~ "low",
+      credit_limit < 4622 ~ "medium-low",
+      credit_limit < 5873 ~ "medium-high",
+      TRUE ~ "high"
+    )
+  ) %>% 
+  ggplot(aes(income, debt, color = credit_limit_bracket)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    x = "Credit card debt (in $)",
+    y = "Income (in $1000",
+    color = "Credit limit bracket"
+  )
+```
+
+```{r}
+clear_libraries()
+```
